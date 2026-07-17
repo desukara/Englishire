@@ -1329,13 +1329,13 @@ ol {
 }
 
 .about-englishire__wordmark {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
   color: var(--crown-gold-light);
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 9vw, 4.8rem);
+  font-size: clamp(1.8rem, 6vw, 3.8rem);
   font-weight: 800;
-  letter-spacing: -0.045em;
-  line-height: 1;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
 }
 
 .about-englishire__descriptor {
