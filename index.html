@@ -63,10 +63,11 @@
     <link rel="canonical" href="https://englishire.com/" />
 
     <link rel="icon" href="images/favicon.ico" sizes="any" />
-
-    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
-
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+    <link rel="manifest" href="images/site.webmanifest" />
+    <meta name="msapplication-config" content="images/browserconfig.xml" />
 
     <title>Temporary English Teacher Cover in Tokyo | Englishire</title>
 
@@ -85,7 +86,7 @@
             "url": "https://englishire.com/",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://englishire.com/images/englishire-logo.png"
+              "url": "https://englishire.com/images/englishire-logo-master.webp"
             },
             "description": "Englishire provides considered temporary English teacher cover for schools throughout Tokyo.",
             "areaServed": {
@@ -192,11 +193,11 @@
     <header class="site-header" id="englishire-site-header">
       <div class="site-shell site-header__inner">
         <a class="masthead" href="index.html" aria-label="Englishire homepage">
-          <span class="masthead__name">ENGLISHIRE</span>
-
-          <span class="masthead__descriptor">
-            Temporary Teacher Cover · Tokyo
-          </span>
+          <picture>
+            <source srcset="images/englishire-logo-160px.webp" type="image/webp" />
+            <img class="masthead__logo" src="images/englishire-logo-160px.webp" width="160" height="160" alt="Englishire" />
+          </picture>
+          <span class="masthead__descriptor">Temporary Teacher Cover · Tokyo</span>
         </a>
 
         <button
