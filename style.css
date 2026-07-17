@@ -2417,11 +2417,12 @@ ol {
 }
 
 /* =========================================================
-   23. ENGLISHIRE LOGO HEADER FIX
-   Large logo with navigation on its own desktop row
+   23. ENGLISHIRE BALANCED LARGE-LOGO HEADER
+   Large centred logo, readable descriptor, and balanced
+   full-width desktop navigation.
 ========================================================= */
 
-/* Mobile and tablet: keep the logo large beside the menu button. */
+/* Mobile and tablet: retain the existing logo/menu arrangement. */
 .masthead {
   width: clamp(15rem, 52vw, 22rem);
 }
@@ -2433,43 +2434,87 @@ ol {
   max-width: none;
 }
 
-/* Desktop: give the large logo and navigation separate rows. */
+.masthead__descriptor {
+  margin-top: 0.65rem;
+  font-size: clamp(0.72rem, 2.4vw, 0.86rem);
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Desktop: place branding and navigation on balanced separate rows. */
 @media (min-width: 64rem) {
   .site-header__inner {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     justify-items: center;
-    gap: 1rem;
-    padding-block: 1.35rem 1rem;
+    gap: 1.15rem;
+    min-height: auto;
+    padding-block: 1.65rem 1.25rem;
   }
 
   .masthead {
-    width: clamp(22rem, 34vw, 30rem);
+    width: clamp(24rem, 36vw, 32rem);
     align-items: center;
     text-align: center;
   }
 
   .masthead__descriptor {
-    white-space: nowrap;
+    margin-top: 0.8rem;
+    font-size: clamp(0.88rem, 0.9vw, 1rem);
+    letter-spacing: 0.15em;
   }
 
   .primary-nav {
     position: static;
     display: flex;
-    width: 100%;
+    width: min(100%, 72rem);
     min-width: 0;
     align-items: center;
     justify-content: center;
     flex-wrap: nowrap;
-    gap: clamp(0.75rem, 1.5vw, 1.65rem);
-    padding: 0;
+    gap: clamp(1rem, 1.8vw, 1.8rem);
+    padding: 0.85rem 0 0;
+    color: var(--white);
     background: transparent;
     border: 0;
+    border-top: 1px solid rgba(226, 202, 139, 0.34);
     box-shadow: none;
   }
 
   .primary-nav a {
     flex: 0 0 auto;
+    min-height: 3rem;
+    border-bottom: 0;
+    font-size: clamp(0.82rem, 0.82vw, 0.94rem);
+    letter-spacing: 0.075em;
     white-space: nowrap;
   }
+
+  .primary-nav__enquiry {
+    margin-top: 0;
+    padding-inline: 1.25rem;
+  }
 }
+
+/* Large desktop: preserve the hierarchy without making the header sparse. */
+@media (min-width: 88rem) {
+  .masthead {
+    width: 34rem;
+  }
+
+  .masthead__descriptor {
+    font-size: 1rem;
+  }
+
+  .primary-nav {
+    gap: 1.8rem;
+  }
+
+  .primary-nav a {
+    font-size: 0.94rem;
+  }
+}
+
