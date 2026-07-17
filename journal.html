@@ -62,11 +62,12 @@
 
     <link rel="canonical" href="https://englishire.com/journal.html" />
 
-    <link rel="icon" href="favicon.ico" sizes="any" />
-
-    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-
-    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+   <link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<meta name="msapplication-config" content="browserconfig.xml" />
 
     <title>The Englishire Journal | Volume I</title>
 
@@ -320,13 +321,15 @@
 
     <header class="site-header" id="englishire-site-header">
       <div class="site-shell site-header__inner">
-        <a class="masthead" href="index.html" aria-label="Englishire homepage">
-          <span class="masthead__name">ENGLISHIRE</span>
-
-          <span class="masthead__descriptor">
-            Temporary Teacher Cover · Tokyo
-          </span>
-        </a>
+       <a class="masthead" href="index.html" aria-label="Englishire homepage">
+  <img
+    class="masthead__logo"
+    src="englishire-logo.png"
+    width="1327"
+    height="380"
+    alt="Englishire"
+  />
+</a>
 
         <button
           class="mobile-nav-toggle"
@@ -343,23 +346,25 @@
           </span>
         </button>
 
-        <nav
-          class="primary-nav"
-          id="englishire-primary-navigation"
-          aria-label="Primary navigation"
-        >
-          <a href="teacher-cover.html">Teacher Cover</a>
+       <nav
+  class="primary-nav"
+  id="englishire-primary-navigation"
+  aria-label="Primary navigation"
+>
+  <a href="teacher-cover.html">Teacher Cover</a>
 
-          <a href="how-it-works.html">How It Works</a>
+  <a href="teacher-cover.html#when-we-help">When We Help</a>
 
-          <a href="journal.html" aria-current="page">Journal</a>
+  <a href="how-it-works.html">How It Works</a>
 
-          <a href="about.html">About</a>
+  <a href="journal.html" aria-current="page">Journal</a>
 
-          <a class="primary-nav__enquiry" href="contact.html">
-            Request a Teacher
-          </a>
-        </nav>
+  <a href="about.html">About</a>
+
+  <a class="primary-nav__enquiry" href="contact.html">
+    Request a Teacher
+  </a>
+</nav>
       </div>
     </header>
 
@@ -1071,24 +1076,29 @@
 
     <footer class="site-footer" id="englishire-site-footer">
       <div class="site-shell site-footer__top">
-        <div class="site-footer__brand">
-          <a
-            class="site-footer__masthead"
-            href="index.html"
-            aria-label="Return to Englishire homepage"
-          >
-            <span class="site-footer__name">ENGLISHIRE</span>
+       <div class="site-footer__brand">
+  <a
+    class="site-footer__masthead"
+    href="index.html"
+    aria-label="Return to Englishire homepage"
+  >
+    <img
+      src="englishire-logo.png"
+      width="1327"
+      height="280"
+      alt="Englishire"
+      style="width: 250px; height: auto; display: block; margin-bottom: 0.75rem;"
+    />
 
-            <span class="site-footer__descriptor">
-              Temporary Teacher Cover · Tokyo
-            </span>
-          </a>
+    <span class="site-footer__descriptor">
+      Temporary Teacher Cover · Tokyo
+    </span>
+  </a>
 
-          <p class="site-footer__statement">
-            Professional temporary English teachers for Tokyo schools.
-          </p>
-        </div>
-
+  <p class="site-footer__statement">
+    Considered temporary English teacher cover for Tokyo schools.
+  </p>
+</div>
         <nav
           class="site-footer__navigation"
           aria-label="Footer service navigation"
@@ -1119,18 +1129,16 @@
           <a href="contact.html">Contact</a>
         </nav>
 
-        <div class="site-footer__contact">
-          <p class="site-footer__navigation-title">The Journal</p>
+       <div class="site-footer__contact">
+  <p class="site-footer__navigation-title">Enquiries</p>
 
-          <p>
-            Essays, observations and papers concerning English education
-            throughout Tokyo.
-          </p>
+  <p>
+    For temporary teacher cover, kindly include the school location,
+    requested dates and lesson schedule.
+  </p>
 
-          <a href="#englishire-journal-editorial-selection"
-            >Read the latest essays</a
-          >
-        </div>
+  <a href="contact.html">Begin an enquiry</a>
+</div>
       </div>
 
       <div class="site-shell site-footer__bottom">
@@ -1151,12 +1159,12 @@
     </footer>
 
     <noscript>
-      <div class="noscript-notice">
-        <p>
-          This website works best with JavaScript enabled, though every essay
-          and essential link remains available without it.
-        </p>
-      </div>
-    </noscript>
+  <div class="noscript-notice">
+    <p>
+      This website works best with JavaScript enabled, but all essential
+      service information and links remain available.
+    </p>
+  </div>
+</noscript>
   </body>
 </html>
