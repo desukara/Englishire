@@ -2416,32 +2416,60 @@ ol {
   }
 }
 
-/* Display the real horizontal logo correctly */
-.masthead__logo {
-  display: block;
-  width: 100%;
-  height: auto;
-}
+/* =========================================================
+   23. ENGLISHIRE LOGO HEADER FIX
+   Large logo with navigation on its own desktop row
+========================================================= */
 
-/* Mobile and tablet */
+/* Mobile and tablet: keep the logo large beside the menu button. */
 .masthead {
   width: clamp(15rem, 52vw, 22rem);
 }
 
-/* Desktop */
+.masthead__logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+}
+
+/* Desktop: give the large logo and navigation separate rows. */
 @media (min-width: 64rem) {
   .site-header__inner {
     display: grid;
-    grid-template-columns: minmax(19rem, 25rem) minmax(0, 1fr);
-    gap: clamp(2rem, 4vw, 4rem);
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 1rem;
+    padding-block: 1.35rem 1rem;
   }
 
   .masthead {
-    width: 100%;
+    width: clamp(22rem, 34vw, 30rem);
+    align-items: center;
+    text-align: center;
+  }
+
+  .masthead__descriptor {
+    white-space: nowrap;
   }
 
   .primary-nav {
+    position: static;
+    display: flex;
+    width: 100%;
     min-width: 0;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: clamp(0.75rem, 1.5vw, 1.65rem);
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .primary-nav a {
+    flex: 0 0 auto;
+    white-space: nowrap;
   }
 }
