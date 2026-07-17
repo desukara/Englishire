@@ -666,10 +666,10 @@ ol {
   margin-bottom: 1.15rem;
   color: var(--royal-navy);
   font-family: var(--font-display);
-  font-size: clamp(3rem, 12vw, 7.2rem);
+  font-size: clamp(3rem, 10vw, 7.2rem);
   font-weight: 700;
-  letter-spacing: -0.06em;
-  line-height: 0.91;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
 }
 
 .service-hero__lead {
@@ -2517,4 +2517,3 @@ ol {
     font-size: 0.94rem;
   }
 }
-
