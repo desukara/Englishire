@@ -18,6 +18,9 @@
       rel="canonical"
       href="https://englishire.com/backup-teacher-eikaiwa.html"
     />
+    <link rel="icon" href="images/favicon.ico" sizes="any" />
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
 
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Englishire" />
@@ -65,6 +68,9 @@
       content="An empty chair in a quiet English classroom in Japan"
     />
 
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -95,474 +101,274 @@
     </script>
 
     <style>
-      :root {
-        --ink: #171714;
-        --muted: #68665f;
-        --paper: #f5f2eb;
-        --paper-deep: #ebe6dc;
-        --line: #cbc4b7;
-        --accent: #6e1f28;
-        --max: 76rem;
-        --measure: 45rem;
+      .journal-article-header {
+        padding: clamp(5rem, 10vw, 9rem) 0 clamp(3rem, 7vw, 6rem);
+        border-bottom: 1px solid rgba(17, 34, 51, 0.18);
       }
 
-      * {
-        box-sizing: border-box;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        margin: 0;
-        color: var(--ink);
-        background: var(--paper);
-        font-family: Georgia, "Times New Roman", serif;
-        line-height: 1.72;
-        text-rendering: optimizeLegibility;
-      }
-
-      a {
-        color: inherit;
-        text-decoration-thickness: 0.06em;
-        text-underline-offset: 0.18em;
-      }
-      a:hover,
-      a:focus-visible {
-        color: var(--accent);
-      }
-      img,
-      svg {
-        display: block;
-        max-width: 100%;
-      }
-      .skip-link {
-        position: absolute;
-        left: -9999px;
-        top: 0;
-        z-index: 999;
-        padding: 0.75rem 1rem;
-        background: var(--ink);
-        color: white;
-      }
-      .skip-link:focus {
-        left: 1rem;
-        top: 1rem;
-      }
-
-      .site-header {
-        border-bottom: 1px solid var(--line);
-        background: rgba(245, 242, 235, 0.96);
-      }
-      .masthead {
-        width: min(calc(100% - 2rem), var(--max));
+      .journal-article-header__inner {
+        max-width: 980px;
         margin: 0 auto;
-        padding: 1.35rem 0 1rem;
-        text-align: center;
       }
-      .brand {
-        display: inline-block;
-        text-decoration: none;
-        font-size: clamp(2rem, 6vw, 4.7rem);
-        line-height: 0.95;
-        letter-spacing: -0.045em;
+
+      .journal-article-header h1 {
+        max-width: 12ch;
+        margin: 1rem 0 1.5rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(3rem, 8vw, 7rem);
+        font-weight: 500;
+        line-height: 0.98;
       }
-      .journal-line {
-        margin: 0.55rem 0 0;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.72rem;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        color: var(--muted);
+
+      .journal-article-header__standfirst {
+        max-width: 44rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.3rem, 2.6vw, 2rem);
+        line-height: 1.45;
       }
-      .primary-nav {
-        border-top: 1px solid var(--line);
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.75rem;
+
+      .journal-article-header__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem 1.5rem;
+        margin-top: 2rem;
+        padding-top: 1.4rem;
+        border-top: 1px solid rgba(17, 34, 51, 0.16);
+        font-size: 0.82rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
-      .primary-nav ul {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 0.4rem 1.35rem;
+
+      .journal-article-hero {
         margin: 0;
-        padding: 0.8rem 1rem;
-        list-style: none;
-      }
-      .primary-nav a {
-        text-decoration: none;
       }
 
-      main {
-        overflow: hidden;
-      }
-      .article-header {
-        width: min(calc(100% - 2rem), 68rem);
-        margin: 0 auto;
-        padding: clamp(3rem, 8vw, 7rem) 0 2.25rem;
-        text-align: center;
-      }
-      .kicker {
-        margin: 0 0 1.15rem;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.75rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--accent);
-      }
-      h1 {
-        max-width: 18ch;
-        margin: 0 auto;
-        font-size: clamp(2.7rem, 7.5vw, 6.3rem);
-        line-height: 0.98;
-        font-weight: 500;
-        letter-spacing: -0.04em;
-      }
-      .byline {
-        margin: 1.8rem 0 0;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.8rem;
-        letter-spacing: 0.09em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-      .byline strong {
-        color: var(--ink);
-        font-weight: 600;
-      }
-
-      .hero {
-        width: min(calc(100% - 2rem), var(--max));
-        margin: 0 auto clamp(3rem, 7vw, 6rem);
-      }
-      .hero svg {
+      .journal-article-hero img {
+        display: block;
         width: 100%;
-        height: auto;
-        border: 1px solid var(--line);
-        background: var(--paper-deep);
-      }
-      .hero figcaption {
-        max-width: var(--measure);
-        margin: 0.75rem auto 0;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.72rem;
-        line-height: 1.5;
-        color: var(--muted);
+        max-height: 720px;
+        object-fit: cover;
       }
 
-      .article-shell {
+      .journal-article-hero figcaption {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 0.85rem 1.25rem 0;
+        font-size: 0.82rem;
+      }
+
+      .journal-article-layout {
         display: grid;
-        grid-template-columns: minmax(0, 1fr);
-        width: min(calc(100% - 2rem), var(--max));
-        margin: 0 auto;
+        grid-template-columns:
+          minmax(0, 1fr)
+          minmax(0, 680px)
+          minmax(0, 1fr);
+        padding: clamp(3rem, 8vw, 7rem) 0;
       }
-      .article-body {
-        width: min(100%, var(--measure));
-        margin: 0 auto;
-        font-size: clamp(1.08rem, 1.5vw, 1.23rem);
+
+      .journal-article {
+        grid-column: 2;
+        min-width: 0;
       }
-      .article-body p {
-        margin: 0 0 1.55em;
+
+      .journal-article__note {
+        margin-bottom: 3rem;
+        padding: 1.5rem 0;
+        border-top: 1px solid rgba(17, 34, 51, 0.18);
+        border-bottom: 1px solid rgba(17, 34, 51, 0.18);
+        font-size: 0.95rem;
       }
-      .article-body .standfirst {
-        margin-bottom: 2.1em;
-        font-size: clamp(1.35rem, 2.3vw, 1.75rem);
-        line-height: 1.48;
-        color: #2b2925;
+
+      .journal-article__section {
+        margin-top: clamp(3.5rem, 8vw, 6.5rem);
       }
-      .article-body h2 {
-        margin: 2.3em 0 0.8em;
-        font-size: clamp(1.8rem, 3.2vw, 2.6rem);
-        line-height: 1.12;
+
+      .journal-article__section:first-of-type {
+        margin-top: 0;
+      }
+
+      .journal-article__section h2 {
+        margin: 0 0 1.6rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
         font-weight: 500;
-        letter-spacing: -0.025em;
       }
-      .article-body section:first-of-type h2 {
-        margin-top: 1.8em;
+
+      .journal-article__section p {
+        margin: 0 0 1.35rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.08rem, 1.8vw, 1.22rem);
+        line-height: 1.75;
       }
-      .reporting-note {
-        margin-top: 3.5rem !important;
+
+      .journal-article__section p:first-of-type::first-letter {
+        float: none;
+        margin: 0;
+        font-size: inherit;
+        line-height: inherit;
+      }
+
+      .journal-article__section p.article-emphasis {
+        margin: 1.1rem 0;
+        font-size: clamp(1.18rem, 2vw, 1.38rem);
+        line-height: 1.45;
+      }
+
+      .journal-article__section p.article-emphasis::first-letter {
+        float: none;
+        margin: 0;
+        font-size: inherit;
+        line-height: inherit;
+      }
+
+      .journal-article__standfirst {
+        margin: 0 0 2.1rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.3rem, 2.3vw, 1.75rem);
+        line-height: 1.48;
+      }
+
+      .journal-article__intro {
+        margin: 0 0 1.35rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.08rem, 1.8vw, 1.22rem);
+        line-height: 1.75;
+      }
+
+      .journal-article__reporting-note {
+        margin-top: 3.5rem;
         padding-top: 1.25rem;
-        border-top: 1px solid var(--line);
+        border-top: 1px solid rgba(17, 34, 51, 0.18);
         font-size: 0.9rem;
         font-style: italic;
-        color: var(--muted);
       }
 
-      .article-footer {
-        width: min(calc(100% - 2rem), var(--max));
-        margin: clamp(4rem, 9vw, 8rem) auto 0;
-        border-top: 1px solid var(--line);
-      }
-      .publication-nav {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        border-bottom: 1px solid var(--line);
-      }
-      .publication-nav a {
-        display: block;
-        min-height: 10rem;
-        padding: 2rem;
-        text-decoration: none;
-      }
-      .publication-nav a + a {
-        border-left: 1px solid var(--line);
-        text-align: right;
-      }
-      .nav-label {
-        display: block;
-        margin-bottom: 0.65rem;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.7rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-      .nav-title {
-        font-size: clamp(1.2rem, 2.2vw, 1.6rem);
-        line-height: 1.25;
+      .journal-article-footer {
+        padding: clamp(3rem, 7vw, 6rem) 0;
+        border-top: 1px solid rgba(17, 34, 51, 0.18);
       }
 
-      .continue-reading {
-        padding: clamp(2.5rem, 6vw, 5rem) 0;
-      }
-      .continue-reading h2 {
-        margin: 0 0 1.75rem;
-        font-size: clamp(2rem, 4vw, 3.2rem);
-        font-weight: 500;
-        letter-spacing: -0.03em;
-      }
-      .reading-grid {
+      .journal-article-footer__grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 1px;
-        background: var(--line);
-        border: 1px solid var(--line);
-      }
-      .reading-card {
-        display: flex;
-        min-height: 13rem;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 1.5rem;
-        background: var(--paper);
-        text-decoration: none;
-      }
-      .reading-card span:first-child {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.68rem;
-        letter-spacing: 0.13em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-      .reading-card strong {
-        font-size: 1.25rem;
-        line-height: 1.25;
-        font-weight: 500;
-      }
-      .return-link {
-        display: inline-block;
-        margin-top: 1.75rem;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.75rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
+        border: 1px solid rgba(17, 34, 51, 0.16);
+        background: rgba(17, 34, 51, 0.16);
       }
 
-      .site-footer {
-        margin-top: 0;
-        padding: 2.2rem 1rem;
-        border-top: 1px solid var(--line);
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.75rem;
-        color: var(--muted);
-      }
-      .footer-inner {
-        display: flex;
-        width: min(100%, var(--max));
-        margin: 0 auto;
-        justify-content: space-between;
-        gap: 1rem;
-        flex-wrap: wrap;
+      .journal-article-footer__grid article {
+        padding: clamp(1.4rem, 3vw, 2.2rem);
+        background: var(--colour-ivory, #f6f2e8);
       }
 
-      @media (max-width: 700px) {
-        .publication-nav,
-        .reading-grid {
+      .journal-article-footer__grid h3 {
+        margin-top: 0.4rem;
+      }
+
+      @media (max-width: 800px) {
+        .journal-article-layout {
           grid-template-columns: 1fr;
+          padding-inline: 1.25rem;
         }
-        .publication-nav a + a {
-          border-top: 1px solid var(--line);
-          border-left: 0;
-          text-align: left;
-        }
-        .reading-card {
-          min-height: 10rem;
-        }
-        .article-header {
-          text-align: left;
-        }
-        h1 {
-          margin-left: 0;
-        }
-      }
 
-      @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-          scroll-behavior: auto !important;
-          transition-duration: 0.01ms !important;
-          animation-duration: 0.01ms !important;
+        .journal-article {
+          grid-column: 1;
+        }
+
+        .journal-article-footer__grid {
+          grid-template-columns: 1fr;
         }
       }
     </style>
   </head>
   <body>
-    <a class="skip-link" href="#article-content">Skip to article</a>
+    <a class="skip-link" href="#englishire-main-content">
+      Skip to main content
+    </a>
 
-    <header class="site-header">
-      <div class="masthead">
-        <a class="brand" href="index.html" aria-label="Englishire home"
-          >Englishire</a
+    <header class="site-header" id="englishire-site-header">
+      <div class="site-shell site-header__inner">
+        <a
+          class="masthead"
+          href="index.html"
+          aria-label="Englishire homepage"
         >
-        <p class="journal-line">The Englishire Journal · Volume I</p>
+          <span class="masthead__name">ENGLISHIRE</span>
+          <span class="masthead__descriptor">
+            Temporary Teacher Cover · Tokyo
+          </span>
+        </a>
+
+        <button
+          class="mobile-nav-toggle"
+          id="englishire-mobile-nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="englishire-primary-navigation"
+        >
+          <span class="mobile-nav-toggle__label">Menu</span>
+          <span class="mobile-nav-toggle__icon" aria-hidden="true">
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+
+        <nav
+          class="primary-nav"
+          id="englishire-primary-navigation"
+          aria-label="Primary navigation"
+        >
+          <a href="teacher-cover.html">Teacher Cover</a>
+          <a href="how-it-works.html">How It Works</a>
+          <a href="journal.html" aria-current="page">Journal</a>
+          <a href="questions.html">Questions</a>
+          <a href="about.html">About</a>
+          <a class="primary-nav__enquiry" href="contact.html">
+            Request a Teacher
+          </a>
+        </nav>
       </div>
-      <nav class="primary-nav" aria-label="Primary navigation">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="how-it-works.html">How it works</a></li>
-          <li><a href="questions.html">Questions</a></li>
-          <li><a href="journal.html" aria-current="page">Journal</a></li>
-        </ul>
-      </nav>
     </header>
 
-    <main>
+    <main id="englishire-main-content">
       <article itemscope itemtype="https://schema.org/Article">
-        <header class="article-header">
-          <p class="kicker">
-            The Englishire Journal · Volume I · Publication VI
-          </p>
-          <h1 itemprop="headline">
-            When the Teacher Doesn't Show: Inside Japan's Eikaiwa Staffing
-            Squeeze
-          </h1>
-          <p class="byline">
-            By <strong itemprop="author">James Simmons</strong> · Published by
-            Englishire
-          </p>
+        <header class="journal-article-header">
+          <div class="site-shell journal-article-header__inner">
+            <p class="eyebrow">The Englishire Journal · Volume I · Publication VI</p>
+            <h1 itemprop="headline">When the Teacher Doesn't Show: Inside Japan's Eikaiwa Staffing Squeeze</h1>
+
+            <div class="journal-article-header__meta">
+              <span>By <strong itemprop="author">James Simmons</strong> · Published by Englishire</span>
+              <span>Education and School Operations</span>
+            </div>
+          </div>
         </header>
 
-        <figure class="hero">
-          <svg
-            viewBox="0 0 1600 900"
-            role="img"
-            aria-labelledby="hero-title hero-desc"
-          >
-            <title id="hero-title">An empty chair in a quiet classroom</title>
-            <desc id="hero-desc">
-              A restrained editorial illustration of an empty classroom chair
-              beside a teacher's desk, representing a sudden staffing absence.
-            </desc>
-            <rect width="1600" height="900" fill="#e8e2d7" />
-            <rect x="0" y="650" width="1600" height="250" fill="#d4cbbc" />
-            <rect
-              x="210"
-              y="145"
-              width="1180"
-              height="420"
-              fill="#f4f0e8"
-              stroke="#8b847a"
-              stroke-width="5"
-            />
-            <line
-              x1="800"
-              y1="145"
-              x2="800"
-              y2="565"
-              stroke="#8b847a"
-              stroke-width="4"
-            />
-            <line
-              x1="210"
-              y1="355"
-              x2="1390"
-              y2="355"
-              stroke="#8b847a"
-              stroke-width="4"
-            />
-            <rect
-              x="1050"
-              y="570"
-              width="330"
-              height="48"
-              rx="4"
-              fill="#756d63"
-            />
-            <rect x="1090" y="618" width="22" height="190" fill="#756d63" />
-            <rect x="1320" y="618" width="22" height="190" fill="#756d63" />
-            <rect
-              x="590"
-              y="545"
-              width="210"
-              height="38"
-              rx="4"
-              fill="#6e1f28"
-            />
-            <rect x="620" y="583" width="24" height="205" fill="#6e1f28" />
-            <rect x="746" y="583" width="24" height="205" fill="#6e1f28" />
-            <rect
-              x="610"
-              y="390"
-              width="170"
-              height="155"
-              rx="10"
-              fill="none"
-              stroke="#6e1f28"
-              stroke-width="18"
-            />
-            <circle
-              cx="1235"
-              cy="285"
-              r="58"
-              fill="none"
-              stroke="#756d63"
-              stroke-width="8"
-            />
-            <line
-              x1="1235"
-              y1="285"
-              x2="1235"
-              y2="245"
-              stroke="#756d63"
-              stroke-width="7"
-            />
-            <line
-              x1="1235"
-              y1="285"
-              x2="1270"
-              y2="305"
-              stroke="#756d63"
-              stroke-width="7"
-            />
-          </svg>
+        <figure class="journal-article-hero">
+          <img
+            src="images/journal/backup-teacher-eikaiwa.jpg"
+            alt="An empty chair in a quiet English classroom in Japan"
+            width="1600"
+            height="900"
+          />
           <figcaption>
             An empty place in the timetable is rarely an isolated event; it
             tests the systems surrounding the classroom.
           </figcaption>
         </figure>
 
-        <div class="article-shell">
-          <div class="article-body" id="article-content" itemprop="articleBody">
-            <p class="standfirst">
+        <div class="site-shell journal-article-layout">
+          <div
+            class="journal-article"
+            id="article-content"
+            itemprop="articleBody"
+          >
+            <p class="journal-article__standfirst">
               A staffing gap at a single classroom rarely stays contained. What
               starts as one empty chair on a Tuesday morning becomes a test of a
               school&#x27;s entire operating system.
             </p>
-            <p>
+            <p class="journal-article__intro">
               Multiply that single Tuesday morning across the thousands of
               eikaiwa operating in Japan&#x27;s cities and suburbs, and a
               pattern emerges that individual schools rarely have the vantage
@@ -576,7 +382,11 @@
               suffers. It is closer to a permanent condition the sector has
               simply learned to live around, unevenly and often badly.
             </p>
-            <section aria-labelledby="the-system-view">
+            <section
+              class="journal-article__section"
+              id="section-1"
+              aria-labelledby="the-system-view"
+            >
               <h2 id="the-system-view">The System View</h2>
               <p>
                 Step back far enough and a staff shortage looks less like a
@@ -623,7 +433,11 @@
                 available even to the smallest schools in the sector.
               </p>
             </section>
-            <section aria-labelledby="the-view-from-the-staffroom">
+            <section
+              class="journal-article__section"
+              id="section-2"
+              aria-labelledby="the-view-from-the-staffroom"
+            >
               <h2 id="the-view-from-the-staffroom">
                 The View From the Staffroom
               </h2>
@@ -661,7 +475,11 @@
                 the door actually witnesses and remembers.
               </p>
             </section>
-            <section aria-labelledby="the-operational-discipline">
+            <section
+              class="journal-article__section"
+              id="section-3"
+              aria-labelledby="the-operational-discipline"
+            >
               <h2 id="the-operational-discipline">
                 The Operational Discipline
               </h2>
@@ -709,7 +527,11 @@
                 lesson from it.
               </p>
             </section>
-            <section aria-labelledby="the-business-case">
+            <section
+              class="journal-article__section"
+              id="section-4"
+              aria-labelledby="the-business-case"
+            >
               <h2 id="the-business-case">The Business Case</h2>
               <p>
                 For operators watching margins, the calculus is not sentimental,
@@ -754,7 +576,11 @@
                 must solve alone from scratch.
               </p>
             </section>
-            <section aria-labelledby="the-human-stakes">
+            <section
+              class="journal-article__section"
+              id="section-5"
+              aria-labelledby="the-human-stakes"
+            >
               <h2 id="the-human-stakes">The Human Stakes</h2>
               <p>
                 It is worth remembering what all this operational language is
@@ -783,65 +609,150 @@
                 did.
               </p>
             </section>
-            <p class="reporting-note">
+            <p class="journal-article__reporting-note">
               Reporting drawn from patterns observed across English-language
               schools in Japan navigating staffing continuity.
             </p>
           </div>
         </div>
-
-        <footer class="article-footer">
-          <nav
-            class="publication-nav"
-            aria-label="Volume I publication navigation"
-          >
-            <a href="emergency-classroom-coverage.html" rel="prev">
-              <span class="nav-label">Previous publication</span>
-              <span class="nav-title">Emergency Classroom Coverage</span>
-            </a>
-            <a href="eikaiwa-school-operations.html" rel="next">
-              <span class="nav-label">Next publication</span>
-              <span class="nav-title">Eikaiwa School Operations</span>
-            </a>
-          </nav>
-
-          <section
-            class="continue-reading"
-            aria-labelledby="continue-reading-title"
-          >
-            <h2 id="continue-reading-title">Continue Reading</h2>
-            <div class="reading-grid">
-              <a class="reading-card" href="easy-teacher.html">
-                <span>Volume I · Publication I</span>
-                <strong>The End of the Easy Teacher</strong>
-              </a>
-              <a
-                class="reading-card"
-                href="real-cost-of-english-teacher-turnover.html"
-              >
-                <span>Volume I · Publication III</span>
-                <strong>The Real Cost of English Teacher Turnover</strong>
-              </a>
-              <a
-                class="reading-card"
-                href="school-collapse-after-three-decades.html"
-              >
-                <span>Volume I · Publication VIII</span>
-                <strong>School Collapse After Three Decades</strong>
-              </a>
-            </div>
-            <a class="return-link" href="journal.html"
-              >Return to The Englishire Journal</a
-            >
-          </section>
-        </footer>
       </article>
+
+      <section
+        class="journal-article-footer"
+        aria-labelledby="continue-reading-title"
+      >
+        <div class="site-shell">
+          <header class="section-heading section-heading--wide">
+            <div>
+              <p class="section-label">Continue Reading</p>
+              <h2 id="continue-reading-title">From Volume I</h2>
+            </div>
+          </header>
+
+          <div class="journal-article-footer__grid">
+            <article>
+              <p class="story-category">Previous publication</p>
+              <h3>
+                <a
+                  href="emergency-classroom-coverage.html"
+                  rel="prev"
+                >
+                  Emergency Classroom Coverage
+                </a>
+              </h3>
+            </article>
+
+            <article>
+              <p class="story-category">Next publication</p>
+              <h3>
+                <a
+                  href="eikaiwa-school-operations.html"
+                  rel="next"
+                >
+                  Eikaiwa School Operations
+                </a>
+              </h3>
+            </article>
+
+            <article>
+              <p class="story-category">Volume I · Publication I</p>
+              <h3>
+                <a href="easy-teacher.html">
+                  The End of the Easy Teacher
+                </a>
+              </h3>
+            </article>
+
+            <article>
+              <p class="story-category">Volume I · Publication III</p>
+              <h3>
+                <a href="real-cost-of-english-teacher-turnover.html">
+                  The Real Cost of English Teacher Turnover
+                </a>
+              </h3>
+            </article>
+
+            <article>
+              <p class="story-category">Volume I · Publication VIII</p>
+              <h3>
+                <a href="school-collapse-after-three-decades.html">
+                  School Collapse After Three Decades
+                </a>
+              </h3>
+            </article>
+
+            <article>
+              <p class="story-category">Volume I</p>
+              <h3>
+                <a href="journal.html">
+                  Return to The Englishire Journal
+                </a>
+              </h3>
+            </article>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <span>© Englishire</span>
-        <span>The Englishire Journal · Volume I</span>
+    <footer class="site-footer" id="englishire-site-footer">
+      <div class="site-shell site-footer__top">
+        <div class="site-footer__brand">
+          <a
+            class="site-footer__masthead"
+            href="index.html"
+            aria-label="Return to Englishire homepage"
+          >
+            <span class="site-footer__name">ENGLISHIRE</span>
+            <span class="site-footer__descriptor">
+              Temporary Teacher Cover · Tokyo
+            </span>
+          </a>
+
+          <p class="site-footer__statement">
+            Considered temporary English teacher cover for Tokyo schools.
+          </p>
+        </div>
+
+        <nav
+          class="site-footer__navigation"
+          aria-label="Footer journal navigation"
+        >
+          <p class="site-footer__navigation-title">The Journal</p>
+          <a href="journal.html">Volume I</a>
+          <a
+            href="backup-teacher-eikaiwa.html"
+            aria-current="page"
+          >
+            When the Teacher Doesn't Show: Inside Japan's Eikaiwa Staffing Squeeze
+          </a>
+          <a href="eikaiwa-school-operations.html">
+            Next Essay
+          </a>
+        </nav>
+
+        <nav
+          class="site-footer__navigation"
+          aria-label="Footer company navigation"
+        >
+          <p class="site-footer__navigation-title">Englishire</p>
+          <a href="teacher-cover.html">Teacher Cover</a>
+          <a href="about.html">About</a>
+          <a href="questions.html">Questions</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+
+      <div class="site-shell site-footer__bottom">
+        <p class="site-footer__copyright">
+          &copy; <span id="englishire-current-year">2026</span> Englishire.
+          All rights reserved.
+        </p>
+
+        <div class="site-footer__legal">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="cookies.html">Cookies</a>
+        </div>
       </div>
     </footer>
   </body>
