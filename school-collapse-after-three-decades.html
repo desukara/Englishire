@@ -18,6 +18,9 @@
       rel="canonical"
       href="https://englishire.com/school-collapse-after-three-decades.html"
     />
+    <link rel="icon" href="images/favicon.ico" sizes="any" />
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
 
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Englishire" />
@@ -62,6 +65,9 @@
       content="An empty preschool classroom after a school closure"
     />
 
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -87,474 +93,340 @@
     </script>
 
     <style>
-      :root {
-        --ink: #171714;
-        --muted: #68665f;
-        --paper: #f5f2eb;
-        --paper-deep: #e8e2d7;
-        --line: #c9c1b4;
-        --accent: #6f2028;
-        --max-width: 76rem;
-        --reading-width: 45rem;
+      .journal-article-header {
+        padding: clamp(5rem, 10vw, 9rem) 0 clamp(3rem, 7vw, 6rem);
+        border-bottom: 1px solid rgba(17, 34, 51, 0.18);
       }
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        margin: 0;
-        color: var(--ink);
-        background: var(--paper);
-        font-family: Georgia, "Times New Roman", serif;
-        line-height: 1.72;
-        text-rendering: optimizeLegibility;
-      }
-      a {
-        color: inherit;
-        text-decoration-thickness: 0.06em;
-        text-underline-offset: 0.18em;
-      }
-      a:hover,
-      a:focus-visible {
-        color: var(--accent);
-      }
-      img,
-      svg {
-        display: block;
-        max-width: 100%;
-      }
-      .skip-link {
-        position: absolute;
-        left: -9999px;
-        top: 0;
-        z-index: 1000;
-        padding: 0.75rem 1rem;
-        color: #fff;
-        background: var(--ink);
-      }
-      .skip-link:focus {
-        left: 1rem;
-        top: 1rem;
-      }
-      .site-header {
-        border-bottom: 1px solid var(--line);
-        background: rgba(245, 242, 235, 0.97);
-      }
-      .masthead {
-        width: min(calc(100% - 2rem), var(--max-width));
+
+      .journal-article-header__inner {
+        max-width: 980px;
         margin: 0 auto;
-        padding: 1.4rem 0 1rem;
-        text-align: center;
       }
-      .brand {
-        display: inline-block;
-        font-size: clamp(2.2rem, 6vw, 4.8rem);
-        line-height: 0.95;
-        letter-spacing: -0.045em;
-        text-decoration: none;
+
+      .journal-article-header h1 {
+        max-width: 12ch;
+        margin: 1rem 0 1.5rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(3rem, 8vw, 7rem);
+        font-weight: 500;
+        line-height: 0.98;
       }
-      .journal-line {
-        margin: 0.6rem 0 0;
-        color: var(--muted);
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.72rem;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
+
+      .journal-article-header__standfirst {
+        max-width: 44rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.3rem, 2.6vw, 2rem);
+        line-height: 1.45;
       }
-      .primary-nav {
-        border-top: 1px solid var(--line);
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.75rem;
+
+      .journal-article-header__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem 1.5rem;
+        margin-top: 2rem;
+        padding-top: 1.4rem;
+        border-top: 1px solid rgba(17, 34, 51, 0.16);
+        font-size: 0.82rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
-      .primary-nav ul {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 0.45rem 1.4rem;
+
+      .journal-article-hero {
         margin: 0;
-        padding: 0.82rem 1rem;
-        list-style: none;
       }
-      .primary-nav a {
-        text-decoration: none;
-      }
-      main {
-        overflow: hidden;
-      }
-      .article-header {
-        width: min(calc(100% - 2rem), 68rem);
-        margin: 0 auto;
-        padding: clamp(3.2rem, 8vw, 7rem) 0 2.4rem;
-        text-align: center;
-      }
-      .kicker {
-        margin: 0 0 1.2rem;
-        color: var(--accent);
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.75rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-      }
-      h1 {
-        max-width: 18ch;
-        margin: 0 auto;
-        font-size: clamp(2.6rem, 7vw, 5.9rem);
-        font-weight: 500;
-        line-height: 0.99;
-        letter-spacing: -0.04em;
-      }
-      .byline {
-        margin: 1.8rem 0 0;
-        color: var(--muted);
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.8rem;
-        letter-spacing: 0.09em;
-        text-transform: uppercase;
-      }
-      .byline strong {
-        color: var(--ink);
-        font-weight: 600;
-      }
-      .hero {
-        width: min(calc(100% - 2rem), var(--max-width));
-        margin: 0 auto clamp(3rem, 7vw, 6rem);
-      }
-      .hero svg {
+
+      .journal-article-hero img {
+        display: block;
         width: 100%;
-        height: auto;
-        border: 1px solid var(--line);
-        background: var(--paper-deep);
+        max-height: 720px;
+        object-fit: cover;
       }
-      .hero figcaption {
-        max-width: var(--reading-width);
-        margin: 0.8rem auto 0;
-        color: var(--muted);
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.72rem;
-        line-height: 1.5;
-      }
-      .article-shell {
-        width: min(calc(100% - 2rem), var(--max-width));
+
+      .journal-article-hero figcaption {
+        max-width: 980px;
         margin: 0 auto;
+        padding: 0.85rem 1.25rem 0;
+        font-size: 0.82rem;
       }
-      .article-body {
-        width: min(100%, var(--reading-width));
-        margin: 0 auto;
-        font-size: clamp(1.08rem, 1.5vw, 1.23rem);
+
+      .journal-article-layout {
+        display: grid;
+        grid-template-columns:
+          minmax(0, 1fr)
+          minmax(0, 680px)
+          minmax(0, 1fr);
+        padding: clamp(3rem, 8vw, 7rem) 0;
       }
-      .article-body p {
-        margin: 0 0 1.55em;
+
+      .journal-article {
+        grid-column: 2;
+        min-width: 0;
       }
-      .article-body .standfirst {
-        margin-bottom: 1.2em;
-        color: #2c2925;
-        font-size: clamp(1.35rem, 2.3vw, 1.75rem);
+
+      .journal-article__note {
+        margin-bottom: 3rem;
+        padding: 1.5rem 0;
+        border-top: 1px solid rgba(17, 34, 51, 0.18);
+        border-bottom: 1px solid rgba(17, 34, 51, 0.18);
+        font-size: 0.95rem;
+      }
+
+      .journal-article__section {
+        margin-top: clamp(3.5rem, 8vw, 6.5rem);
+      }
+
+      .journal-article__section:first-of-type {
+        margin-top: 0;
+      }
+
+      .journal-article__section h2 {
+        margin: 0 0 1.6rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 500;
+      }
+
+      .journal-article__section p {
+        margin: 0 0 1.35rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.08rem, 1.8vw, 1.22rem);
+        line-height: 1.75;
+      }
+
+      .journal-article__section p:first-of-type::first-letter {
+        float: none;
+        margin: 0;
+        font-size: inherit;
+        line-height: inherit;
+      }
+
+      .journal-article__section p.article-emphasis {
+        margin: 1.1rem 0;
+        font-size: clamp(1.18rem, 2vw, 1.38rem);
+        line-height: 1.45;
+      }
+
+      .journal-article__section p.article-emphasis::first-letter {
+        float: none;
+        margin: 0;
+        font-size: inherit;
+        line-height: inherit;
+      }
+
+      .journal-article__standfirst {
+        margin: 0 0 2.1rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.3rem, 2.3vw, 1.75rem);
         line-height: 1.48;
       }
+
+      .journal-article__intro {
+        margin: 0 0 1.35rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.08rem, 1.8vw, 1.22rem);
+        line-height: 1.75;
+      }
+
+      .journal-article__reporting-note {
+        margin-top: 3.5rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid rgba(17, 34, 51, 0.18);
+        font-size: 0.9rem;
+        font-style: italic;
+      }
+
+      .journal-article-footer {
+        padding: clamp(3rem, 7vw, 6rem) 0;
+        border-top: 1px solid rgba(17, 34, 51, 0.18);
+      }
+
+      .journal-article-footer__grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1px;
+        border: 1px solid rgba(17, 34, 51, 0.16);
+        background: rgba(17, 34, 51, 0.16);
+      }
+
+      .journal-article-footer__grid article {
+        padding: clamp(1.4rem, 3vw, 2.2rem);
+        background: var(--colour-ivory, #f6f2e8);
+      }
+
+      .journal-article-footer__grid h3 {
+        margin-top: 0.4rem;
+      }
+
       .article-meta {
+        margin-bottom: 1.5rem;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 0.8rem;
         letter-spacing: 0.04em;
-        color: var(--muted);
       }
+
       .editor-note,
       .top-note {
+        margin-bottom: 1.5rem;
         padding: 1.1rem 1.25rem;
-        border-left: 3px solid var(--accent);
+        border-left: 3px solid var(--colour-crimson, #6f2028);
         background: rgba(111, 32, 40, 0.05);
         font-size: 0.96rem;
+        line-height: 1.65;
       }
-      .article-body h2 {
-        margin: 2.3em 0 0.8em;
-        font-size: clamp(1.8rem, 3.2vw, 2.6rem);
-        font-weight: 500;
-        line-height: 1.12;
-        letter-spacing: -0.025em;
-      }
+
       .key-takeaways,
       .related-stories {
         padding-left: 1.4rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.08rem, 1.8vw, 1.22rem);
+        line-height: 1.75;
       }
+
       .key-takeaways li,
       .related-stories li {
         margin: 0.5rem 0;
       }
+
       .contact-link {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 0.82rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
+
+      .journal-article > p.case-study-cta {
+        margin: 2rem 0 1rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.08rem, 1.8vw, 1.22rem);
+        line-height: 1.75;
+      }
+
+      .journal-article > p.case-study-contact {
+        margin: 0 0 2rem;
+      }
+
       .topics {
-        margin-top: 3.5rem !important;
+        margin-top: 3.5rem;
         padding-top: 1.25rem;
-        border-top: 1px solid var(--line);
-        color: var(--muted);
+        border-top: 1px solid rgba(17, 34, 51, 0.18);
         font-family: Arial, Helvetica, sans-serif;
         font-size: 0.78rem;
       }
-      .article-footer {
-        width: min(calc(100% - 2rem), var(--max-width));
-        margin: clamp(4rem, 9vw, 8rem) auto 0;
-        border-top: 1px solid var(--line);
-      }
-      .publication-nav {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        border-bottom: 1px solid var(--line);
-      }
-      .publication-nav a {
-        display: block;
-        min-height: 10rem;
-        padding: 2rem;
-        text-decoration: none;
-      }
-      .publication-nav a + a {
-        border-left: 1px solid var(--line);
-        text-align: right;
-      }
-      .nav-label {
-        display: block;
-        margin-bottom: 0.65rem;
-        color: var(--muted);
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.7rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-      }
-      .nav-title {
-        font-size: clamp(1.2rem, 2.2vw, 1.6rem);
-        line-height: 1.25;
-      }
-      .continue-reading {
-        padding: clamp(2.5rem, 6vw, 5rem) 0;
-      }
-      .continue-reading h2 {
-        margin: 0 0 1.75rem;
-        font-size: clamp(2rem, 4vw, 3.2rem);
-        font-weight: 500;
-        letter-spacing: -0.03em;
-      }
-      .reading-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1px;
-        border: 1px solid var(--line);
-        background: var(--line);
-      }
-      .reading-card {
-        display: flex;
-        min-height: 13rem;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 1.5rem;
-        background: var(--paper);
-        text-decoration: none;
-      }
-      .reading-card span:first-child {
-        color: var(--muted);
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.68rem;
-        letter-spacing: 0.13em;
-        text-transform: uppercase;
-      }
-      .reading-card strong {
-        font-size: 1.25rem;
-        font-weight: 500;
-        line-height: 1.25;
-      }
-      .return-link {
-        display: inline-block;
-        margin-top: 1.75rem;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.75rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-      }
-      .site-footer {
-        padding: 2.2rem 1rem;
-        border-top: 1px solid var(--line);
-        color: var(--muted);
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.75rem;
-      }
-      .footer-inner {
-        display: flex;
-        width: min(100%, var(--max-width));
-        margin: 0 auto;
-        justify-content: space-between;
-        gap: 1rem;
-        flex-wrap: wrap;
-      }
-      @media (max-width: 700px) {
-        .publication-nav,
-        .reading-grid {
+
+      @media (max-width: 800px) {
+        .journal-article-layout {
           grid-template-columns: 1fr;
+          padding-inline: 1.25rem;
         }
-        .publication-nav a + a {
-          border-top: 1px solid var(--line);
-          border-left: 0;
-          text-align: left;
+
+        .journal-article {
+          grid-column: 1;
         }
-        .reading-card {
-          min-height: 10rem;
-        }
-        .article-header {
-          text-align: left;
-        }
-        h1 {
-          margin-left: 0;
+
+        .journal-article-footer__grid {
+          grid-template-columns: 1fr;
         }
       }
     </style>
   </head>
   <body>
-    <a class="skip-link" href="#article-content">Skip to article</a>
+    <a class="skip-link" href="#englishire-main-content">
+      Skip to main content
+    </a>
 
-    <header class="site-header">
-      <div class="masthead">
-        <a class="brand" href="index.html" aria-label="Englishire home"
-          >Englishire</a
+    <header class="site-header" id="englishire-site-header">
+      <div class="site-shell site-header__inner">
+        <a
+          class="masthead"
+          href="index.html"
+          aria-label="Englishire homepage"
         >
-        <p class="journal-line">The Englishire Journal · Volume I</p>
+          <span class="masthead__name">ENGLISHIRE</span>
+          <span class="masthead__descriptor">
+            Temporary Teacher Cover · Tokyo
+          </span>
+        </a>
+
+        <button
+          class="mobile-nav-toggle"
+          id="englishire-mobile-nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="englishire-primary-navigation"
+        >
+          <span class="mobile-nav-toggle__label">Menu</span>
+          <span class="mobile-nav-toggle__icon" aria-hidden="true">
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+
+        <nav
+          class="primary-nav"
+          id="englishire-primary-navigation"
+          aria-label="Primary navigation"
+        >
+          <a href="teacher-cover.html">Teacher Cover</a>
+          <a href="how-it-works.html">How It Works</a>
+          <a href="journal.html" aria-current="page">Journal</a>
+          <a href="questions.html">Questions</a>
+          <a href="about.html">About</a>
+          <a class="primary-nav__enquiry" href="contact.html">
+            Request a Teacher
+          </a>
+        </nav>
       </div>
-      <nav class="primary-nav" aria-label="Primary navigation">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="how-it-works.html">How it works</a></li>
-          <li><a href="questions.html">Questions</a></li>
-          <li><a href="journal.html" aria-current="page">Journal</a></li>
-        </ul>
-      </nav>
     </header>
 
-    <main>
+    <main id="englishire-main-content">
       <article itemscope itemtype="https://schema.org/Article">
-        <header class="article-header">
-          <p class="kicker">
-            The Englishire Journal · Volume I · Publication VIII
-          </p>
-          <h1 itemprop="headline">
-            How One Unresolved Staff Conflict Helped Collapse a 35-Year-Old
-            International School
-          </h1>
-          <p class="byline">
-            By <strong itemprop="author">James Simmons</strong> · Published by
-            Englishire · June 2026
-          </p>
+        <header class="journal-article-header">
+          <div class="site-shell journal-article-header__inner">
+            <p class="eyebrow">The Englishire Journal · Volume I · Publication VIII</p>
+            <h1 itemprop="headline">How One Unresolved Staff Conflict Helped Collapse a 35-Year-Old International School</h1>
+
+            <div class="journal-article-header__meta">
+              <span>By <strong itemprop="author">James Simmons</strong> · Published by Englishire · June 2026</span>
+              <span>Case Study</span>
+            </div>
+          </div>
         </header>
 
-        <figure class="hero">
-          <svg
-            viewBox="0 0 1600 900"
-            role="img"
-            aria-labelledby="hero-title hero-description"
-          >
-            <title id="hero-title">
-              An empty preschool classroom after closure
-            </title>
-            <desc id="hero-description">
-              A restrained editorial illustration of an empty preschool room, an
-              overturned chair and a closed door, representing the collapse of a
-              long-running school.
-            </desc>
-            <rect width="1600" height="900" fill="#e8e2d7" />
-            <rect y="650" width="1600" height="250" fill="#d0c6b7" />
-            <rect
-              x="180"
-              y="130"
-              width="420"
-              height="470"
-              fill="#f4f0e8"
-              stroke="#81796e"
-              stroke-width="6"
-            />
-            <line
-              x1="390"
-              y1="130"
-              x2="390"
-              y2="600"
-              stroke="#81796e"
-              stroke-width="4"
-            />
-            <line
-              x1="180"
-              y1="365"
-              x2="600"
-              y2="365"
-              stroke="#81796e"
-              stroke-width="4"
-            />
-            <rect x="1040" y="160" width="330" height="490" fill="#746c61" />
-            <rect x="1085" y="210" width="240" height="390" fill="#2c2925" />
-            <circle cx="1290" cy="410" r="13" fill="#e8e2d7" />
-            <rect
-              x="610"
-              y="510"
-              width="250"
-              height="44"
-              fill="#6f2028"
-              transform="rotate(-12 735 532)"
-            />
-            <rect
-              x="640"
-              y="540"
-              width="26"
-              height="190"
-              fill="#6f2028"
-              transform="rotate(-12 653 635)"
-            />
-            <rect
-              x="820"
-              y="495"
-              width="26"
-              height="190"
-              fill="#6f2028"
-              transform="rotate(-12 833 590)"
-            />
-            <rect
-              x="720"
-              y="290"
-              width="190"
-              height="170"
-              rx="12"
-              fill="none"
-              stroke="#6f2028"
-              stroke-width="18"
-              transform="rotate(-12 815 375)"
-            />
-          </svg>
+        <figure class="journal-article-hero">
+          <img
+            src="images/journal/school-collapse-after-three-decades.jpg"
+            alt="An empty preschool classroom after a school closure"
+            width="1600"
+            height="900"
+          />
           <figcaption>
             A school can survive individual problems; it may not survive a chain
             of failures left unresolved.
           </figcaption>
         </figure>
 
-        <div class="article-shell">
-          <div class="article-body" id="article-content" itemprop="articleBody">
-            <p class="standfirst">
+        <div class="site-shell journal-article-layout">
+          <div
+            class="journal-article"
+            id="article-content"
+            itemprop="articleBody"
+          >
+            <p class="journal-article__standfirst">
               A false accusation, management inaction, a missing toddler, and
               the nine-month chain reaction that permanently closed a Tokyo
               preschool after more than three decades.
             </p>
-            <p class="article-meta">
+            <p class="journal-article__note article-meta">
               By James Simmons | Englishire | June 2026 | 11 min read
             </p>
-            <p class="reporting-note top-note">
+            <p class="journal-article__note reporting-note top-note">
               Reporting note: This article is based on interviews, firsthand
               accounts, and reporting related to international education and
               school operations in Japan. Certain identifying details have been
               altered to protect the privacy of the individuals and institutions
               involved.
             </p>
-            <p class="editor-note">
+            <p class="journal-article__note editor-note">
               Editor&#x27;s note: The following case study is based on a real
               incident that occurred at an international preschool,
               kindergarten, and after-school English programme in Tokyo in 2018.
@@ -564,6 +436,8 @@
               used in this article has also been changed.
             </p>
             <section
+              class="journal-article__section"
+              id="section-1"
               aria-labelledby="the-school-that-had-survived-for-35-years"
             >
               <h2 id="the-school-that-had-survived-for-35-years">
@@ -597,7 +471,11 @@
                 conflict as something that could be ignored.
               </p>
             </section>
-            <section aria-labelledby="the-most-popular-teacher-in-the-building">
+            <section
+              class="journal-article__section"
+              id="section-2"
+              aria-labelledby="the-most-popular-teacher-in-the-building"
+            >
               <h2 id="the-most-popular-teacher-in-the-building">
                 The most popular teacher in the building
               </h2>
@@ -619,6 +497,8 @@
               </p>
             </section>
             <section
+              class="journal-article__section"
+              id="section-3"
               aria-labelledby="the-conflict-management-refused-to-handle"
             >
               <h2 id="the-conflict-management-refused-to-handle">
@@ -644,7 +524,11 @@
                 solved.
               </p>
             </section>
-            <section aria-labelledby="the-text-message-after-payday">
+            <section
+              class="journal-article__section"
+              id="section-4"
+              aria-labelledby="the-text-message-after-payday"
+            >
               <h2 id="the-text-message-after-payday">
                 The text message after payday
               </h2>
@@ -675,6 +559,8 @@
               </p>
             </section>
             <section
+              class="journal-article__section"
+              id="section-5"
               aria-labelledby="the-day-the-children-realised-he-was-gone"
             >
               <h2 id="the-day-the-children-realised-he-was-gone">
@@ -706,7 +592,11 @@
                 What had started as an internal staff conflict no longer was.
               </p>
             </section>
-            <section aria-labelledby="the-week-the-school-began-to-collapse">
+            <section
+              class="journal-article__section"
+              id="section-6"
+              aria-labelledby="the-week-the-school-began-to-collapse"
+            >
               <h2 id="the-week-the-school-began-to-collapse">
                 The week the school began to collapse
               </h2>
@@ -727,6 +617,8 @@
               </p>
             </section>
             <section
+              class="journal-article__section"
+              id="section-7"
               aria-labelledby="the-three-year-old-who-walked-out-of-the-park"
             >
               <h2 id="the-three-year-old-who-walked-out-of-the-park">
@@ -751,7 +643,11 @@
                 an apology. The story spread on social media.
               </p>
             </section>
-            <section aria-labelledby="the-investigation-that-came-too-late">
+            <section
+              class="journal-article__section"
+              id="section-8"
+              aria-labelledby="the-investigation-that-came-too-late"
+            >
               <h2 id="the-investigation-that-came-too-late">
                 The investigation that came too late
               </h2>
@@ -767,7 +663,11 @@
               </p>
               <p>Ivan did not come back. The classroom was not restored.</p>
             </section>
-            <section aria-labelledby="the-collapse-of-a-35-year-old-school">
+            <section
+              class="journal-article__section"
+              id="section-9"
+              aria-labelledby="the-collapse-of-a-35-year-old-school"
+            >
               <h2 id="the-collapse-of-a-35-year-old-school">
                 The collapse of a 35-year-old school
               </h2>
@@ -779,7 +679,11 @@
                 Japan entirely.
               </p>
             </section>
-            <section aria-labelledby="the-lesson-for-school-owners">
+            <section
+              class="journal-article__section"
+              id="section-10"
+              aria-labelledby="the-lesson-for-school-owners"
+            >
               <h2 id="the-lesson-for-school-owners">
                 The lesson for school owners
               </h2>
@@ -810,7 +714,11 @@
                 </li>
               </ul>
             </section>
-            <section aria-labelledby="where-englishire-fits">
+            <section
+              class="journal-article__section"
+              id="section-11"
+              aria-labelledby="where-englishire-fits"
+            >
               <h2 id="where-englishire-fits">Where Englishire fits</h2>
               <p>
                 Englishire provides emergency teacher support for schools in
@@ -821,17 +729,21 @@
                 address small failures before they become public ones.
               </p>
             </section>
-            <p>
+            <p class="case-study-cta">
               Need emergency classroom support? If your school is facing a
               sudden English teacher shortage, Englishire can help protect
               classroom continuity while you work through the situation.
             </p>
-            <p>
+            <p class="case-study-contact">
               <a class="contact-link" href="questions.html"
                 >[Contact Englishire]</a
               >
             </p>
-            <section aria-labelledby="related-stories">
+            <section
+              class="journal-article__section"
+              id="section-12"
+              aria-labelledby="related-stories"
+            >
               <h2 id="related-stories">Related stories</h2>
               <ul class="related-stories">
                 <li>
@@ -853,58 +765,144 @@
             </p>
           </div>
         </div>
-
-        <footer class="article-footer">
-          <nav
-            class="publication-nav"
-            aria-label="Volume I publication navigation"
-          >
-            <a href="eikaiwa-school-operations.html" rel="prev">
-              <span class="nav-label">Previous publication</span>
-              <span class="nav-title"
-                >The Invisible Machinery Behind a Smooth School Day</span
-              >
-            </a>
-            <a href="journal.html" rel="next">
-              <span class="nav-label">End of Volume I</span>
-              <span class="nav-title">Return to The Englishire Journal</span>
-            </a>
-          </nav>
-
-          <section
-            class="continue-reading"
-            aria-labelledby="continue-reading-title"
-          >
-            <h2 id="continue-reading-title">Continue Reading</h2>
-            <div class="reading-grid">
-              <a class="reading-card" href="easy-teacher.html">
-                <span>Volume I · Publication I</span>
-                <strong>The End of the Easy Teacher</strong>
-              </a>
-              <a
-                class="reading-card"
-                href="real-cost-of-english-teacher-turnover.html"
-              >
-                <span>Volume I · Publication III</span>
-                <strong>The Turnover Bill Nobody Puts on the Invoice</strong>
-              </a>
-              <a class="reading-card" href="emergency-classroom-coverage.html">
-                <span>Volume I · Publication V</span>
-                <strong>The Bridge, Not the Fix</strong>
-              </a>
-            </div>
-            <a class="return-link" href="journal.html"
-              >Return to The Englishire Journal</a
-            >
-          </section>
-        </footer>
       </article>
+
+      <section
+        class="journal-article-footer"
+        aria-labelledby="continue-reading-title"
+      >
+        <div class="site-shell">
+          <header class="section-heading section-heading--wide">
+            <div>
+              <p class="section-label">Continue Reading</p>
+              <h2 id="continue-reading-title">From Volume I</h2>
+            </div>
+          </header>
+
+          <div class="journal-article-footer__grid">
+            <article>
+              <p class="story-category">Previous publication</p>
+              <h3>
+                <a
+                  href="eikaiwa-school-operations.html"
+                  rel="prev"
+                >
+                  The Invisible Machinery Behind a Smooth School Day
+                </a>
+              </h3>
+            </article>
+
+            <article>
+              <p class="story-category">End of Volume I</p>
+              <h3>
+                <a
+                  href="journal.html"
+                  rel="next"
+                >
+                  Return to The Englishire Journal
+                </a>
+              </h3>
+            </article>
+
+            <article>
+              <p class="story-category">Volume I · Publication I</p>
+              <h3>
+                <a href="easy-teacher.html">
+                  The End of the Easy Teacher
+                </a>
+              </h3>
+            </article>
+
+            <article>
+              <p class="story-category">Volume I · Publication III</p>
+              <h3>
+                <a href="real-cost-of-english-teacher-turnover.html">
+                  The Turnover Bill Nobody Puts on the Invoice
+                </a>
+              </h3>
+            </article>
+
+            <article>
+              <p class="story-category">Volume I · Publication V</p>
+              <h3>
+                <a href="emergency-classroom-coverage.html">
+                  The Bridge, Not the Fix
+                </a>
+              </h3>
+            </article>
+
+            <article>
+              <p class="story-category">Volume I</p>
+              <h3>
+                <a href="journal.html">
+                  Return to The Englishire Journal
+                </a>
+              </h3>
+            </article>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <span>© Englishire</span>
-        <span>The Englishire Journal · Volume I</span>
+    <footer class="site-footer" id="englishire-site-footer">
+      <div class="site-shell site-footer__top">
+        <div class="site-footer__brand">
+          <a
+            class="site-footer__masthead"
+            href="index.html"
+            aria-label="Return to Englishire homepage"
+          >
+            <span class="site-footer__name">ENGLISHIRE</span>
+            <span class="site-footer__descriptor">
+              Temporary Teacher Cover · Tokyo
+            </span>
+          </a>
+
+          <p class="site-footer__statement">
+            Considered temporary English teacher cover for Tokyo schools.
+          </p>
+        </div>
+
+        <nav
+          class="site-footer__navigation"
+          aria-label="Footer journal navigation"
+        >
+          <p class="site-footer__navigation-title">The Journal</p>
+          <a href="journal.html">Volume I</a>
+          <a
+            href="school-collapse-after-three-decades.html"
+            aria-current="page"
+          >
+            How One Unresolved Staff Conflict Helped Collapse a 35-Year-Old International School
+          </a>
+          <a href="journal.html">
+            Return to Journal
+          </a>
+        </nav>
+
+        <nav
+          class="site-footer__navigation"
+          aria-label="Footer company navigation"
+        >
+          <p class="site-footer__navigation-title">Englishire</p>
+          <a href="teacher-cover.html">Teacher Cover</a>
+          <a href="about.html">About</a>
+          <a href="questions.html">Questions</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+
+      <div class="site-shell site-footer__bottom">
+        <p class="site-footer__copyright">
+          &copy; <span id="englishire-current-year">2026</span> Englishire.
+          All rights reserved.
+        </p>
+
+        <div class="site-footer__legal">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="cookies.html">Cookies</a>
+        </div>
       </div>
     </footer>
   </body>
