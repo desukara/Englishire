@@ -15,6 +15,9 @@
       rel="canonical"
       href="https://englishire.com/emergency-classroom-coverage.html"
     />
+    <link rel="icon" href="images/favicon.ico" sizes="any" />
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
 
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Englishire" />
@@ -53,6 +56,9 @@
       content="A prepared classroom held steady during a staffing emergency"
     />
 
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -77,436 +83,274 @@
     </script>
 
     <style>
-      :root {
-        --ink: #171714;
-        --muted: #68665f;
-        --paper: #f5f2eb;
-        --paper-deep: #e8e2d7;
-        --line: #c9c1b4;
-        --accent: #6f2028;
-        --max-width: 76rem;
-        --reading-width: 45rem;
+      .journal-article-header {
+        padding: clamp(5rem, 10vw, 9rem) 0 clamp(3rem, 7vw, 6rem);
+        border-bottom: 1px solid rgba(17, 34, 51, 0.18);
       }
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        margin: 0;
-        color: var(--ink);
-        background: var(--paper);
-        font-family: Georgia, "Times New Roman", serif;
-        line-height: 1.72;
-        text-rendering: optimizeLegibility;
-      }
-      a {
-        color: inherit;
-        text-decoration-thickness: 0.06em;
-        text-underline-offset: 0.18em;
-      }
-      a:hover,
-      a:focus-visible {
-        color: var(--accent);
-      }
-      img,
-      svg {
-        display: block;
-        max-width: 100%;
-      }
-      .skip-link {
-        position: absolute;
-        left: -9999px;
-        top: 0;
-        z-index: 1000;
-        padding: 0.75rem 1rem;
-        color: #fff;
-        background: var(--ink);
-      }
-      .skip-link:focus {
-        left: 1rem;
-        top: 1rem;
-      }
-      .site-header {
-        border-bottom: 1px solid var(--line);
-        background: rgba(245, 242, 235, 0.97);
-      }
-      .masthead {
-        width: min(calc(100% - 2rem), var(--max-width));
+
+      .journal-article-header__inner {
+        max-width: 980px;
         margin: 0 auto;
-        padding: 1.4rem 0 1rem;
-        text-align: center;
       }
-      .brand {
-        display: inline-block;
-        font-size: clamp(2.2rem, 6vw, 4.8rem);
-        line-height: 0.95;
-        letter-spacing: -0.045em;
-        text-decoration: none;
+
+      .journal-article-header h1 {
+        max-width: 12ch;
+        margin: 1rem 0 1.5rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(3rem, 8vw, 7rem);
+        font-weight: 500;
+        line-height: 0.98;
       }
-      .journal-line {
-        margin: 0.6rem 0 0;
-        color: var(--muted);
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.72rem;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
+
+      .journal-article-header__standfirst {
+        max-width: 44rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.3rem, 2.6vw, 2rem);
+        line-height: 1.45;
       }
-      .primary-nav {
-        border-top: 1px solid var(--line);
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.75rem;
+
+      .journal-article-header__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem 1.5rem;
+        margin-top: 2rem;
+        padding-top: 1.4rem;
+        border-top: 1px solid rgba(17, 34, 51, 0.16);
+        font-size: 0.82rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
-      .primary-nav ul {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 0.45rem 1.4rem;
+
+      .journal-article-hero {
         margin: 0;
-        padding: 0.82rem 1rem;
-        list-style: none;
       }
-      .primary-nav a {
-        text-decoration: none;
-      }
-      main {
-        overflow: hidden;
-      }
-      .article-header {
-        width: min(calc(100% - 2rem), 68rem);
-        margin: 0 auto;
-        padding: clamp(3.2rem, 8vw, 7rem) 0 2.4rem;
-        text-align: center;
-      }
-      .kicker {
-        margin: 0 0 1.2rem;
-        color: var(--accent);
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.75rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-      }
-      h1 {
-        max-width: 17ch;
-        margin: 0 auto;
-        font-size: clamp(2.7rem, 7.4vw, 6.2rem);
-        font-weight: 500;
-        line-height: 0.99;
-        letter-spacing: -0.04em;
-      }
-      .byline {
-        margin: 1.8rem 0 0;
-        color: var(--muted);
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.8rem;
-        letter-spacing: 0.09em;
-        text-transform: uppercase;
-      }
-      .byline strong {
-        color: var(--ink);
-        font-weight: 600;
-      }
-      .hero {
-        width: min(calc(100% - 2rem), var(--max-width));
-        margin: 0 auto clamp(3rem, 7vw, 6rem);
-      }
-      .hero svg {
+
+      .journal-article-hero img {
+        display: block;
         width: 100%;
-        height: auto;
-        border: 1px solid var(--line);
-        background: var(--paper-deep);
+        max-height: 720px;
+        object-fit: cover;
       }
-      .hero figcaption {
-        max-width: var(--reading-width);
-        margin: 0.8rem auto 0;
-        color: var(--muted);
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.72rem;
-        line-height: 1.5;
-      }
-      .article-shell {
-        width: min(calc(100% - 2rem), var(--max-width));
+
+      .journal-article-hero figcaption {
+        max-width: 980px;
         margin: 0 auto;
+        padding: 0.85rem 1.25rem 0;
+        font-size: 0.82rem;
       }
-      .article-body {
-        width: min(100%, var(--reading-width));
-        margin: 0 auto;
-        font-size: clamp(1.08rem, 1.5vw, 1.23rem);
+
+      .journal-article-layout {
+        display: grid;
+        grid-template-columns:
+          minmax(0, 1fr)
+          minmax(0, 680px)
+          minmax(0, 1fr);
+        padding: clamp(3rem, 8vw, 7rem) 0;
       }
-      .article-body p {
-        margin: 0 0 1.55em;
+
+      .journal-article {
+        grid-column: 2;
+        min-width: 0;
       }
-      .article-body .standfirst {
-        margin-bottom: 2.1em;
-        color: #2c2925;
-        font-size: clamp(1.35rem, 2.3vw, 1.75rem);
+
+      .journal-article__note {
+        margin-bottom: 3rem;
+        padding: 1.5rem 0;
+        border-top: 1px solid rgba(17, 34, 51, 0.18);
+        border-bottom: 1px solid rgba(17, 34, 51, 0.18);
+        font-size: 0.95rem;
+      }
+
+      .journal-article__section {
+        margin-top: clamp(3.5rem, 8vw, 6.5rem);
+      }
+
+      .journal-article__section:first-of-type {
+        margin-top: 0;
+      }
+
+      .journal-article__section h2 {
+        margin: 0 0 1.6rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 500;
+      }
+
+      .journal-article__section p {
+        margin: 0 0 1.35rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.08rem, 1.8vw, 1.22rem);
+        line-height: 1.75;
+      }
+
+      .journal-article__section p:first-of-type::first-letter {
+        float: none;
+        margin: 0;
+        font-size: inherit;
+        line-height: inherit;
+      }
+
+      .journal-article__section p.article-emphasis {
+        margin: 1.1rem 0;
+        font-size: clamp(1.18rem, 2vw, 1.38rem);
+        line-height: 1.45;
+      }
+
+      .journal-article__section p.article-emphasis::first-letter {
+        float: none;
+        margin: 0;
+        font-size: inherit;
+        line-height: inherit;
+      }
+
+      .journal-article__standfirst {
+        margin: 0 0 2.1rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.3rem, 2.3vw, 1.75rem);
         line-height: 1.48;
       }
-      .article-body h2 {
-        margin: 2.3em 0 0.8em;
-        font-size: clamp(1.8rem, 3.2vw, 2.6rem);
-        font-weight: 500;
-        line-height: 1.12;
-        letter-spacing: -0.025em;
+
+      .journal-article__intro {
+        margin: 0 0 1.35rem;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.08rem, 1.8vw, 1.22rem);
+        line-height: 1.75;
       }
-      .article-body section:first-of-type h2 {
-        margin-top: 1.8em;
-      }
-      .reporting-note {
-        margin-top: 3.5rem !important;
+
+      .journal-article__reporting-note {
+        margin-top: 3.5rem;
         padding-top: 1.25rem;
-        border-top: 1px solid var(--line);
-        color: var(--muted);
+        border-top: 1px solid rgba(17, 34, 51, 0.18);
         font-size: 0.9rem;
         font-style: italic;
       }
-      .article-footer {
-        width: min(calc(100% - 2rem), var(--max-width));
-        margin: clamp(4rem, 9vw, 8rem) auto 0;
-        border-top: 1px solid var(--line);
+
+      .journal-article-footer {
+        padding: clamp(3rem, 7vw, 6rem) 0;
+        border-top: 1px solid rgba(17, 34, 51, 0.18);
       }
-      .publication-nav {
+
+      .journal-article-footer__grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        border-bottom: 1px solid var(--line);
-      }
-      .publication-nav a {
-        display: block;
-        min-height: 10rem;
-        padding: 2rem;
-        text-decoration: none;
-      }
-      .publication-nav a + a {
-        border-left: 1px solid var(--line);
-        text-align: right;
-      }
-      .nav-label {
-        display: block;
-        margin-bottom: 0.65rem;
-        color: var(--muted);
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.7rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-      }
-      .nav-title {
-        font-size: clamp(1.2rem, 2.2vw, 1.6rem);
-        line-height: 1.25;
-      }
-      .continue-reading {
-        padding: clamp(2.5rem, 6vw, 5rem) 0;
-      }
-      .continue-reading h2 {
-        margin: 0 0 1.75rem;
-        font-size: clamp(2rem, 4vw, 3.2rem);
-        font-weight: 500;
-        letter-spacing: -0.03em;
-      }
-      .reading-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 1px;
-        border: 1px solid var(--line);
-        background: var(--line);
+        border: 1px solid rgba(17, 34, 51, 0.16);
+        background: rgba(17, 34, 51, 0.16);
       }
-      .reading-card {
-        display: flex;
-        min-height: 13rem;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 1.5rem;
-        background: var(--paper);
-        text-decoration: none;
+
+      .journal-article-footer__grid article {
+        padding: clamp(1.4rem, 3vw, 2.2rem);
+        background: var(--colour-ivory, #f6f2e8);
       }
-      .reading-card span:first-child {
-        color: var(--muted);
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.68rem;
-        letter-spacing: 0.13em;
-        text-transform: uppercase;
+
+      .journal-article-footer__grid h3 {
+        margin-top: 0.4rem;
       }
-      .reading-card strong {
-        font-size: 1.25rem;
-        font-weight: 500;
-        line-height: 1.25;
-      }
-      .return-link {
-        display: inline-block;
-        margin-top: 1.75rem;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.75rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-      }
-      .site-footer {
-        padding: 2.2rem 1rem;
-        border-top: 1px solid var(--line);
-        color: var(--muted);
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.75rem;
-      }
-      .footer-inner {
-        display: flex;
-        width: min(100%, var(--max-width));
-        margin: 0 auto;
-        justify-content: space-between;
-        gap: 1rem;
-        flex-wrap: wrap;
-      }
-      @media (max-width: 700px) {
-        .publication-nav,
-        .reading-grid {
+
+      @media (max-width: 800px) {
+        .journal-article-layout {
           grid-template-columns: 1fr;
+          padding-inline: 1.25rem;
         }
-        .publication-nav a + a {
-          border-top: 1px solid var(--line);
-          border-left: 0;
-          text-align: left;
+
+        .journal-article {
+          grid-column: 1;
         }
-        .reading-card {
-          min-height: 10rem;
-        }
-        .article-header {
-          text-align: left;
-        }
-        h1 {
-          margin-left: 0;
-        }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-          scroll-behavior: auto !important;
-          animation-duration: 0.01ms !important;
-          transition-duration: 0.01ms !important;
+
+        .journal-article-footer__grid {
+          grid-template-columns: 1fr;
         }
       }
     </style>
   </head>
   <body>
-    <a class="skip-link" href="#article-content">Skip to article</a>
-    <header class="site-header">
-      <div class="masthead">
-        <a class="brand" href="index.html" aria-label="Englishire home"
-          >Englishire</a
+    <a class="skip-link" href="#englishire-main-content">
+      Skip to main content
+    </a>
+
+    <header class="site-header" id="englishire-site-header">
+      <div class="site-shell site-header__inner">
+        <a
+          class="masthead"
+          href="index.html"
+          aria-label="Englishire homepage"
         >
-        <p class="journal-line">The Englishire Journal · Volume I</p>
+          <span class="masthead__name">ENGLISHIRE</span>
+          <span class="masthead__descriptor">
+            Temporary Teacher Cover · Tokyo
+          </span>
+        </a>
+
+        <button
+          class="mobile-nav-toggle"
+          id="englishire-mobile-nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="englishire-primary-navigation"
+        >
+          <span class="mobile-nav-toggle__label">Menu</span>
+          <span class="mobile-nav-toggle__icon" aria-hidden="true">
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+
+        <nav
+          class="primary-nav"
+          id="englishire-primary-navigation"
+          aria-label="Primary navigation"
+        >
+          <a href="teacher-cover.html">Teacher Cover</a>
+          <a href="how-it-works.html">How It Works</a>
+          <a href="journal.html" aria-current="page">Journal</a>
+          <a href="questions.html">Questions</a>
+          <a href="about.html">About</a>
+          <a class="primary-nav__enquiry" href="contact.html">
+            Request a Teacher
+          </a>
+        </nav>
       </div>
-      <nav class="primary-nav" aria-label="Primary navigation">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="how-it-works.html">How it works</a></li>
-          <li><a href="questions.html">Questions</a></li>
-          <li><a href="journal.html" aria-current="page">Journal</a></li>
-        </ul>
-      </nav>
     </header>
 
-    <main>
+    <main id="englishire-main-content">
       <article itemscope itemtype="https://schema.org/Article">
-        <header class="article-header">
-          <p class="kicker">
-            The Englishire Journal · Volume I · Publication V
-          </p>
-          <h1 itemprop="headline">The Bridge, Not the Fix</h1>
-          <p class="byline">
-            By <strong itemprop="author">James Simmons</strong> · Published by
-            Englishire
-          </p>
+        <header class="journal-article-header">
+          <div class="site-shell journal-article-header__inner">
+            <p class="eyebrow">The Englishire Journal · Volume I · Publication V</p>
+            <h1 itemprop="headline">The Bridge, Not the Fix</h1>
+
+            <div class="journal-article-header__meta">
+              <span>By <strong itemprop="author">James Simmons</strong> · Published by Englishire</span>
+              <span>Staffing Continuity</span>
+            </div>
+          </div>
         </header>
 
-        <figure class="hero">
-          <svg
-            viewBox="0 0 1600 900"
-            role="img"
-            aria-labelledby="hero-title hero-description"
-          >
-            <title id="hero-title">
-              A classroom held steady during disruption
-            </title>
-            <desc id="hero-description">
-              A restrained editorial illustration of a classroom connected by a
-              temporary bridge, representing emergency cover as support rather
-              than a permanent repair.
-            </desc>
-            <rect width="1600" height="900" fill="#e8e2d7" />
-            <rect y="660" width="1600" height="240" fill="#d0c6b7" />
-            <rect
-              x="150"
-              y="150"
-              width="460"
-              height="420"
-              fill="#f4f0e8"
-              stroke="#81796e"
-              stroke-width="6"
-            />
-            <rect
-              x="990"
-              y="150"
-              width="460"
-              height="420"
-              fill="#f4f0e8"
-              stroke="#81796e"
-              stroke-width="6"
-            />
-            <rect
-              x="620"
-              y="450"
-              width="360"
-              height="46"
-              rx="4"
-              fill="#6f2028"
-            />
-            <rect x="650" y="496" width="24" height="150" fill="#6f2028" />
-            <rect x="926" y="496" width="24" height="150" fill="#6f2028" />
-            <rect x="260" y="465" width="210" height="35" fill="#746c61" />
-            <rect x="1130" y="465" width="210" height="35" fill="#746c61" />
-            <circle
-              cx="800"
-              cy="300"
-              r="76"
-              fill="none"
-              stroke="#746c61"
-              stroke-width="10"
-            />
-            <line
-              x1="800"
-              y1="300"
-              x2="800"
-              y2="245"
-              stroke="#746c61"
-              stroke-width="8"
-            />
-            <line
-              x1="800"
-              y1="300"
-              x2="844"
-              y2="326"
-              stroke="#746c61"
-              stroke-width="8"
-            />
-          </svg>
+        <figure class="journal-article-hero">
+          <img
+            src="images/journal/emergency-classroom-coverage.jpg"
+            alt="A prepared classroom held steady during a staffing emergency"
+            width="1600"
+            height="900"
+          />
           <figcaption>
             Emergency cover is a bridge: valuable because it creates time for a
             considered decision.
           </figcaption>
         </figure>
 
-        <div class="article-shell">
-          <div class="article-body" id="article-content" itemprop="articleBody">
-            <p class="standfirst">
+        <div class="site-shell journal-article-layout">
+          <div
+            class="journal-article"
+            id="article-content"
+            itemprop="articleBody"
+          >
+            <p class="journal-article__standfirst">
               Emergency cover doesn&#x27;t solve a school&#x27;s staffing
               problem. It buys the one thing every good decision actually
               requires: time to make it without panic.
             </p>
-            <p>
+            <p class="journal-article__intro">
               It&#x27;s a small distinction with large consequences, and
               it&#x27;s the one most schools get wrong the first time they
               encounter a real staffing gap. They bring in cover, the day is
@@ -515,7 +359,11 @@
               actually was — a pause button, pressed just long enough for
               someone to think clearly.
             </p>
-            <section aria-labelledby="the-system-view">
+            <section
+              class="journal-article__section"
+              id="section-1"
+              aria-labelledby="the-system-view"
+            >
               <h2 id="the-system-view">The System View</h2>
               <p>
                 There is a useful distinction, borrowed from engineering,
@@ -562,7 +410,11 @@
                 third one behind it.
               </p>
             </section>
-            <section aria-labelledby="the-view-from-the-front-desk">
+            <section
+              class="journal-article__section"
+              id="section-2"
+              aria-labelledby="the-view-from-the-front-desk"
+            >
               <h2 id="the-view-from-the-front-desk">
                 The View From the Front Desk
               </h2>
@@ -608,7 +460,11 @@
                 words.
               </p>
             </section>
-            <section aria-labelledby="the-operational-discipline">
+            <section
+              class="journal-article__section"
+              id="section-3"
+              aria-labelledby="the-operational-discipline"
+            >
               <h2 id="the-operational-discipline">
                 The Operational Discipline
               </h2>
@@ -665,7 +521,11 @@
                 matter more.
               </p>
             </section>
-            <section aria-labelledby="the-business-case">
+            <section
+              class="journal-article__section"
+              id="section-4"
+              aria-labelledby="the-business-case"
+            >
               <h2 id="the-business-case">The Business Case</h2>
               <p>
                 From a purely operational-risk standpoint, the cost of
@@ -710,7 +570,11 @@
                 stopgap sitting quietly in reserve.
               </p>
             </section>
-            <section aria-labelledby="the-human-stakes">
+            <section
+              class="journal-article__section"
+              id="section-5"
+              aria-labelledby="the-human-stakes"
+            >
               <h2 id="the-human-stakes">The Human Stakes</h2>
               <p>
                 For the family arriving at the door, none of this operational
@@ -748,69 +612,150 @@
                 genuinely damaging one.
               </p>
             </section>
-            <p class="reporting-note">
+            <p class="journal-article__reporting-note">
               Reporting drawn from patterns observed across English-language
               schools in Japan navigating staffing continuity.
             </p>
           </div>
         </div>
-
-        <footer class="article-footer">
-          <nav
-            class="publication-nav"
-            aria-label="Volume I publication navigation"
-          >
-            <a href="how-schools-can-handle-staff-shortages.html" rel="prev">
-              <span class="nav-label">Previous publication</span>
-              <span class="nav-title"
-                >How Schools Can Handle Staff Shortages</span
-              >
-            </a>
-            <a href="backup-teacher-eikaiwa.html" rel="next">
-              <span class="nav-label">Next publication</span>
-              <span class="nav-title"
-                >When the Teacher Doesn't Show: Inside Japan's Eikaiwa Staffing
-                Squeeze</span
-              >
-            </a>
-          </nav>
-
-          <section
-            class="continue-reading"
-            aria-labelledby="continue-reading-title"
-          >
-            <h2 id="continue-reading-title">Continue Reading</h2>
-            <div class="reading-grid">
-              <a class="reading-card" href="easy-teacher.html">
-                <span>Volume I · Publication I</span>
-                <strong>The End of the Easy Teacher</strong>
-              </a>
-              <a
-                class="reading-card"
-                href="real-cost-of-english-teacher-turnover.html"
-              >
-                <span>Volume I · Publication III</span>
-                <strong>The Real Cost of English Teacher Turnover</strong>
-              </a>
-              <a class="reading-card" href="eikaiwa-school-operations.html">
-                <span>Volume I · Publication VII</span>
-                <strong
-                  >The Invisible Machinery Behind a Smooth School Day</strong
-                >
-              </a>
-            </div>
-            <a class="return-link" href="journal.html"
-              >Return to The Englishire Journal</a
-            >
-          </section>
-        </footer>
       </article>
+
+      <section
+        class="journal-article-footer"
+        aria-labelledby="continue-reading-title"
+      >
+        <div class="site-shell">
+          <header class="section-heading section-heading--wide">
+            <div>
+              <p class="section-label">Continue Reading</p>
+              <h2 id="continue-reading-title">From Volume I</h2>
+            </div>
+          </header>
+
+          <div class="journal-article-footer__grid">
+            <article>
+              <p class="story-category">Previous publication</p>
+              <h3>
+                <a
+                  href="how-schools-can-handle-staff-shortages.html"
+                  rel="prev"
+                >
+                  How Schools Can Handle Staff Shortages
+                </a>
+              </h3>
+            </article>
+
+            <article>
+              <p class="story-category">Next publication</p>
+              <h3>
+                <a
+                  href="backup-teacher-eikaiwa.html"
+                  rel="next"
+                >
+                  When the Teacher Doesn't Show: Inside Japan's Eikaiwa Staffing Squeeze
+                </a>
+              </h3>
+            </article>
+
+            <article>
+              <p class="story-category">Volume I · Publication I</p>
+              <h3>
+                <a href="easy-teacher.html">
+                  The End of the Easy Teacher
+                </a>
+              </h3>
+            </article>
+
+            <article>
+              <p class="story-category">Volume I · Publication III</p>
+              <h3>
+                <a href="real-cost-of-english-teacher-turnover.html">
+                  The Real Cost of English Teacher Turnover
+                </a>
+              </h3>
+            </article>
+
+            <article>
+              <p class="story-category">Volume I · Publication VII</p>
+              <h3>
+                <a href="eikaiwa-school-operations.html">
+                  The Invisible Machinery Behind a Smooth School Day
+                </a>
+              </h3>
+            </article>
+
+            <article>
+              <p class="story-category">Volume I</p>
+              <h3>
+                <a href="journal.html">
+                  Return to The Englishire Journal
+                </a>
+              </h3>
+            </article>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <span>© Englishire</span>
-        <span>The Englishire Journal · Volume I</span>
+    <footer class="site-footer" id="englishire-site-footer">
+      <div class="site-shell site-footer__top">
+        <div class="site-footer__brand">
+          <a
+            class="site-footer__masthead"
+            href="index.html"
+            aria-label="Return to Englishire homepage"
+          >
+            <span class="site-footer__name">ENGLISHIRE</span>
+            <span class="site-footer__descriptor">
+              Temporary Teacher Cover · Tokyo
+            </span>
+          </a>
+
+          <p class="site-footer__statement">
+            Considered temporary English teacher cover for Tokyo schools.
+          </p>
+        </div>
+
+        <nav
+          class="site-footer__navigation"
+          aria-label="Footer journal navigation"
+        >
+          <p class="site-footer__navigation-title">The Journal</p>
+          <a href="journal.html">Volume I</a>
+          <a
+            href="emergency-classroom-coverage.html"
+            aria-current="page"
+          >
+            The Bridge, Not the Fix
+          </a>
+          <a href="backup-teacher-eikaiwa.html">
+            Next Essay
+          </a>
+        </nav>
+
+        <nav
+          class="site-footer__navigation"
+          aria-label="Footer company navigation"
+        >
+          <p class="site-footer__navigation-title">Englishire</p>
+          <a href="teacher-cover.html">Teacher Cover</a>
+          <a href="about.html">About</a>
+          <a href="questions.html">Questions</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+
+      <div class="site-shell site-footer__bottom">
+        <p class="site-footer__copyright">
+          &copy; <span id="englishire-current-year">2026</span> Englishire.
+          All rights reserved.
+        </p>
+
+        <div class="site-footer__legal">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="cookies.html">Cookies</a>
+        </div>
       </div>
     </footer>
   </body>
