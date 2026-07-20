@@ -168,19 +168,23 @@
 </div>
 <p class="section-heading__summary">
                 Fields marked with an asterisk are required before your enquiry
-                email can be prepared.
+                can be submitted securely.
               </p>
 </header>
 <form
-  action="mailto:info@englishire.com"
+  action="https://formspree.io/f/xbdnydnb"
   class="email-enquiry-form"
-  enctype="text/plain"
   id="englishire-email-enquiry-form"
   method="post"
 >
+  <input name="_subject" type="hidden" value="Englishire teacher cover enquiry" />
+  <div aria-hidden="true" hidden>
+    <label for="englishire-company-website">Leave this field empty</label>
+    <input autocomplete="off" id="englishire-company-website" name="_gotcha" tabindex="-1" type="text" />
+  </div>
   <p class="email-enquiry-form__notice" id="englishire-email-enquiry-notice">
-    This form prepares an email in your own email application. Nothing is sent
-    to Englishire until you review and send that email yourself.
+    Your enquiry will be transmitted securely to Englishire when you select
+    “Send Enquiry”.
   </p>
   <div class="email-enquiry-form__grid">
     <div class="form-field">
@@ -189,7 +193,7 @@
     </div>
     <div class="form-field">
       <label for="englishire-contact-email">Contact email *</label>
-      <input autocomplete="email" id="englishire-contact-email" name="contactEmail" required type="email" />
+      <input autocomplete="email" id="englishire-contact-email" name="email" required type="email" />
     </div>
     <div class="form-field">
       <label for="englishire-school-name">School name *</label>
@@ -238,7 +242,7 @@
     <span>This is an urgent enquiry.</span>
   </label>
   <div class="email-enquiry-form__actions">
-    <button class="button button--primary" type="submit">Prepare Enquiry Email</button>
+    <button class="button button--primary" type="submit">Send Enquiry</button>
     <a class="button button--text" href="mailto:info@englishire.com">Use Your Own Email</a>
   </div>
   <p aria-live="polite" class="email-enquiry-form__status" id="englishire-email-enquiry-status"></p>
@@ -252,7 +256,7 @@
 </div>
 <aside aria-labelledby="englishire-before-submit-title" class="contact-enquiry__aside">
 <div class="contact-note">
-<p class="section-label">Before You Prepare the Email</p>
+<p class="section-label">Before You Send the Enquiry</p>
 <h2 id="englishire-before-submit-title">
                 Kindly check the essentials.
               </h2>
