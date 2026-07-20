@@ -638,8 +638,8 @@
   };
 
   /**
-   * Prepare a complete enquiry in the visitor's email application.
-   * No form data is transmitted or stored by the website itself.
+   * Submit the enquiry securely to Formspree and continue only after
+   * the service confirms that it has accepted the submission.
    */
   const initialiseEmailEnquiryForm = () => {
     const form = getElement("#englishire-email-enquiry-form");
@@ -649,65 +649,58 @@
     }
 
     const status = getElement("#englishire-email-enquiry-status");
+    const submitButton = form.querySelector('button[type="submit"]');
 
-    const fieldLabels = {
-      contactName: "Contact name",
-      contactEmail: "Contact email",
-      schoolName: "School name",
-      schoolLocation: "School location",
-      nearestStation: "Nearest station",
-      requestedDates: "Requested dates",
-      lessonTimes: "Lesson times",
-      learnerDetails: "Learner ages and class sizes",
-      lessonDetails: "Lesson type and objectives",
-      materials: "Materials provided",
-      arrivalInstructions: "Arrival and reporting instructions",
-      specialRequirements: "Special requirements",
-    };
-
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
 
       if (!form.reportValidity()) {
         if (status) {
           status.textContent =
-            "Kindly complete the required fields before preparing your email.";
+            "Kindly complete the required fields before sending your enquiry.";
         }
 
         return;
       }
 
-      const formData = new FormData(form);
-
-      const bodyLines = Object.entries(fieldLabels).map(([name, label]) => {
-        const value = String(formData.get(name) || "").trim();
-
-        return `${label}: ${value || "Not provided"}`;
-      });
-
-      bodyLines.push(
-        `Urgent enquiry: ${formData.get("urgentEnquiry") ? "Yes" : "No"}`,
-        "",
-        "Please review this request for temporary English teacher cover."
-      );
-
-      const schoolName = String(formData.get("schoolName") || "").trim();
-
-      const subject = schoolName
-        ? `Teacher cover enquiry — ${schoolName}`
-        : "Teacher cover enquiry";
-
-      const mailto =
-        `mailto:info@englishire.com?subject=${encodeURIComponent(subject)}` +
-        `&body=${encodeURIComponent(bodyLines.join("\n"))}`;
-
       if (status) {
-        status.textContent =
-          "Your email application should now open with the enquiry prepared. " +
-          "Nothing is sent until you review and send that email.";
+        status.textContent = "Your enquiry is being sent securely.";
       }
 
-      window.location.href = mailto;
+      form.setAttribute("aria-busy", "true");
+
+      if (submitButton instanceof HTMLButtonElement) {
+        submitButton.disabled = true;
+        submitButton.textContent = "Sending…";
+      }
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: {
+            Accept: "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("The enquiry service did not accept the submission.");
+        }
+
+        window.location.assign("thank-you.html");
+      } catch (error) {
+        if (status) {
+          status.textContent =
+            "We could not send your enquiry just now. Kindly try again or email info@englishire.com directly.";
+        }
+
+        form.removeAttribute("aria-busy");
+
+        if (submitButton instanceof HTMLButtonElement) {
+          submitButton.disabled = false;
+          submitButton.textContent = "Send Enquiry";
+        }
+      }
     });
   };
 
