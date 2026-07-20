@@ -59,6 +59,12 @@
 
     const navigationLinks = Array.from(navigation.querySelectorAll("a"));
 
+    const backgroundRegions = Array.from(
+      document.querySelectorAll("main, footer")
+    ).filter((region) => region instanceof HTMLElement);
+
+    const previousInertStates = new Map();
+
     const menuIsOpen = () => {
       return toggleButton.getAttribute("aria-expanded") === "true";
     };
@@ -73,6 +79,19 @@
       navigation.classList.toggle("is-open", open);
 
       html.classList.toggle("navigation-open", open);
+
+      backgroundRegions.forEach((region) => {
+        if (open) {
+          previousInertStates.set(region, region.inert);
+          region.inert = true;
+        } else {
+          region.inert = previousInertStates.get(region) || false;
+        }
+      });
+
+      if (!open) {
+        previousInertStates.clear();
+      }
 
       if (open) {
         const firstLink = navigationLinks[0];
@@ -94,7 +113,10 @@
     });
 
     navigation.addEventListener("click", (event) => {
-      const link = event.target.closest("a");
+      const eventTarget = event.target;
+
+      const link =
+        eventTarget instanceof Element ? eventTarget.closest("a") : null;
 
       if (link && !desktopNavigationQuery.matches) {
         setMenuState(false);
@@ -106,9 +128,15 @@
         return;
       }
 
-      const clickedInsideNavigation = navigation.contains(event.target);
+      const eventTarget = event.target;
 
-      const clickedToggle = toggleButton.contains(event.target);
+      if (!(eventTarget instanceof Node)) {
+        return;
+      }
+
+      const clickedInsideNavigation = navigation.contains(eventTarget);
+
+      const clickedToggle = toggleButton.contains(eventTarget);
 
       if (clickedInsideNavigation || clickedToggle) {
         return;
@@ -118,8 +146,40 @@
     });
 
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && menuIsOpen()) {
+      if (!menuIsOpen() || desktopNavigationQuery.matches) {
+        return;
+      }
+
+      if (event.key === "Escape") {
         setMenuState(false, true);
+
+        return;
+      }
+
+      if (event.key !== "Tab") {
+        return;
+      }
+
+      const focusableElements = [toggleButton, ...navigationLinks].filter(
+        (element) =>
+          element instanceof HTMLElement &&
+          !element.hasAttribute("disabled") &&
+          element.getAttribute("aria-hidden") !== "true"
+      );
+
+      if (!focusableElements.length) {
+        return;
+      }
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
       }
     });
 
@@ -451,29 +511,52 @@
 
       imageElement.style.willChange = "transform";
 
-      const handlePointerMove = (event) => {
-        const bounds = imageElement.getBoundingClientRect();
+      let pointerFrame = null;
 
-        if (!bounds.width || !bounds.height) {
+      let latestPointerEvent = null;
+
+      const handlePointerMove = (event) => {
+        latestPointerEvent = event;
+
+        if (pointerFrame !== null) {
           return;
         }
 
-        const horizontal = (event.clientX - bounds.left) / bounds.width - 0.5;
+        pointerFrame = window.requestAnimationFrame(() => {
+          const bounds = imageElement.getBoundingClientRect();
 
-        const vertical = (event.clientY - bounds.top) / bounds.height - 0.5;
+          if (!bounds.width || !bounds.height) {
+            pointerFrame = null;
 
-        const rotateX = vertical * -0.9;
+            return;
+          }
 
-        const rotateY = horizontal * 0.9;
+          const horizontal =
+            (latestPointerEvent.clientX - bounds.left) / bounds.width - 0.5;
 
-        imageElement.style.transform =
-          `perspective(1200px) ` +
-          `rotateX(${rotateX}deg) ` +
-          `rotateY(${rotateY}deg) ` +
-          "scale(1.018)";
+          const vertical =
+            (latestPointerEvent.clientY - bounds.top) / bounds.height - 0.5;
+
+          const rotateX = vertical * -0.9;
+
+          const rotateY = horizontal * 0.9;
+
+          imageElement.style.transform =
+            `perspective(1200px) ` +
+            `rotateX(${rotateX}deg) ` +
+            `rotateY(${rotateY}deg) ` +
+            "scale(1.018)";
+
+          pointerFrame = null;
+        });
       };
 
       const resetImage = () => {
+        if (pointerFrame !== null) {
+          window.cancelAnimationFrame(pointerFrame);
+          pointerFrame = null;
+        }
+
         imageElement.style.transform =
           "perspective(1200px) " +
           "rotateX(0deg) " +
@@ -488,6 +571,143 @@
       imageElement.addEventListener("pointerleave", resetImage);
 
       imageElement.addEventListener("pointercancel", resetImage);
+    });
+  };
+
+  /**
+   * Remove broken-image icons without inventing substitute imagery.
+   * The surrounding layout returns to one useful text column when its
+   * intended image is not present in the supplied archive.
+   */
+  const handleUnavailableImages = () => {
+    const images = document.querySelectorAll("img");
+
+    images.forEach((image) => {
+      if (!(image instanceof HTMLImageElement)) {
+        return;
+      }
+
+      const markUnavailable = () => {
+        image.classList.add("is-image-unavailable");
+
+        const mediaContainer = image.closest(
+          [
+            "figure",
+            ".service-hero__media",
+            ".featured-story__media",
+            ".media-story__media",
+            ".story-card__media",
+            ".journal-feature__media",
+            ".journal-case-study__media",
+            ".homepage-publication__media",
+            ".article-hero__figure",
+          ].join(", ")
+        );
+
+        if (mediaContainer instanceof HTMLElement) {
+          mediaContainer.classList.add("is-image-unavailable");
+        }
+
+        const mediaLayout = image.closest(
+          [
+            ".service-hero__layout",
+            ".journal-feature__layout",
+            ".journal-case-study__layout",
+            ".journal-case-study",
+            ".homepage-publication__layout",
+            ".article-hero__layout",
+            ".featured-story",
+            ".media-story",
+            ".story-card",
+          ].join(", ")
+        );
+
+        if (mediaLayout instanceof HTMLElement) {
+          mediaLayout.classList.add("has-missing-media");
+        }
+      };
+
+      image.addEventListener("error", markUnavailable, {
+        once: true,
+      });
+
+      if (image.complete && image.naturalWidth === 0) {
+        markUnavailable();
+      }
+    });
+  };
+
+  /**
+   * Prepare a complete enquiry in the visitor's email application.
+   * No form data is transmitted or stored by the website itself.
+   */
+  const initialiseEmailEnquiryForm = () => {
+    const form = getElement("#englishire-email-enquiry-form");
+
+    if (!(form instanceof HTMLFormElement)) {
+      return;
+    }
+
+    const status = getElement("#englishire-email-enquiry-status");
+
+    const fieldLabels = {
+      contactName: "Contact name",
+      contactEmail: "Contact email",
+      schoolName: "School name",
+      schoolLocation: "School location",
+      nearestStation: "Nearest station",
+      requestedDates: "Requested dates",
+      lessonTimes: "Lesson times",
+      learnerDetails: "Learner ages and class sizes",
+      lessonDetails: "Lesson type and objectives",
+      materials: "Materials provided",
+      arrivalInstructions: "Arrival and reporting instructions",
+      specialRequirements: "Special requirements",
+    };
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!form.reportValidity()) {
+        if (status) {
+          status.textContent =
+            "Kindly complete the required fields before preparing your email.";
+        }
+
+        return;
+      }
+
+      const formData = new FormData(form);
+
+      const bodyLines = Object.entries(fieldLabels).map(([name, label]) => {
+        const value = String(formData.get(name) || "").trim();
+
+        return `${label}: ${value || "Not provided"}`;
+      });
+
+      bodyLines.push(
+        `Urgent enquiry: ${formData.get("urgentEnquiry") ? "Yes" : "No"}`,
+        "",
+        "Please review this request for temporary English teacher cover."
+      );
+
+      const schoolName = String(formData.get("schoolName") || "").trim();
+
+      const subject = schoolName
+        ? `Teacher cover enquiry — ${schoolName}`
+        : "Teacher cover enquiry";
+
+      const mailto =
+        `mailto:info@englishire.com?subject=${encodeURIComponent(subject)}` +
+        `&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+
+      if (status) {
+        status.textContent =
+          "Your email application should now open with the enquiry prepared. " +
+          "Nothing is sent until you review and send that email.";
+      }
+
+      window.location.href = mailto;
     });
   };
 
@@ -531,8 +751,15 @@
 
     let navigationStarted = false;
 
+    let pageTransitionAnimation = null;
+
     document.addEventListener("click", (event) => {
-      const link = event.target.closest("a[href]");
+      const eventTarget = event.target;
+
+      const link =
+        eventTarget instanceof Element
+          ? eventTarget.closest("a[href]")
+          : null;
 
       if (!(link instanceof HTMLAnchorElement)) {
         return;
@@ -598,6 +825,8 @@
         }
       );
 
+      pageTransitionAnimation = animation;
+
       animation.addEventListener(
         "finish",
         () => {
@@ -622,8 +851,17 @@
     window.addEventListener("pageshow", () => {
       navigationStarted = false;
 
+      if (pageTransitionAnimation) {
+        pageTransitionAnimation.cancel();
+        pageTransitionAnimation = null;
+      }
+
       document.body.getAnimations().forEach((animation) => {
-        animation.cancel();
+        const effectTarget = animation.effect ? animation.effect.target : null;
+
+        if (effectTarget === document.body) {
+          animation.cancel();
+        }
       });
 
       document.body.style.removeProperty("opacity");
@@ -713,6 +951,8 @@
     enhanceAnchorNavigation();
     enhanceImageMovement();
     enhanceFAQs();
+    handleUnavailableImages();
+    initialiseEmailEnquiryForm();
     enablePageTransitions();
     secureExternalLinks();
     observePageHeight();
