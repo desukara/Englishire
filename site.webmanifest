@@ -1,6 +1,9 @@
 {
   "name": "Englishire",
   "short_name": "Englishire",
+  "description": "Temporary English teacher cover for schools in Tokyo.",
+  "start_url": "/",
+  "scope": "/",
   "icons": [
     {
       "src": "android-chrome-192x192.png",

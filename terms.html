@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,20 +8,38 @@
       name="description"
       content="Englishire's Terms of Service explain how temporary teacher cover enquiries are considered, confirmed and delivered."
     />
+    <meta name="author" content="Englishire" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Terms of Service | Englishire" />
+    <meta property="og:description" content="The terms governing temporary English teacher cover enquiries and assignments with Englishire." />
+    <meta property="og:url" content="https://englishire.com/terms.html" />
+    <meta property="og:image" content="https://englishire.com/englishire-social-preview.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Terms of Service | Englishire" />
+    <meta name="twitter:description" content="The terms governing temporary English teacher cover enquiries and assignments with Englishire." />
+    <meta name="twitter:image" content="https://englishire.com/englishire-social-preview.jpg" />
+    <link rel="canonical" href="https://englishire.com/terms.html" />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <meta name="msapplication-config" content="browserconfig.xml" />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
-    <header class="site-header">
+    <a class="skip-link" href="#englishire-main-content">Skip to main content</a>
+    <header class="site-header" id="englishire-site-header">
       <div class="site-shell site-header__inner">
-        <a class="masthead" href="index.html">
-          <span class="masthead__name">ENGLISHIRE</span>
-          <span class="masthead__descriptor"
-            >Temporary Teacher Cover · Tokyo</span
-          >
+        <a class="masthead" href="index.html" aria-label="Englishire homepage">
+          <img class="masthead__logo" src="englishire-logo.png" width="1327" height="380" alt="Englishire" />
         </a>
-
-        <nav class="primary-nav" aria-label="Primary navigation">
+        <button aria-controls="englishire-primary-navigation" aria-expanded="false" class="mobile-nav-toggle" id="englishire-mobile-nav-toggle" type="button">
+          <span class="mobile-nav-toggle__label">Menu</span>
+          <span aria-hidden="true" class="mobile-nav-toggle__icon"><span></span><span></span></span>
+        </button>
+        <nav class="primary-nav" aria-label="Primary navigation" id="englishire-primary-navigation">
           <a href="teacher-cover.html">Teacher Cover</a>
           <a href="index.html#englishire-service-situations">When We Help</a>
           <a href="how-it-works.html">How It Works</a>
@@ -34,7 +52,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="englishire-main-content">
       <section class="service-hero legal-page-hero">
         <div class="site-shell">
           <p class="eyebrow">Terms</p>
@@ -174,10 +192,10 @@
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="site-shell">
-        <p>&copy; 2026 Englishire. All rights reserved.</p>
-        <nav class="site-footer__legal">
+    <footer class="site-footer" id="englishire-site-footer">
+      <div class="site-shell site-footer__bottom">
+        <p>&copy; <span id="englishire-current-year">2026</span> Englishire. All rights reserved.</p>
+        <nav class="site-footer__legal" aria-label="Legal navigation">
           <a href="privacy.html">Privacy</a>
           <a href="terms.html" aria-current="page">Terms</a>
           <a href="cookies.html">Cookies</a>

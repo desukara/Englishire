@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -102,7 +102,7 @@
               cover is confirmed only when suitability and availability have
               both been established.
             </p>
-<div aria-label="Contact page actions" class="service-hero__actions">
+<div aria-label="Contact page actions" class="service-hero__actions" role="group">
 <a class="button button--secondary" href="#englishire-enquiry-form">
                 Begin the Enquiry
               </a>
@@ -167,15 +167,92 @@
                 </h2>
 </div>
 <p class="section-heading__summary">
-                Fields marked with an asterisk are required before the form can
-                be submitted.
+                Fields marked with an asterisk are required before your enquiry
+                email can be prepared.
               </p>
 </header>
-<section aria-labelledby="email-contact-title" class="email-contact-panel"><h2 id="email-contact-title">Contact Englishire by email</h2><p>For temporary teacher cover enquiries, please email Englishire directly.</p><p class="email-contact-panel__address"><a href="mailto:info@englishire.com">info@Englishire.com</a></p><p>Kindly include the school location, requested dates, lesson times, learner age groups and the nature of the assignment.</p></section>
+<form
+  action="mailto:info@englishire.com"
+  class="email-enquiry-form"
+  enctype="text/plain"
+  id="englishire-email-enquiry-form"
+  method="post"
+>
+  <p class="email-enquiry-form__notice" id="englishire-email-enquiry-notice">
+    This form prepares an email in your own email application. Nothing is sent
+    to Englishire until you review and send that email yourself.
+  </p>
+  <div class="email-enquiry-form__grid">
+    <div class="form-field">
+      <label for="englishire-contact-name">Contact name *</label>
+      <input autocomplete="name" id="englishire-contact-name" name="contactName" required type="text" />
+    </div>
+    <div class="form-field">
+      <label for="englishire-contact-email">Contact email *</label>
+      <input autocomplete="email" id="englishire-contact-email" name="contactEmail" required type="email" />
+    </div>
+    <div class="form-field">
+      <label for="englishire-school-name">School name *</label>
+      <input autocomplete="organization" id="englishire-school-name" name="schoolName" required type="text" />
+    </div>
+    <div class="form-field">
+      <label for="englishire-school-location">School location *</label>
+      <input autocomplete="street-address" id="englishire-school-location" name="schoolLocation" required type="text" />
+    </div>
+    <div class="form-field">
+      <label for="englishire-nearest-station">Nearest station</label>
+      <input id="englishire-nearest-station" name="nearestStation" type="text" />
+    </div>
+    <div class="form-field">
+      <label for="englishire-requested-dates">Requested dates *</label>
+      <input id="englishire-requested-dates" name="requestedDates" required type="text" />
+      <p class="form-field__hint">For example, 12–16 October 2026.</p>
+    </div>
+    <div class="form-field">
+      <label for="englishire-lesson-times">Lesson times *</label>
+      <textarea id="englishire-lesson-times" name="lessonTimes" required rows="4"></textarea>
+    </div>
+    <div class="form-field">
+      <label for="englishire-learner-details">Learner ages and class sizes *</label>
+      <textarea id="englishire-learner-details" name="learnerDetails" required rows="4"></textarea>
+    </div>
+    <div class="form-field form-field--full">
+      <label for="englishire-lesson-details">Lesson type and objectives *</label>
+      <textarea id="englishire-lesson-details" name="lessonDetails" required rows="5"></textarea>
+    </div>
+    <div class="form-field">
+      <label for="englishire-materials">Materials provided</label>
+      <textarea id="englishire-materials" name="materials" rows="4"></textarea>
+    </div>
+    <div class="form-field">
+      <label for="englishire-arrival-instructions">Arrival and reporting instructions</label>
+      <textarea id="englishire-arrival-instructions" name="arrivalInstructions" rows="4"></textarea>
+    </div>
+    <div class="form-field form-field--full">
+      <label for="englishire-special-requirements">Special requirements</label>
+      <textarea id="englishire-special-requirements" name="specialRequirements" rows="4"></textarea>
+    </div>
+  </div>
+  <label class="form-checkbox" for="englishire-urgent-enquiry">
+    <input id="englishire-urgent-enquiry" name="urgentEnquiry" type="checkbox" value="yes" />
+    <span>This is an urgent enquiry.</span>
+  </label>
+  <div class="email-enquiry-form__actions">
+    <button class="button button--primary" type="submit">Prepare Enquiry Email</button>
+    <a class="button button--text" href="mailto:info@englishire.com">Use Your Own Email</a>
+  </div>
+  <p aria-live="polite" class="email-enquiry-form__status" id="englishire-email-enquiry-status"></p>
+</form>
+<section aria-labelledby="email-contact-title" class="email-contact-panel">
+  <h3 id="email-contact-title">Prefer to write the email yourself?</h3>
+  <p>For temporary teacher cover enquiries, please email Englishire directly.</p>
+  <p class="email-contact-panel__address"><a href="mailto:info@englishire.com">info@englishire.com</a></p>
+  <p>Kindly include the school location, requested dates, lesson times, learner age groups and the nature of the assignment.</p>
+</section>
 </div>
 <aside aria-labelledby="englishire-before-submit-title" class="contact-enquiry__aside">
 <div class="contact-note">
-<p class="section-label">Before You Submit</p>
+<p class="section-label">Before You Prepare the Email</p>
 <h2 id="englishire-before-submit-title">
                 Kindly check the essentials.
               </h2>
@@ -195,7 +272,7 @@
 <h2>Send what is known.</h2>
 <p>
                 If the requirement is urgent and certain details remain
-                uncertain, kindly submit the available information and identify
+                uncertain, kindly send the available information and identify
                 what still requires confirmation.
               </p>
 </div>
@@ -214,7 +291,7 @@
 <section aria-labelledby="englishire-contact-questions-title" class="frequently-asked" id="englishire-contact-questions">
 <div class="site-shell frequently-asked__layout">
 <header class="frequently-asked__heading">
-<p class="section-label">Before Sending the Form</p>
+<p class="section-label">Before Sending Your Email</p>
 <h2 id="englishire-contact-questions-title">
               A few final practical questions.
             </h2>
@@ -245,10 +322,10 @@
 </div>
 </details>
 <details class="faq-item">
-<summary>Does submitting the form reserve a teacher?</summary>
+<summary>Does preparing an enquiry email reserve a teacher?</summary>
 <div class="faq-item__answer">
 <p>
-                  No. Submission begins the review process. No teacher is
+                  No. Sending an enquiry begins the review process. No teacher is
                   reserved or confirmed until Englishire has expressly agreed
                   the assignment.
                 </p>
@@ -306,7 +383,7 @@
     <img
       src="englishire-logo.png"
       width="1327"
-      height="280"
+      height="380"
       alt="Englishire"
       style="width: 250px; height: auto; display: block; margin-bottom: 0.75rem;"
     />
@@ -359,9 +436,9 @@
 <noscript>
 <div class="noscript-notice">
 <p>
-          This website works best with JavaScript enabled. Should the enquiry
-          form be unavailable, kindly contact Englishire using the alternative
-          details provided by the organisation.
+          This website works best with JavaScript enabled. Without JavaScript,
+          the enquiry form will use your email application directly. You may
+          alternatively write to info@englishire.com.
         </p>
 </div>
 </noscript>
