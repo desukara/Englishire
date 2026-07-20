@@ -3496,3 +3496,39 @@ dd {
   background: var(--crimson);
   border-color: var(--crimson);
 }
+
+/* FINAL SCOPED CONTRAST CORRECTIONS */
+
+/* Homepage: readable default CTA in the dark situations panel. */
+.service-situations .section-footer-action .button--text {
+  color: var(--royal-navy-deep);
+  background: var(--crown-gold-light);
+  border-color: var(--crown-gold-light);
+}
+
+.service-situations .section-footer-action .button--text:hover,
+.service-situations .section-footer-action .button--text:focus-visible {
+  color: var(--white);
+  background: var(--crimson);
+  border-color: var(--crimson);
+}
+
+/* Teacher Cover: readable default Standard button in the dark feature panel. */
+.standard-feature .button--light {
+  color: var(--royal-navy-deep);
+  background: var(--crown-gold-light);
+  border-color: var(--crown-gold-light);
+}
+
+.standard-feature .button--light:hover,
+.standard-feature .button--light:focus-visible {
+  color: var(--white);
+  background: var(--crimson);
+  border-color: var(--crimson);
+}
+
+/* About: strengthen generated principle numbers on the pale-blue card. */
+.about-standard-card__principles li::before {
+  color: var(--royal-navy-deep);
+  opacity: 1;
+}
