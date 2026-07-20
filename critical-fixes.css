@@ -55,3 +55,17 @@
   color: #071a35 !important;
   opacity: 1 !important;
 }
+
+/* Site-wide Englishire Standard CTA: readable before hover on every page. */
+a.button[href="englishire-standard.html"] {
+  color: #071a35 !important;
+  background: #e2ca8b !important;
+  border-color: #c7a052 !important;
+}
+
+a.button[href="englishire-standard.html"]:hover,
+a.button[href="englishire-standard.html"]:focus-visible {
+  color: #ffffff !important;
+  background: #9f1528 !important;
+  border-color: #9f1528 !important;
+}
