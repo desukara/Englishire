@@ -3431,3 +3431,165 @@ dd {
   }
 }
 
+/* CONTRAST AND COLOUR CORRECTIONS */
+
+/* Dark editorial panels: keep all copy and calls to action clearly visible. */
+.englishire-principle,
+.early-contact,
+.enquiry-strip,
+.service-standard,
+.service-hero,
+.article-hero,
+.journal-masthead {
+  color: var(--ivory-light);
+}
+
+.englishire-principle p,
+.englishire-principle li,
+.englishire-principle h2,
+.early-contact p,
+.early-contact li,
+.early-contact h2,
+.enquiry-strip p,
+.enquiry-strip li,
+.enquiry-strip h2,
+.service-standard p,
+.service-standard li,
+.service-standard h2,
+.service-standard h3 {
+  color: var(--ivory-light);
+}
+
+.englishire-principle .eyebrow,
+.englishire-principle .section-label,
+.early-contact .eyebrow,
+.early-contact .section-label,
+.enquiry-strip .eyebrow,
+.enquiry-strip .section-label,
+.service-standard .eyebrow,
+.service-standard .section-label {
+  color: var(--crown-gold-light);
+}
+
+/* Buttons on dark sections must be readable before hover as well as during hover. */
+.englishire-principle .homepage-standard-link,
+.early-contact .button,
+.enquiry-strip .button,
+.service-standard .button,
+.service-hero .button,
+.article-hero .button,
+.journal-masthead .button {
+  color: var(--white);
+  background: rgba(23, 63, 120, 0.72);
+  border-color: rgba(255, 255, 255, 0.72);
+}
+
+.englishire-principle .homepage-standard-link:hover,
+.englishire-principle .homepage-standard-link:focus-visible,
+.early-contact .button:hover,
+.early-contact .button:focus-visible,
+.enquiry-strip .button:hover,
+.enquiry-strip .button:focus-visible,
+.service-standard .button:hover,
+.service-standard .button:focus-visible,
+.service-hero .button:hover,
+.service-hero .button:focus-visible,
+.article-hero .button:hover,
+.article-hero .button:focus-visible,
+.journal-masthead .button:hover,
+.journal-masthead .button:focus-visible {
+  color: var(--royal-navy-deep);
+  background: var(--crown-gold-light);
+  border-color: var(--crown-gold-light);
+}
+
+/* Pale editorial sections: restore strong navy text instead of washed-out blue-grey. */
+#englishire-about-section,
+.about-englishire:not(.englishire-principle),
+.service-introduction,
+.service-boundaries,
+.frequently-asked,
+.process-route-section,
+.assignment-process,
+.homepage-publications,
+.school-media {
+  color: var(--ink);
+}
+
+#englishire-about-section h2,
+#englishire-about-section h3,
+#englishire-about-section p,
+#englishire-about-section li,
+.about-englishire:not(.englishire-principle) h2,
+.about-englishire:not(.englishire-principle) h3,
+.about-englishire:not(.englishire-principle) p,
+.about-englishire:not(.englishire-principle) li,
+.service-introduction h2,
+.service-introduction h3,
+.service-introduction p,
+.service-boundaries h2,
+.service-boundaries h3,
+.service-boundaries p,
+.service-boundaries li,
+.frequently-asked h2,
+.frequently-asked h3,
+.frequently-asked p,
+.frequently-asked li,
+.process-route-section h2,
+.process-route-section h3,
+.process-route-section p,
+.assignment-process h2,
+.assignment-process h3,
+.assignment-process p,
+.homepage-publications h2,
+.homepage-publications h3,
+.homepage-publications p,
+.school-media h2,
+.school-media h3,
+.school-media p {
+  color: var(--royal-navy);
+}
+
+#englishire-about-section .eyebrow,
+#englishire-about-section .section-label,
+.about-englishire:not(.englishire-principle) .eyebrow,
+.about-englishire:not(.englishire-principle) .section-label,
+.service-introduction .eyebrow,
+.service-introduction .section-label,
+.service-boundaries .eyebrow,
+.service-boundaries .section-label,
+.frequently-asked .eyebrow,
+.frequently-asked .section-label,
+.process-route-section .eyebrow,
+.process-route-section .section-label,
+.assignment-process .eyebrow,
+.assignment-process .section-label {
+  color: var(--crimson);
+}
+
+/* Outlined buttons on light sections need a solid, legible default state. */
+#englishire-about-section .button,
+.about-englishire:not(.englishire-principle) .button,
+.service-introduction .button,
+.service-boundaries .button,
+.frequently-asked .button {
+  color: var(--royal-navy);
+  background: var(--ivory-light);
+  border-color: var(--royal-navy);
+}
+
+#englishire-about-section .button:hover,
+#englishire-about-section .button:focus-visible,
+.about-englishire:not(.englishire-principle) .button:hover,
+.about-englishire:not(.englishire-principle) .button:focus-visible,
+.service-introduction .button:hover,
+.service-introduction .button:focus-visible,
+.service-boundaries .button:hover,
+.service-boundaries .button:focus-visible,
+.frequently-asked .button:hover,
+.frequently-asked .button:focus-visible {
+  color: var(--white);
+  background: var(--royal-navy);
+  border-color: var(--royal-navy);
+}
+
