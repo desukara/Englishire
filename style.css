@@ -2969,3 +2969,267 @@ figure.is-image-unavailable,
     overflow: auto;
   }
 }
+
+/* =========================================================
+   25. HOMEPAGE VISUAL AUDIT CORRECTIONS
+   Corrects the specific layout and decorative problems
+   identified from the supplied desktop and mobile screenshots.
+========================================================= */
+
+/* 25.1 HERO IMAGE, CAPTION AND DESKTOP BALANCE
+   The former figure pseudo-frame crossed through the caption.
+   The photograph now carries its own restrained frame. */
+.editorial-image--hero::before {
+  content: none;
+}
+
+.editorial-image--hero img {
+  outline: 1px solid var(--crown-gold-deep);
+  outline-offset: 0.55rem;
+}
+
+.editorial-image figcaption {
+  margin-top: 1.15rem;
+  padding-top: 0;
+  color: var(--ink-soft);
+  border-top: 0;
+  font-size: clamp(0.78rem, 1.25vw, 0.9rem);
+  letter-spacing: 0.02em;
+  line-height: 1.55;
+}
+
+@media (min-width: 64rem) {
+  #englishire-teacher-cover .service-hero__layout {
+    align-items: start;
+  }
+
+  #englishire-teacher-cover .service-hero__media {
+    padding-top: 1rem;
+  }
+}
+
+/* 25.2 HOMEPAGE JOURNAL FOOTER
+   Prevents the paragraph being crushed beside a rigid button. */
+#englishire-school-media .school-media__footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+#englishire-school-media .school-media__footer p {
+  max-width: 48rem;
+  margin: 0;
+  color: var(--ink-soft);
+  font-family: var(--font-display);
+  line-height: 1.65;
+}
+
+#englishire-school-media .school-media__footer .button {
+  width: 100%;
+}
+
+@media (min-width: 44rem) {
+  #englishire-school-media .school-media__footer {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 2rem;
+  }
+
+  #englishire-school-media .school-media__footer .button {
+    width: auto;
+  }
+}
+
+/* 25.3 GOVERNING PRINCIPLE
+   Gives the first repeated ceremonial panel a quieter editorial identity. */
+.englishire-principle {
+  color: var(--royal-navy);
+  background:
+    linear-gradient(rgba(251, 248, 241, 0.94), rgba(251, 248, 241, 0.94)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(7, 26, 53, 0.028) 0,
+      rgba(7, 26, 53, 0.028) 1px,
+      transparent 1px,
+      transparent 64px
+    ),
+    var(--ivory-light);
+  border-block: 1px solid var(--rule-strong);
+}
+
+.englishire-principle::before {
+  content: none;
+}
+
+.englishire-principle .about-englishire__identity {
+  border-color: var(--rule-strong);
+}
+
+.englishire-principle .about-englishire__wordmark,
+.englishire-principle .section-label {
+  color: var(--crimson-deep);
+}
+
+.englishire-principle .about-englishire__descriptor {
+  color: var(--muted);
+}
+
+.englishire-principle .about-englishire__content h2 {
+  max-width: 19ch;
+  color: var(--royal-navy);
+  font-size: clamp(2.15rem, 5.7vw, 4.25rem);
+  line-height: 1.02;
+}
+
+.englishire-principle .about-englishire__content p {
+  color: var(--ink-soft);
+}
+
+.englishire-principle .homepage-standard-link {
+  margin-top: 1.75rem;
+  margin-bottom: 0.35rem;
+}
+
+/* 25.4 ABOUT ENGLISHIRE
+   Retains one dark flagship section, but removes the boxed-in poster effect. */
+#englishire-about-section {
+  border-block-width: 1px;
+  border-color: rgba(226, 202, 139, 0.55);
+}
+
+#englishire-about-section::before {
+  inset: 0;
+  border: 0;
+  border-left: 4px solid rgba(199, 160, 82, 0.7);
+}
+
+#englishire-about-section .about-englishire__content h2 {
+  max-width: 16ch;
+  font-size: clamp(2.25rem, 6vw, 4.4rem);
+  line-height: 1.02;
+}
+
+/* 25.5 EARLY CONTACT
+   Removes the enormous letter E and replaces it with a restrained
+   heraldic crown watermark and fine gold rule treatment. */
+.early-contact {
+  background:
+    linear-gradient(118deg, rgba(111, 13, 27, 0.985), rgba(95, 12, 25, 0.97)),
+    var(--crimson-deep);
+  border-block: 1px solid var(--crown-gold);
+}
+
+.early-contact::before {
+  content: "";
+  position: absolute;
+  inset: 1.1rem;
+  border: 1px solid rgba(226, 202, 139, 0.2);
+  pointer-events: none;
+}
+
+.early-contact::after {
+  content: "";
+  position: absolute;
+  right: clamp(-2.5rem, 2vw, 1.5rem);
+  top: 50%;
+  bottom: auto;
+  width: clamp(12rem, 24vw, 20rem);
+  aspect-ratio: 1 / 1;
+  transform: translateY(-50%);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%23e2ca8b' stroke-width='4'%3E%3Cpath d='M42 112h116l-10 34H52z'/%3E%3Cpath d='M52 112 40 62l37 27 23-45 23 45 37-27-12 50'/%3E%3Cpath d='M60 156h80'/%3E%3Ccircle cx='40' cy='58' r='6'/%3E%3Ccircle cx='100' cy='38' r='6'/%3E%3Ccircle cx='160' cy='58' r='6'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.11;
+  pointer-events: none;
+}
+
+.early-contact__content h2 {
+  max-width: 15ch;
+  font-size: clamp(2.2rem, 6.2vw, 4.25rem);
+  line-height: 1.02;
+}
+
+.early-contact__action {
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  background: rgba(3, 16, 36, 0.18);
+  border: 1px solid rgba(226, 202, 139, 0.38);
+  box-shadow: 0 1rem 2.5rem rgba(3, 16, 36, 0.12);
+}
+
+@media (max-width: 43.999rem) {
+  .early-contact::before {
+    inset: 0.7rem;
+  }
+
+  .early-contact::after {
+    right: -4rem;
+    width: 13rem;
+    opacity: 0.075;
+  }
+}
+
+/* 25.6 FINAL ENQUIRY STRIP
+   Removes the empty diamond and lets the message and actions carry the section. */
+.enquiry-strip::after {
+  content: none;
+}
+
+.enquiry-strip__inner {
+  align-items: center;
+}
+
+.enquiry-strip__content h2 {
+  max-width: 17ch;
+  font-size: clamp(2.2rem, 6vw, 4.35rem);
+  line-height: 1.02;
+}
+
+@media (min-width: 44rem) {
+  .enquiry-strip__inner {
+    grid-template-columns: minmax(0, 1.35fr) minmax(14rem, 0.65fr);
+  }
+
+  .enquiry-strip__actions {
+    justify-content: flex-end;
+  }
+}
+
+/* 25.7 MOBILE RHYTHM
+   Prevents the long homepage statements becoming towering posters. */
+@media (max-width: 43.999rem) {
+  .about-englishire,
+  .early-contact,
+  .enquiry-strip {
+    padding-block: 3.25rem;
+  }
+
+  .about-englishire__layout {
+    gap: 1.55rem;
+  }
+
+  .about-englishire__identity {
+    padding-bottom: 1rem;
+  }
+
+  .about-englishire__wordmark {
+    font-size: clamp(1.75rem, 8vw, 2.4rem);
+  }
+
+  .englishire-principle .about-englishire__content h2,
+  #englishire-about-section .about-englishire__content h2,
+  .early-contact__content h2,
+  .enquiry-strip__content h2 {
+    max-width: none;
+    font-size: clamp(2rem, 10vw, 3rem);
+    line-height: 1.04;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .englishire-principle .homepage-standard-link {
+    width: 100%;
+    margin-top: 1.35rem;
+  }
+}
