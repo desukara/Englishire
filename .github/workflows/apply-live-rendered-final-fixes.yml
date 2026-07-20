@@ -1,0 +1,109 @@
+name: Apply live rendered final fixes
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/apply-live-rendered-final-fixes.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Create final override stylesheet
+        run: |
+          cat > critical-fixes.css <<'CSS'
+          /* LIVE-RENDERED FINAL CORRECTIONS */
+
+          /* Homepage desktop CTA: force a readable default state. */
+          #englishire-service-situations .section-footer-action > a.button.button--text {
+            color: #071a35 !important;
+            background: #e2ca8b !important;
+            border-color: #c7a052 !important;
+          }
+
+          #englishire-service-situations .section-footer-action > a.button.button--text:hover,
+          #englishire-service-situations .section-footer-action > a.button.button--text:focus-visible {
+            color: #ffffff !important;
+            background: #9f1528 !important;
+            border-color: #9f1528 !important;
+          }
+
+          /* Journal desktop: keep the editorial-desk identity inside its own column. */
+          @media (min-width: 64rem) {
+            #englishire-editorial-desk .about-englishire__layout {
+              grid-template-columns: minmax(12rem, 0.62fr) minmax(0, 1.38fr) !important;
+              gap: clamp(2rem, 5vw, 5rem) !important;
+              align-items: start !important;
+            }
+
+            #englishire-editorial-desk .about-englishire__identity {
+              min-width: 0 !important;
+              max-width: 18rem !important;
+            }
+
+            #englishire-editorial-desk .about-englishire__wordmark {
+              max-width: 100% !important;
+              font-size: clamp(1.8rem, 2.5vw, 2.8rem) !important;
+              line-height: 1.05 !important;
+              overflow-wrap: normal !important;
+              word-break: normal !important;
+            }
+
+            #englishire-editorial-desk .about-englishire__descriptor {
+              max-width: 22ch !important;
+              line-height: 1.5 !important;
+            }
+          }
+
+          /* About page: replace low-contrast gold text on the pale-blue Standard card. */
+          #englishire-standard .about-standard-card {
+            color: #071a35 !important;
+          }
+
+          #englishire-standard .about-standard-card .section-label,
+          #englishire-standard .about-standard-card h2,
+          #englishire-standard .about-standard-card p,
+          #englishire-standard .about-standard-card strong,
+          #englishire-standard .about-standard-card span,
+          #englishire-standard .about-standard-card li::before {
+            color: #071a35 !important;
+            opacity: 1 !important;
+          }
+          CSS
+
+      - name: Load override after main stylesheet on affected pages
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          pages = [Path('index.html'), Path('journal.html'), Path('about.html')]
+          old = '<link rel="stylesheet" href="style.css" />'
+          new = '<link rel="stylesheet" href="style.css?v=20260720-3" />\n    <link rel="stylesheet" href="critical-fixes.css?v=20260720-3" />'
+
+          for page in pages:
+              text = page.read_text(encoding='utf-8')
+              if 'critical-fixes.css?v=20260720-3' in text:
+                  continue
+              if old not in text:
+                  raise SystemExit(f'Expected stylesheet link not found in {page}')
+              page.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+
+      - name: Remove one-use workflow and commit
+        run: |
+          rm .github/workflows/apply-live-rendered-final-fixes.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html journal.html about.html critical-fixes.css .github/workflows/apply-live-rendered-final-fixes.yml
+          git commit -m "Apply live-rendered final corrections"
+          git push origin main
