@@ -634,7 +634,7 @@ ol {
   border-bottom: 1px solid var(--rule-strong);
 }
 
-.service-hero::before {
+.contact-page-hero::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -651,7 +651,7 @@ ol {
 }
 
 @media (max-width: 63.999rem) {
-  .service-hero::before {
+  .contact-page-hero::before {
     display: none;
   }
 }
