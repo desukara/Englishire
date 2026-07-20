@@ -1,0 +1,57 @@
+/* LIVE-RENDERED FINAL CORRECTIONS */
+
+/* Homepage desktop CTA: force a readable default state. */
+#englishire-service-situations .section-footer-action > a.button.button--text {
+  color: #071a35 !important;
+  background: #e2ca8b !important;
+  border-color: #c7a052 !important;
+}
+
+#englishire-service-situations .section-footer-action > a.button.button--text:hover,
+#englishire-service-situations .section-footer-action > a.button.button--text:focus-visible {
+  color: #ffffff !important;
+  background: #9f1528 !important;
+  border-color: #9f1528 !important;
+}
+
+/* Journal desktop: keep the editorial-desk identity inside its own column. */
+@media (min-width: 64rem) {
+  #englishire-editorial-desk .about-englishire__layout {
+    grid-template-columns: minmax(12rem, 0.62fr) minmax(0, 1.38fr) !important;
+    gap: clamp(2rem, 5vw, 5rem) !important;
+    align-items: start !important;
+  }
+
+  #englishire-editorial-desk .about-englishire__identity {
+    min-width: 0 !important;
+    max-width: 18rem !important;
+  }
+
+  #englishire-editorial-desk .about-englishire__wordmark {
+    max-width: 100% !important;
+    font-size: clamp(1.8rem, 2.5vw, 2.8rem) !important;
+    line-height: 1.05 !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+  }
+
+  #englishire-editorial-desk .about-englishire__descriptor {
+    max-width: 22ch !important;
+    line-height: 1.5 !important;
+  }
+}
+
+/* About page: replace low-contrast gold text on the pale-blue Standard card. */
+#englishire-standard .about-standard-card {
+  color: #071a35 !important;
+}
+
+#englishire-standard .about-standard-card .section-label,
+#englishire-standard .about-standard-card h2,
+#englishire-standard .about-standard-card p,
+#englishire-standard .about-standard-card strong,
+#englishire-standard .about-standard-card span,
+#englishire-standard .about-standard-card li::before {
+  color: #071a35 !important;
+  opacity: 1 !important;
+}
