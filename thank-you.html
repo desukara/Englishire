@@ -1,27 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Thank You | Englishire</title>
     <meta
       name="description"
-      content="Thank you for your enquiry. Englishire has received your request for temporary teacher cover and will consider it carefully."
+      content="Information about what happens after a temporary teacher cover enquiry is emailed to Englishire."
     />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
-    <header class="site-header">
+    <a class="skip-link" href="#englishire-main-content">Skip to main content</a>
+    <header class="site-header" id="englishire-site-header">
       <div class="site-shell site-header__inner">
-        <a class="masthead" href="index.html">
-          <span class="masthead__name">ENGLISHIRE</span>
-          <span class="masthead__descriptor"
-            >Temporary Teacher Cover · Tokyo</span
-          >
+        <a class="masthead" href="index.html" aria-label="Englishire homepage">
+          <img class="masthead__logo" src="englishire-logo.png" width="1327" height="380" alt="Englishire" />
         </a>
-
-        <nav class="primary-nav">
+        <button aria-controls="englishire-primary-navigation" aria-expanded="false" class="mobile-nav-toggle" id="englishire-mobile-nav-toggle" type="button">
+          <span class="mobile-nav-toggle__label">Menu</span>
+          <span aria-hidden="true" class="mobile-nav-toggle__icon"><span></span><span></span></span>
+        </button>
+        <nav aria-label="Primary navigation" class="primary-nav" id="englishire-primary-navigation">
           <a href="teacher-cover.html">Teacher Cover</a>
           <a href="index.html#englishire-service-situations">When We Help</a>
           <a href="how-it-works.html">How It Works</a>
@@ -34,32 +40,34 @@
       </div>
     </header>
 
-    <main>
+    <main id="englishire-main-content">
       <section class="service-hero">
         <div class="site-shell">
           <p class="eyebrow">Thank You</p>
 
-          <h1>Your enquiry has been received.</h1>
+          <h1>Thank you for contacting Englishire.</h1>
 
           <p class="service-hero__lead">
-            Thank you for taking the time to contact Englishire.
+            If you have sent your enquiry email, thank you for taking the time
+            to contact Englishire.
           </p>
 
           <p class="service-hero__summary">
-            Your enquiry has been received and shall now be considered
-            carefully. We appreciate the confidence you have placed in us and
-            shall review the assignment before responding.
+            The contact form prepares an email but does not send it. Once you
+            have reviewed and sent that email from your own email application,
+            Englishire can consider the assignment before responding.
           </p>
         </div>
       </section>
 
       <section class="service-introduction">
         <div class="site-shell">
-          <h2>What happens next?</h2>
+          <h2>What happens after the email is sent?</h2>
 
           <p>
-            Every enquiry is read individually so that the school, timetable,
-            learner groups and teaching requirements may be understood properly.
+            Every enquiry received by email is read individually so that the
+            school, timetable, learner groups and teaching requirements may be
+            understood properly.
           </p>
 
           <div class="process-grid">
@@ -102,7 +110,7 @@
 
           <p>
             We believe that schools deserve thoughtful replies rather than
-            hurried assurances. That principle guides every enquiry we receive.
+              hurried assurances. That principle guides every enquiry received.
           </p>
 
           <div class="service-hero__actions">
@@ -127,19 +135,19 @@
 
       <section class="enquiry-strip">
         <div class="site-shell">
-          <h2>We shall give your enquiry the consideration it deserves.</h2>
+          <h2>Sent enquiries are given the consideration they deserve.</h2>
 
           <p>
-            Thank you once again for placing your confidence in Englishire. We
-            look forward to learning more about your school.
+            Once your email has been sent, Englishire can learn more about your
+            school and consider what may properly be offered.
           </p>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer" id="englishire-site-footer">
       <div class="site-shell site-footer__bottom">
-        <p>&copy; 2026 Englishire. All rights reserved.</p>
+        <p>&copy; <span id="englishire-current-year">2026</span> Englishire. All rights reserved.</p>
 
         <div class="site-footer__legal">
           <a href="privacy.html">Privacy</a>
