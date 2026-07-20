@@ -3431,3 +3431,68 @@ dd {
   }
 }
 
+
+/* TARGETED CONTRAST CORRECTION — verified against live screenshots */
+
+/* Restore the homepage About panel to its intended dark treatment. */
+#englishire-about-section {
+  color: var(--white);
+  background: radial-gradient(
+      circle at 20% 10%,
+      rgba(23, 63, 120, 0.52),
+      transparent 33%
+    ),
+    linear-gradient(135deg, var(--royal-navy-soft), var(--royal-navy-deep));
+}
+
+#englishire-about-section .about-englishire__wordmark,
+#englishire-about-section .section-label,
+#englishire-about-section .story-link {
+  color: var(--crown-gold-light);
+}
+
+#englishire-about-section .about-englishire__descriptor {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+#englishire-about-section .about-englishire__content h2 {
+  color: var(--white);
+}
+
+#englishire-about-section .about-englishire__content p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* Make the homepage principle link readable before hover. */
+.englishire-principle .homepage-standard-link {
+  color: var(--royal-navy-deep);
+  background: var(--crown-gold-light);
+  border-color: var(--crown-gold-deep);
+}
+
+.englishire-principle .homepage-standard-link:hover,
+.englishire-principle .homepage-standard-link:focus-visible {
+  color: var(--white);
+  background: var(--royal-navy);
+  border-color: var(--royal-navy);
+}
+
+/* Make Standard links on confirmed dark panels readable by default. */
+.service-standard .button,
+.about-standard-card .button,
+.journal-standard-panel .button {
+  color: var(--royal-navy-deep);
+  background: var(--crown-gold-light);
+  border-color: var(--crown-gold-light);
+}
+
+.service-standard .button:hover,
+.service-standard .button:focus-visible,
+.about-standard-card .button:hover,
+.about-standard-card .button:focus-visible,
+.journal-standard-panel .button:hover,
+.journal-standard-panel .button:focus-visible {
+  color: var(--white);
+  background: var(--crimson);
+  border-color: var(--crimson);
+}
