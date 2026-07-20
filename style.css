@@ -615,6 +615,7 @@ ol {
 
 .service-hero {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
   padding-block: clamp(2.5rem, 7vw, 5rem);
   background: linear-gradient(
@@ -636,54 +637,23 @@ ol {
 .service-hero::before {
   content: "";
   position: absolute;
-  inset: 0;
+  top: 50%;
+  right: clamp(-12rem, -8vw, -5rem);
+  width: clamp(42rem, 58vw, 62rem);
+  aspect-ratio: 2 / 1;
+  transform: translateY(-50%);
   pointer-events: none;
-
-  background:
-    linear-gradient(33deg,
-      transparent 44%,
-      rgba(244,239,228,.12) 44% 56%,
-      transparent 56%),
-
-    linear-gradient(-33deg,
-      transparent 44%,
-      rgba(244,239,228,.12) 44% 56%,
-      transparent 56%),
-
-    linear-gradient(33deg,
-      transparent 47.8%,
-      rgba(159,21,40,.055) 47.8% 52.2%,
-      transparent 52.2%),
-
-    linear-gradient(-33deg,
-      transparent 47.8%,
-      rgba(159,21,40,.055) 47.8% 52.2%,
-      transparent 52.2%),
-
-    linear-gradient(to bottom,
-      transparent 43%,
-      rgba(244,239,228,.13) 43% 57%,
-      transparent 57%),
-
-    linear-gradient(to right,
-      transparent 43%,
-      rgba(244,239,228,.13) 43% 57%,
-      transparent 57%),
-
-    linear-gradient(to bottom,
-      transparent 47.5%,
-      rgba(159,21,40,.075) 47.5% 52.5%,
-      transparent 52.5%),
-
-    linear-gradient(to right,
-      transparent 47.5%,
-      rgba(159,21,40,.075) 47.5% 52.5%,
-      transparent 52.5%);
-
-  background-size: 120% 120%;
-  background-position: right center;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 30' preserveAspectRatio='xMidYMid meet'%3E%3Crect width='60' height='30' fill='%23012169'/%3E%3Cpath d='M0 0L60 30M60 0L0 30' stroke='%23fff' stroke-width='6'/%3E%3Cpath d='M0 0L60 30M60 0L0 30' stroke='%23C8102E' stroke-width='3.6'/%3E%3Cpath d='M30 0V30M0 15H60' stroke='%23fff' stroke-width='10'/%3E%3Cpath d='M30 0V30M0 15H60' stroke='%23C8102E' stroke-width='6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  opacity: .55;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.075;
+}
+
+@media (max-width: 63.999rem) {
+  .service-hero::before {
+    display: none;
+  }
 }
 
 .service-hero__layout {
@@ -775,6 +745,8 @@ ol {
 }
 
 .service-hero__media {
+  position: relative;
+  z-index: 1;
   min-width: 0;
 }
 
