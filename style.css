@@ -3233,3 +3233,201 @@ figure.is-image-unavailable,
     margin-top: 1.35rem;
   }
 }
+
+/* DIRECT SITE-WIDE AUDIT CORRECTIONS */
+
+.section-heading h2,
+.frequently-asked__heading h2,
+.service-introduction__heading h2,
+.service-boundaries__content h2,
+.about-englishire__content h2,
+.early-contact h2,
+.enquiry-strip h2 {
+  font-size: clamp(2rem, 4.8vw, 4.25rem);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+.service-hero h1,
+.journal-masthead h1,
+.article-hero h1 {
+  font-size: clamp(2.75rem, 6.8vw, 6.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+p,
+li,
+dd {
+  max-width: 68ch;
+}
+
+.service-hero__layout {
+  align-items: start;
+}
+
+.editorial-image--hero {
+  position: relative;
+  margin: 0;
+}
+
+.editorial-image--hero::before,
+.editorial-image--hero::after {
+  content: none;
+}
+
+.editorial-image--hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: none;
+  will-change: auto;
+}
+
+.editorial-image--hero figcaption {
+  position: static;
+  margin-top: 0;
+  padding: 1rem 0 0;
+  border-top: 1px solid rgba(7, 26, 53, 0.22);
+}
+
+.englishire-principle {
+  background: transparent;
+  border-block: 1px solid rgba(7, 26, 53, 0.18);
+}
+
+.englishire-principle .about-englishire__layout {
+  grid-template-columns: minmax(12rem, 0.58fr) minmax(0, 1.42fr);
+  gap: clamp(2rem, 6vw, 6rem);
+}
+
+.englishire-principle .about-englishire__wordmark {
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+}
+
+#englishire-about-section {
+  background: rgba(7, 26, 53, 0.035);
+}
+
+#englishire-about-section .about-englishire__layout {
+  grid-template-columns: minmax(14rem, 0.75fr) minmax(0, 1.25fr);
+}
+
+.early-contact::before,
+.early-contact::after,
+.early-contact__layout::before,
+.early-contact__layout::after,
+.enquiry-strip::before,
+.enquiry-strip::after,
+.enquiry-strip__inner::before,
+.enquiry-strip__inner::after {
+  content: none;
+  display: none;
+}
+
+.early-contact,
+.enquiry-strip {
+  overflow: visible;
+}
+
+.school-media__footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 1.5rem 3rem;
+}
+
+.school-media__footer p {
+  margin-bottom: 0;
+}
+
+.process-route,
+.service-timeline {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.process-route li {
+  min-height: 0;
+}
+
+.journal-editorial-selection,
+.journal-operations-grid,
+.journal-series-grid,
+.homepage-publications__grid {
+  align-items: stretch;
+}
+
+.journal-editorial-selection article,
+.journal-operations-grid article,
+.journal-series-grid article,
+.homepage-publication {
+  min-width: 0;
+}
+
+.site-footer__top {
+  align-items: start;
+}
+
+.site-footer__navigation a,
+.site-footer__contact a {
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .editorial-image--hero img,
+  .featured-story__media img,
+  .media-story__media img,
+  .article-hero__figure img {
+    transition: none;
+  }
+}
+
+@media (max-width: 980px) {
+  .englishire-principle .about-englishire__layout,
+  #englishire-about-section .about-englishire__layout,
+  .service-hero__layout,
+  .school-media__footer {
+    grid-template-columns: 1fr;
+  }
+
+  .school-media__footer {
+    align-items: start;
+  }
+
+  .process-route,
+  .service-timeline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .section-heading h2,
+  .frequently-asked__heading h2,
+  .service-introduction__heading h2,
+  .service-boundaries__content h2,
+  .about-englishire__content h2,
+  .early-contact h2,
+  .enquiry-strip h2 {
+    font-size: clamp(1.85rem, 10vw, 2.85rem);
+    line-height: 1.08;
+  }
+
+  .service-hero h1,
+  .journal-masthead h1,
+  .article-hero h1 {
+    font-size: clamp(2.35rem, 13vw, 3.65rem);
+    line-height: 1.02;
+  }
+
+  .process-route,
+  .service-timeline {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer__top,
+  .site-footer__bottom {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
