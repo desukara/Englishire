@@ -2,7 +2,7 @@
 (() => {
   const correction = document.createElement("link");
   correction.rel = "stylesheet";
-  correction.href = "emergency-contrast.css?v=20260720-2";
+  correction.href = "emergency-contrast.css?v=20260720-3";
   document.head.append(correction);
 
   const originalScript = document.createElement("script");
