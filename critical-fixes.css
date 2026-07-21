@@ -167,3 +167,53 @@ a.button[href="englishire-standard.html"]:focus-visible {
   outline: 1px solid rgba(17, 34, 51, 0.28);
   outline-offset: -1px;
 }
+
+/* Legal pages: correct low-contrast labels, links and contact actions only. */
+#englishire-privacy-policy .legal-content__navigation .section-label,
+#englishire-cookie-policy .legal-content__navigation .section-label {
+  color: #e2ca8b !important;
+}
+
+#englishire-privacy-policy .legal-content__body a,
+#englishire-cookie-policy .legal-content__body a,
+.legal-content > .site-shell:not(.legal-content__layout) > a,
+.legal-content > .site-shell:not(.legal-content__layout) p > a {
+  color: #6f0d1b !important;
+  text-decoration: underline;
+  text-decoration-color: rgba(111, 13, 27, 0.45);
+  text-underline-offset: 0.18em;
+}
+
+#englishire-privacy-policy .legal-content__body a:hover,
+#englishire-privacy-policy .legal-content__body a:focus-visible,
+#englishire-cookie-policy .legal-content__body a:hover,
+#englishire-cookie-policy .legal-content__body a:focus-visible,
+.legal-content > .site-shell:not(.legal-content__layout) p > a:hover,
+.legal-content > .site-shell:not(.legal-content__layout) p > a:focus-visible {
+  color: #071a35 !important;
+  text-decoration-color: #c7a052;
+}
+
+#englishire-privacy-reassurance .button.button--text,
+#englishire-cookies-reassurance .button.button--text,
+.legal-content > .site-shell:not(.legal-content__layout) > .about-englishire .button.button--text {
+  color: #071a35 !important;
+  background: #e2ca8b !important;
+  border-color: #c7a052 !important;
+}
+
+#englishire-privacy-reassurance .button.button--text:hover,
+#englishire-privacy-reassurance .button.button--text:focus-visible,
+#englishire-cookies-reassurance .button.button--text:hover,
+#englishire-cookies-reassurance .button.button--text:focus-visible,
+.legal-content > .site-shell:not(.legal-content__layout) > .about-englishire .button.button--text:hover,
+.legal-content > .site-shell:not(.legal-content__layout) > .about-englishire .button.button--text:focus-visible {
+  color: #ffffff !important;
+  background: #9f1528 !important;
+  border-color: #9f1528 !important;
+}
+
+.site-footer__legal a[aria-current="page"] {
+  color: #e2ca8b !important;
+  border-bottom: 1px solid #c7a052;
+}
