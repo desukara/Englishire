@@ -157,15 +157,27 @@ a.button[href="englishire-standard.html"]:focus-visible {
   }
 }
 
-/* Homepage Journal cards: give each thumbnail a clean editorial frame. */
+/* Homepage Journal cards: strong royal frame for closely related thumbnails. */
 #englishire-school-media .homepage-publication__media {
+  position: relative;
   border-bottom: 1px solid rgba(17, 34, 51, 0.22);
 }
 
 #englishire-school-media .homepage-publication__media img {
   display: block;
-  outline: 1px solid rgba(17, 34, 51, 0.28);
-  outline-offset: -1px;
+}
+
+#englishire-school-media .homepage-publication__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border: 4px solid #071a35;
+  box-shadow:
+    inset 0 0 0 2px #e2ca8b,
+    inset 0 0 0 5px #071a35,
+    inset 0 0 0 7px #9f1528;
 }
 
 /* Legal pages: correct low-contrast labels, links and contact actions only. */
