@@ -217,3 +217,45 @@ a.button[href="englishire-standard.html"]:focus-visible {
   color: #e2ca8b !important;
   border-bottom: 1px solid #c7a052;
 }
+
+/* Legal pages: force a fully legible default state for the final contact action. */
+#englishire-privacy-reassurance a.button[href="contact.html"],
+#englishire-cookies-reassurance a.button[href="contact.html"],
+.legal-content > .site-shell:not(.legal-content__layout) .about-englishire a.button[href="contact.html"] {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background-color: #9f1528 !important;
+  border-color: #c7a052 !important;
+  opacity: 1 !important;
+  text-decoration: none !important;
+  box-shadow: 0 0.55rem 1.3rem rgba(159, 21, 40, 0.28) !important;
+}
+
+#englishire-privacy-reassurance a.button[href="contact.html"]::after,
+#englishire-cookies-reassurance a.button[href="contact.html"]::after,
+.legal-content > .site-shell:not(.legal-content__layout) .about-englishire a.button[href="contact.html"]::after {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+#englishire-privacy-reassurance a.button[href="contact.html"]:hover,
+#englishire-privacy-reassurance a.button[href="contact.html"]:focus-visible,
+#englishire-cookies-reassurance a.button[href="contact.html"]:hover,
+#englishire-cookies-reassurance a.button[href="contact.html"]:focus-visible,
+.legal-content > .site-shell:not(.legal-content__layout) .about-englishire a.button[href="contact.html"]:hover,
+.legal-content > .site-shell:not(.legal-content__layout) .about-englishire a.button[href="contact.html"]:focus-visible {
+  color: #071a35 !important;
+  -webkit-text-fill-color: #071a35 !important;
+  background-color: #e2ca8b !important;
+  border-color: #e2ca8b !important;
+}
+
+#englishire-privacy-reassurance a.button[href="contact.html"]:hover::after,
+#englishire-privacy-reassurance a.button[href="contact.html"]:focus-visible::after,
+#englishire-cookies-reassurance a.button[href="contact.html"]:hover::after,
+#englishire-cookies-reassurance a.button[href="contact.html"]:focus-visible::after,
+.legal-content > .site-shell:not(.legal-content__layout) .about-englishire a.button[href="contact.html"]:hover::after,
+.legal-content > .site-shell:not(.legal-content__layout) .about-englishire a.button[href="contact.html"]:focus-visible::after {
+  color: #071a35 !important;
+  -webkit-text-fill-color: #071a35 !important;
+}
