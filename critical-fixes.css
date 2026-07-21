@@ -156,3 +156,14 @@ a.button[href="englishire-standard.html"]:focus-visible {
     padding: 1.2rem !important;
   }
 }
+
+/* Homepage Journal cards: give each thumbnail a clean editorial frame. */
+#englishire-school-media .homepage-publication__media {
+  border-bottom: 1px solid rgba(17, 34, 51, 0.22);
+}
+
+#englishire-school-media .homepage-publication__media img {
+  display: block;
+  outline: 1px solid rgba(17, 34, 51, 0.28);
+  outline-offset: -1px;
+}
