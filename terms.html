@@ -26,7 +26,36 @@
     <link rel="manifest" href="site.webmanifest" />
     <meta name="msapplication-config" content="browserconfig.xml" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="critical-fixes.css?v=20260720-4" />
+    <link rel="stylesheet" href="critical-fixes.css?v=20260721-1" />
+    <style>
+      .legal-content .about-englishire a.button[href="contact.html"] {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        background: #9f1528 !important;
+        border-color: #c7a052 !important;
+        opacity: 1 !important;
+        text-decoration: none !important;
+      }
+
+      .legal-content .about-englishire a.button[href="contact.html"]::after {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+      }
+
+      .legal-content .about-englishire a.button[href="contact.html"]:hover,
+      .legal-content .about-englishire a.button[href="contact.html"]:focus-visible {
+        color: #071a35 !important;
+        -webkit-text-fill-color: #071a35 !important;
+        background: #e2ca8b !important;
+        border-color: #e2ca8b !important;
+      }
+
+      .legal-content .about-englishire a.button[href="contact.html"]:hover::after,
+      .legal-content .about-englishire a.button[href="contact.html"]:focus-visible::after {
+        color: #071a35 !important;
+        -webkit-text-fill-color: #071a35 !important;
+      }
+    </style>
     <script src="script.js" defer></script>
   </head>
   <body>
@@ -46,9 +75,7 @@
           <a href="how-it-works.html">How It Works</a>
           <a href="journal.html">Journal</a>
           <a href="about.html">About</a>
-          <a class="primary-nav__enquiry" href="contact.html"
-            >Request a Teacher</a
-          >
+          <a class="primary-nav__enquiry" href="contact.html">Request a Teacher</a>
         </nav>
       </div>
     </header>
@@ -57,14 +84,11 @@
       <section class="service-hero legal-page-hero">
         <div class="site-shell">
           <p class="eyebrow">Terms</p>
-
           <h1>Clear expectations make for better working relationships.</h1>
-
           <p class="service-hero__lead">
             These terms explain how Englishire considers enquiries, confirms
             temporary teacher cover and works with schools throughout Tokyo.
           </p>
-
           <p><strong>Last reviewed:</strong> 16 July 2026</p>
         </div>
       </section>
@@ -72,7 +96,6 @@
       <section class="service-introduction">
         <div class="site-shell">
           <h2>Before any assignment begins.</h2>
-
           <p>
             Englishire believes that professional relationships are strongest
             when expectations are understood before the first lesson rather than
@@ -80,7 +103,6 @@
             reviewed, how assignments become confirmed and the responsibilities
             shared by both Englishire and the school.
           </p>
-
           <p class="service-introduction__emphasis">
             Every assignment deserves proper consideration before a promise is
             made.
@@ -167,26 +189,20 @@
 
           <div class="about-englishire">
             <h2>Our Working Principle</h2>
-
             <p>
               We believe that the strongest professional relationships begin
               with clarity rather than assumption.
             </p>
-
             <p>
               Every assignment deserves proper consideration before a promise is
               made.
             </p>
-
             <p>
               Should anything within these terms require clarification, we
               should be delighted to explain it.
             </p>
-
             <p>
-              <a class="button button--text" href="contact.html"
-                >Contact Englishire</a
-              >
+              <a class="button button--text" href="contact.html">Contact Englishire</a>
             </p>
           </div>
         </div>
@@ -194,13 +210,51 @@
     </main>
 
     <footer class="site-footer" id="englishire-site-footer">
+      <div class="site-shell site-footer__top">
+        <div class="site-footer__brand">
+          <a class="site-footer__masthead" href="index.html" aria-label="Return to Englishire homepage">
+            <span class="site-footer__name">ENGLISHIRE</span>
+            <span class="site-footer__descriptor">Temporary Teacher Cover · Tokyo</span>
+          </a>
+          <p class="site-footer__statement">
+            Considered temporary English teacher cover for Tokyo schools.
+          </p>
+        </div>
+
+        <nav class="site-footer__navigation" aria-label="Footer service navigation">
+          <p class="site-footer__navigation-title">Services</p>
+          <a href="teacher-cover.html">Teacher Cover</a>
+          <a href="teacher-cover.html#when-we-help">When We Help</a>
+          <a href="how-it-works.html">How It Works</a>
+          <a href="contact.html">Request a Teacher</a>
+        </nav>
+
+        <nav class="site-footer__navigation" aria-label="Footer company navigation">
+          <p class="site-footer__navigation-title">Englishire</p>
+          <a href="about.html">About</a>
+          <a href="journal.html">Journal</a>
+          <a href="questions.html">Questions</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="site-footer__contact">
+          <p class="site-footer__navigation-title">Terms</p>
+          <p>
+            Questions concerning these terms may be sent through the contact page.
+          </p>
+          <a href="contact.html">Contact Englishire</a>
+        </div>
+      </div>
+
       <div class="site-shell site-footer__bottom">
-        <p>&copy; <span id="englishire-current-year">2026</span> Englishire. All rights reserved.</p>
-        <nav class="site-footer__legal" aria-label="Legal navigation">
+        <p class="site-footer__copyright">
+          &copy; <span id="englishire-current-year">2026</span> Englishire. All rights reserved.
+        </p>
+        <div class="site-footer__legal">
           <a href="privacy.html">Privacy</a>
           <a href="terms.html" aria-current="page">Terms</a>
           <a href="cookies.html">Cookies</a>
-        </nav>
+        </div>
       </div>
     </footer>
   </body>
