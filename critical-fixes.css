@@ -259,3 +259,32 @@ a.button[href="englishire-standard.html"]:focus-visible {
   color: #071a35 !important;
   -webkit-text-fill-color: #071a35 !important;
 }
+
+/* Terms page: restore the missing inner spacing in the final principle panel. */
+.legal-content > .site-shell:not(.legal-content__layout) > .about-englishire {
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  padding: clamp(2rem, 5vw, 3.5rem);
+}
+
+.legal-content > .site-shell:not(.legal-content__layout) > .about-englishire > h2,
+.legal-content > .site-shell:not(.legal-content__layout) > .about-englishire > p {
+  position: relative;
+  z-index: 1;
+  max-width: 42rem;
+}
+
+.legal-content > .site-shell:not(.legal-content__layout) > .about-englishire > h2 {
+  margin-bottom: 1.25rem;
+  color: #ffffff;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.legal-content > .site-shell:not(.legal-content__layout) > .about-englishire > p {
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.legal-content > .site-shell:not(.legal-content__layout) > .about-englishire > p:last-child {
+  margin-top: 1.75rem;
+  margin-bottom: 0;
+}
