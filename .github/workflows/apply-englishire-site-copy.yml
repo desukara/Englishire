@@ -28,68 +28,76 @@ jobs:
               "thank-you.html", "404.html", "privacy.html", "cookies.html", "terms.html"
           ]
 
+          common = [
+              ("The Englishire Journal", "Englishire Journal"),
+              ("Request a Teacher", "Request Teacher Cover"),
+              ("Begin an enquiry", "Start an enquiry"),
+              ("Begin an Enquiry", "Start an Enquiry"),
+              ("We shall", "We will"),
+              ("we shall", "we will"),
+              ("shall not", "will not"),
+              ("shall be", "will be"),
+              ("ought not to", "should not"),
+              ("ought to", "should"),
+              ("Kindly include", "Please include"),
+              ("Kindly provide", "Please provide"),
+              ("Kindly check", "Please check"),
+          ]
+
+          specific = {
+              "index.html": [
+                  ("Englishire supports schools facing absence, recruitment gaps,\n              timetable changes and additional demand. Every enquiry is\n              considered in relation to the school, the learners, the assignment,\n              the timetable and the responsibilities of the assignment itself.", "Englishire supports schools facing staff absence, recruitment gaps,\n              timetable changes and additional demand. Tell us what the school\n              needs, and we will review the timetable, location, learners and\n              teaching responsibilities before confirming what can be provided."),
+                  ("Schools deserve breathing room.", "Keep the school day moving while the wider staffing matter is resolved."),
+              ],
+              "how-it-works.html": [
+                  ("Tell us what the school requires. We will consider what can\n              properly be done.", "Tell us what the school requires. We will review the assignment\n              and explain clearly what can be provided."),
+                  ("How quickly shall we receive an answer?", "How quickly will the school receive an answer?"),
+              ],
+              "about.html": [
+                  ("Experience Without Fanfare", "Experience Applied Where It Matters"),
+                  ("whether an otherwise sensible arrangement shall work.", "whether an otherwise sensible arrangement will actually work."),
+              ],
+              "contact.html": [
+                  ("Please provide as much of the practical information below as\n              circumstances allow.", "Provide the practical details available now. Clear dates, times,\n              location and learner information allow a more dependable response."),
+                  ("Please check the essentials.", "Check that the essential details are included."),
+                  ("Send what is known.", "Send the confirmed details first."),
+                  ("An enquiry is not a booking.", "An enquiry is reviewed before cover is confirmed."),
+                  ("We will review the school, timetable, learners and lesson", "We will review the timetable, location, learners and lesson"),
+              ],
+              "thank-you.html": [
+                  ("<p class=\"eyebrow\">Thank You</p>", "<p class=\"eyebrow\">Enquiry Email</p>"),
+                  ("<h1>Thank you for contacting Englishire.</h1>", "<h1>Your enquiry email is ready for review.</h1>"),
+                  ("What happens after the email is sent?", "What happens once you send the email?"),
+                  ("Every assignment deserves proper consideration before a promise is\n            made.", "Your enquiry will be reviewed before any cover is confirmed."),
+              ],
+              "404.html": [
+                  ("Fortunately, the rest of Englishire remains exactly where it ought\n              to be.", "The rest of Englishire is still exactly where it should be."),
+                  ("An unexpected turn need not become an unnecessary difficulty.", "The page has moved or the address is incomplete. Use the links below\n                to return to teacher cover, Englishire Journal or the enquiry page."),
+                  ("A Final Direction", "Need a direct route?"),
+              ],
+              "terms.html": [
+                  ("<a href=\"contact.html\">contact page</a> .", "<a href=\"contact.html\">contact page</a>."),
+                  ("These terms should be interpreted in accordance with the laws applicable\n              to the services provided and the location in which they are delivered.", "These terms are governed by the laws of Japan, unless a confirmed written\n              agreement for a particular assignment states otherwise."),
+              ],
+              "cookies.html": [
+                  ("Transparency is not achieved by providing more words. It is achieved by\n              providing the right ones.", "This page explains which browser technologies Englishire uses, why they\n              are used and what choices remain available to visitors."),
+                  ("The sections", "What this policy covers"),
+              ],
+              "journal.html": [
+                  ("Why the Journal Exists", "Why Englishire Journal Exists"),
+                  ("Formal papers will be published when a subject requires greater", "Formal papers will be published when a subject requires more"),
+                  ("The first selection will appear when there is something genuinely", "The first selection will appear when there is a work genuinely"),
+              ],
+          }
+
           for path in pages:
               p = Path(path)
               text = p.read_text(encoding="utf-8")
-              replacements = [
-                  ("The Englishire Journal", "Englishire Journal"),
-                  ("Request a Teacher", "Request Teacher Cover"),
-                  ("Begin an enquiry", "Start an enquiry"),
-                  ("Begin an Enquiry", "Start an Enquiry"),
-                  ("We shall", "We will"),
-                  ("we shall", "we will"),
-                  ("shall not", "will not"),
-                  ("shall be", "will be"),
-                  ("ought not to", "should not"),
-                  ("ought to", "should"),
-                  ("Kindly include", "Please include"),
-                  ("Kindly provide", "Please provide"),
-                  ("Kindly check", "Please check"),
-              ]
-              for old, new in replacements:
+              for old, new in common:
+                  text = text.replace(old, new)
+              for old, new in specific.get(path, []):
                   text = text.replace(old, new)
               p.write_text(text, encoding="utf-8")
-
-          def replace(path, old, new):
-              p = Path(path)
-              text = p.read_text(encoding="utf-8")
-              if old not in text:
-                  raise SystemExit(f"Expected wording not found in {path}: {old[:80]!r}")
-              p.write_text(text.replace(old, new, 1), encoding="utf-8")
-
-          replace("index.html", "Englishire supports schools facing absence, recruitment gaps,\n              timetable changes and additional demand. Every enquiry is\n              considered in relation to the school, the learners, the assignment,\n              the timetable and the responsibilities of the assignment itself.", "Englishire supports schools facing staff absence, recruitment gaps,\n              timetable changes and additional demand. Tell us what the school\n              needs, and we will review the timetable, location, learners and\n              teaching responsibilities before confirming what can be provided.")
-          replace("index.html", "Schools deserve breathing room.", "Keep the school day moving while the wider staffing matter is resolved.")
-
-          replace("how-it-works.html", "Tell us what the school requires. We will consider what can\n              properly be done.", "Tell us what the school requires. We will review the assignment\n              and explain clearly what can be provided.")
-          replace("how-it-works.html", "How quickly shall we receive an answer?", "How quickly will the school receive an answer?")
-
-          replace("about.html", "Experience Without Fanfare", "Experience Applied Where It Matters")
-          replace("about.html", "whether an otherwise sensible arrangement shall work.", "whether an otherwise sensible arrangement will actually work.")
-
-          replace("contact.html", "Please provide as much of the practical information below as\n              circumstances allow.", "Provide the practical details available now. Clear dates, times,\n              location and learner information allow a more dependable response.")
-          replace("contact.html", "Please check the essentials.", "Check that the essential details are included.")
-          replace("contact.html", "Send what is known.", "Send the confirmed details first.")
-          replace("contact.html", "An enquiry is not a booking.", "An enquiry is reviewed before cover is confirmed.")
-          replace("contact.html", "We will review the school, timetable, learners and lesson", "We will review the timetable, location, learners and lesson")
-
-          replace("thank-you.html", "<p class=\"eyebrow\">Thank You</p>", "<p class=\"eyebrow\">Enquiry Email</p>")
-          replace("thank-you.html", "<h1>Thank you for contacting Englishire.</h1>", "<h1>Your enquiry email is ready for review.</h1>")
-          replace("thank-you.html", "What happens after the email is sent?", "What happens once you send the email?")
-          replace("thank-you.html", "Every assignment deserves proper consideration before a promise is\n            made.", "Your enquiry will be reviewed before any cover is confirmed.")
-
-          replace("404.html", "Fortunately, the rest of Englishire remains exactly where it ought\n              to be.", "The rest of Englishire is still exactly where it should be.")
-          replace("404.html", "An unexpected turn need not become an unnecessary difficulty.", "The page has moved or the address is incomplete. Use the links below\n                to return to teacher cover, Englishire Journal or the enquiry page.")
-          replace("404.html", "A Final Direction", "Need a direct route?")
-
-          replace("terms.html", "Questions concerning these terms are welcome through the\n              <a href=\"contact.html\">contact page</a> .", "Questions concerning these terms are welcome through the\n              <a href=\"contact.html\">contact page</a>.")
-          replace("terms.html", "These terms should be interpreted in accordance with the laws applicable\n              to the services provided and the location in which they are delivered.", "These terms are governed by the laws of Japan, unless a confirmed written\n              agreement for a particular assignment states otherwise.")
-
-          replace("cookies.html", "Transparency is not achieved by providing more words. It is achieved by\n              providing the right ones.", "This page explains which browser technologies Englishire uses, why they\n              are used and what choices remain available to visitors.")
-          replace("cookies.html", "The sections", "What this policy covers")
-
-          replace("journal.html", "Why the Journal Exists", "Why Englishire Journal Exists")
-          replace("journal.html", "Formal papers will be published when a subject requires greater", "Formal papers will be published when a subject requires more")
-          replace("journal.html", "The first selection will appear when there is something genuinely", "The first selection will appear when there is a work genuinely")
 
       - name: Verify HTML-only structural safety
         shell: python
