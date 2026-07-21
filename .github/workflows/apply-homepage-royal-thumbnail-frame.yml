@@ -24,41 +24,45 @@ jobs:
           css_path = Path("critical-fixes.css")
           css = css_path.read_text(encoding="utf-8")
 
-          old = '''/* Homepage Journal cards: give each thumbnail a clean editorial frame. */
-          #englishire-school-media .homepage-publication__media {
-            border-bottom: 1px solid rgba(17, 34, 51, 0.22);
-          }
+          old = "\n".join([
+              "/* Homepage Journal cards: give each thumbnail a clean editorial frame. */",
+              "#englishire-school-media .homepage-publication__media {",
+              "  border-bottom: 1px solid rgba(17, 34, 51, 0.22);",
+              "}",
+              "",
+              "#englishire-school-media .homepage-publication__media img {",
+              "  display: block;",
+              "  outline: 1px solid rgba(17, 34, 51, 0.28);",
+              "  outline-offset: -1px;",
+              "}",
+              "",
+          ])
 
-          #englishire-school-media .homepage-publication__media img {
-            display: block;
-            outline: 1px solid rgba(17, 34, 51, 0.28);
-            outline-offset: -1px;
-          }
-          '''
-
-          new = '''/* Homepage Journal cards: strong royal frame for closely related thumbnails. */
-          #englishire-school-media .homepage-publication__media {
-            position: relative;
-            border-bottom: 1px solid rgba(17, 34, 51, 0.22);
-          }
-
-          #englishire-school-media .homepage-publication__media img {
-            display: block;
-          }
-
-          #englishire-school-media .homepage-publication__media::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            pointer-events: none;
-            border: 4px solid #071a35;
-            box-shadow:
-              inset 0 0 0 2px #e2ca8b,
-              inset 0 0 0 5px #071a35,
-              inset 0 0 0 7px #9f1528;
-          }
-          '''
+          new = "\n".join([
+              "/* Homepage Journal cards: strong royal frame for closely related thumbnails. */",
+              "#englishire-school-media .homepage-publication__media {",
+              "  position: relative;",
+              "  border-bottom: 1px solid rgba(17, 34, 51, 0.22);",
+              "}",
+              "",
+              "#englishire-school-media .homepage-publication__media img {",
+              "  display: block;",
+              "}",
+              "",
+              "#englishire-school-media .homepage-publication__media::after {",
+              "  content: \"\";",
+              "  position: absolute;",
+              "  inset: 0;",
+              "  z-index: 1;",
+              "  pointer-events: none;",
+              "  border: 4px solid #071a35;",
+              "  box-shadow:",
+              "    inset 0 0 0 2px #e2ca8b,",
+              "    inset 0 0 0 5px #071a35,",
+              "    inset 0 0 0 7px #9f1528;",
+              "}",
+              "",
+          ])
 
           if css.count(old) != 1:
               raise SystemExit(f"Expected one existing homepage thumbnail frame block, found {css.count(old)}")
