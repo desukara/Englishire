@@ -1,0 +1,143 @@
+name: Optimize site-wide image loading
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Apply safe image loading attributes
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          img_pattern = re.compile(r"<img\b[^>]*>", re.IGNORECASE | re.DOTALL)
+
+          def add_attr(tag: str, attribute: str) -> str:
+              if re.search(rf"\b{re.escape(attribute.split('=')[0])}\s*=", tag, re.IGNORECASE):
+                  return tag
+              closing = "/>" if tag.rstrip().endswith("/>") else ">"
+              pos = tag.rfind(closing)
+              if pos == -1:
+                  raise SystemExit(f"Malformed image tag: {tag[:120]}")
+              indent_match = re.search(r"\n([ \t]*)[^\n]*$", tag[:pos])
+              indent = indent_match.group(1) if indent_match else " "
+              if "\n" in tag:
+                  return tag[:pos] + f'\n{indent}{attribute}' + tag[pos:]
+              return tag[:pos].rstrip() + f' {attribute}' + tag[pos:]
+
+          changed_files = []
+          image_count = 0
+
+          for path in sorted(Path(".").glob("*.html")):
+              text = path.read_text(encoding="utf-8")
+              matches = list(img_pattern.finditer(text))
+              if not matches:
+                  continue
+
+              pieces = []
+              cursor = 0
+              changed = False
+
+              for match in matches:
+                  tag = match.group(0)
+                  start = match.start()
+                  image_count += 1
+
+                  last_figure_open = text.rfind("<figure", 0, start)
+                  last_figure_close = text.rfind("</figure", 0, start)
+                  figure_open_tag = ""
+                  if last_figure_open > last_figure_close:
+                      figure_end = text.find(">", last_figure_open, start)
+                      if figure_end != -1:
+                          figure_open_tag = text[last_figure_open:figure_end + 1]
+
+                  is_article_hero = "journal-article-hero" in figure_open_tag
+                  is_page_hero = "editorial-image--hero" in figure_open_tag
+                  is_masthead_logo = bool(re.search(r'class=["\'][^"\']*masthead__logo', tag, re.IGNORECASE))
+
+                  updated = tag
+
+                  # Existing article hero settings are intentionally preserved.
+                  if is_article_hero:
+                      if 'fetchpriority="high"' not in updated or 'decoding="async"' not in updated:
+                          raise SystemExit(f"{path}: article hero is missing its existing priority attributes")
+                  elif is_page_hero:
+                      updated = add_attr(updated, 'fetchpriority="high"')
+                      updated = add_attr(updated, 'decoding="async"')
+                  elif is_masthead_logo:
+                      updated = add_attr(updated, 'decoding="async"')
+                  else:
+                      updated = add_attr(updated, 'loading="lazy"')
+                      updated = add_attr(updated, 'decoding="async"')
+
+                  pieces.append(text[cursor:start])
+                  pieces.append(updated)
+                  cursor = match.end()
+                  changed = changed or updated != tag
+
+              pieces.append(text[cursor:])
+              updated_text = "".join(pieces)
+
+              if changed:
+                  path.write_text(updated_text, encoding="utf-8")
+                  changed_files.append(path.name)
+
+          if image_count == 0:
+              raise SystemExit("No image tags found")
+
+          # Verify the final state without changing any image source, dimensions or appearance.
+          for path in sorted(Path(".").glob("*.html")):
+              text = path.read_text(encoding="utf-8")
+              for match in img_pattern.finditer(text):
+                  tag = match.group(0)
+                  start = match.start()
+                  last_figure_open = text.rfind("<figure", 0, start)
+                  last_figure_close = text.rfind("</figure", 0, start)
+                  figure_open_tag = ""
+                  if last_figure_open > last_figure_close:
+                      figure_end = text.find(">", last_figure_open, start)
+                      if figure_end != -1:
+                          figure_open_tag = text[last_figure_open:figure_end + 1]
+
+                  if "journal-article-hero" in figure_open_tag:
+                      required = ['fetchpriority="high"', 'decoding="async"']
+                  elif "editorial-image--hero" in figure_open_tag:
+                      required = ['fetchpriority="high"', 'decoding="async"']
+                  elif re.search(r'class=["\'][^"\']*masthead__logo', tag, re.IGNORECASE):
+                      required = ['decoding="async"']
+                  else:
+                      required = ['loading="lazy"', 'decoding="async"']
+
+                  for attribute in required:
+                      if attribute not in tag:
+                          raise SystemExit(f"{path}: missing {attribute} on {tag[:100]}")
+
+          print(f"Checked {image_count} image tags")
+          print("Changed files:", ", ".join(changed_files) if changed_files else "none")
+
+      - name: Remove this one-use workflow
+        run: rm .github/workflows/optimize-all-image-loading.yml
+
+      - name: Commit image loading optimization
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- '*.html' .github/workflows/optimize-all-image-loading.yml
+          if git diff --cached --quiet; then
+            echo "No changes required"
+            exit 0
+          fi
+          git commit -m "Optimize site-wide image loading"
+          git push origin HEAD:main
