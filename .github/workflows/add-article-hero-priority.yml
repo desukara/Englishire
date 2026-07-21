@@ -1,0 +1,87 @@
+name: Add article hero loading priority
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Add loading priority attributes
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          files = [
+              "backup-teacher-eikaiwa.html",
+              "easy-teacher.html",
+              "eikaiwa-school-operations.html",
+              "emergency-classroom-coverage.html",
+              "hiring-foreign-teachers-in-japan.html",
+              "how-schools-can-handle-staff-shortages.html",
+              "real-cost-of-english-teacher-turnover.html",
+              "school-collapse-after-three-decades.html",
+          ]
+
+          pattern = re.compile(
+              r'(<figure class="journal-article-hero">\s*<img\s+)(.*?)(\s*/>)',
+              re.DOTALL,
+          )
+
+          for filename in files:
+              path = Path(filename)
+              text = path.read_text(encoding="utf-8")
+              matches = list(pattern.finditer(text))
+              if len(matches) != 1:
+                  raise SystemExit(f"{filename}: expected one article hero image, found {len(matches)}")
+
+              attrs = matches[0].group(2)
+              if 'fetchpriority=' in attrs or 'decoding=' in attrs:
+                  raise SystemExit(f"{filename}: loading attributes already present")
+
+              replacement = (
+                  matches[0].group(1)
+                  + attrs
+                  + '\n            fetchpriority="high"'
+                  + '\n            decoding="async"'
+                  + matches[0].group(3)
+              )
+              updated = text[:matches[0].start()] + replacement + text[matches[0].end():]
+              path.write_text(updated, encoding="utf-8")
+
+          for filename in files:
+              text = Path(filename).read_text(encoding="utf-8")
+              if text.count('fetchpriority="high"') != 1:
+                  raise SystemExit(f"{filename}: fetchpriority verification failed")
+              if text.count('decoding="async"') != 1:
+                  raise SystemExit(f"{filename}: decoding verification failed")
+
+      - name: Remove this one-use workflow
+        run: rm .github/workflows/add-article-hero-priority.yml
+
+      - name: Commit loading priority update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            backup-teacher-eikaiwa.html \
+            easy-teacher.html \
+            eikaiwa-school-operations.html \
+            emergency-classroom-coverage.html \
+            hiring-foreign-teachers-in-japan.html \
+            how-schools-can-handle-staff-shortages.html \
+            real-cost-of-english-teacher-turnover.html \
+            school-collapse-after-three-decades.html \
+            .github/workflows/add-article-hero-priority.yml
+          git commit -m "Prioritize article hero image loading"
+          git push origin HEAD:main
