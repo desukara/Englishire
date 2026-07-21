@@ -1,0 +1,179 @@
+name: Englishire full language pass
+
+on:
+  push:
+    branches:
+      - agent/englishire-full-language-pass
+
+permissions:
+  contents: write
+
+jobs:
+  revise-html:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply validated wording revisions
+        shell: bash
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          non_articles = [
+              'index.html','teacher-cover.html','how-it-works.html','about.html',
+              'englishire-standard.html','questions.html','contact.html','journal.html',
+              'thank-you.html','404.html','privacy.html','cookies.html','terms.html'
+          ]
+
+          original = {name: Path(name).read_text(encoding='utf-8') for name in non_articles}
+
+          def replace_all(name, pairs):
+              path = Path(name)
+              text = path.read_text(encoding='utf-8')
+              for old, new in pairs:
+                  text = text.replace(old, new)
+              path.write_text(text, encoding='utf-8')
+
+          for name in non_articles:
+              replace_all(name, [
+                  ('kindly include', 'please include'),
+                  ('Kindly include', 'Please include'),
+                  ('kindly send', 'send'),
+                  ('Kindly send', 'Send'),
+                  ('we should be delighted', 'we welcome the opportunity'),
+                  ('We should be delighted', 'We welcome the opportunity'),
+                  ('rather more straightforward', 'easier to assess'),
+                  ('rather more thought', 'closer examination'),
+                  ('Begin the Enquiry', 'Complete the Enquiry Form'),
+                  ('Use Your Own Email', 'Email Englishire Directly'),
+              ])
+
+          replace_all('index.html', [
+              ('alt="English teacher leading a lesson in a Tokyo classroom"', 'alt="English teacher leading a classroom lesson"'),
+              ('A prepared teacher leads a Tokyo classroom. The image reflects', 'A teacher leads a classroom lesson. The image reflects'),
+              ('<strong>Tokyo understood</strong>', '<strong>Tokyo realities considered</strong>'),
+              ('Schools, learners, travel and teaching environments\n                  considered properly.', 'Travel, reporting times, learners and teaching environments\n                  considered together.'),
+              ('The Matter in Plain English', 'Why Temporary Cover Matters'),
+              ('Keep the school day moving while the wider staffing matter is resolved.', 'Keep the school day moving while the longer-term staffing need is resolved.'),
+              ('manage the wider staffing matter\n              carefully', 'address the longer-term staffing need\n              carefully'),
+              ('Englishire assists when a carefully arranged timetable encounters\n              an entirely unhelpful reality.', 'Englishire assists when absence, delay or changing demand disrupts\n              a carefully arranged timetable.'),
+              ('A sensible introduction is preferable to a frantic first conversation.', 'An advance introduction makes an urgent request easier to assess.'),
+              ('A prior understanding of the school, its timetable and the\n              sort of cover it may require can make a future enquiry rather more\n              straightforward.', 'A prior understanding of the school, its timetable and the\n              sort of cover it may require can make a future request easier to assess.'),
+              ('Should the timetable require a dependable pair of hands, we should\n              be delighted to hear from you.', 'When the timetable needs dependable cover, tell us what the school requires.'),
+          ])
+
+          replace_all('teacher-cover.html', [
+              ('alt="Temporary English teacher leading pupils in a Tokyo classroom"', 'alt="Temporary English teacher leading a classroom lesson"'),
+              ('A temporary teacher at work in a Tokyo classroom. Proper briefing', 'A temporary teacher leads a classroom lesson. Proper briefing'),
+              ('Knowing English is not the same as knowing how to teach it here.', 'Teaching English well in Japan requires more than fluency.'),
+              ('enquiries easier to assess.', 'requests easier to assess.'),
+          ])
+
+          replace_all('how-it-works.html', [
+              ('A considered process from first enquiry to final handover.', 'A clear process from first enquiry to final handover.'),
+              ('Schools should know what will happen before an arrangement begins.', 'Schools should know what happens before cover begins.'),
+              ('<strong>Understanding first</strong>', '<strong>Assignment details first</strong>'),
+              ('The assignment is read before availability is\n                    discussed.', 'We review the timetable, location, learners and responsibilities\n                    before discussing availability.'),
+              ('Every assignment begins with understanding.', 'Every assignment begins with a clear account of what the school requires.'),
+              ("A school making contact is not merely supplying a date and an\n              empty place in the timetable. It's explaining a temporary\n              difficulty within an established educational environment.", "A school making contact is describing more than a date and a gap in\n              the timetable. It is explaining a temporary difficulty within an\n              established educational environment."),
+              ("For that reason, our first task is not to promise. It's to\n              listen. We ask for the practical information required to see the\n              assignment clearly, identify what remains uncertain and establish\n              whether further discussion is needed.", "Our first task is to establish the facts: what is needed, what is known\n              and what remains uncertain. We ask for the practical information\n              required to assess the assignment clearly and identify any questions\n              that must be resolved."),
+              ('The Assignment Is Read as a Whole', 'Englishire Reviews the Assignment as a Whole'),
+              ('Once the details have been received, the assignment is\n                  considered in its entirety.', 'Once the details have been received, Englishire reviews the\n                  assignment as a whole.'),
+              ('A reliable arrangement is rarely improvised at the classroom\n                door.', 'A teacher reads with pupils in a classroom. The scene reflects the\n                preparation required before dependable cover reaches the lesson.'),
+          ])
+
+          replace_all('about.html', [
+              ('Schools deserve breathing room.', 'Schools need time to make sound staffing decisions.'),
+              ("A teacher's absence inevitably interrupts that continuity.", "A teacher's absence interrupts that continuity."),
+              ('A free diary does not by itself make a person suitable for a\n              classroom.', 'Availability alone does not make a teacher suitable for a classroom.'),
+              ('before an undertaking is accepted', 'before an assignment is accepted'),
+              ('Experience is best recognised in the details.', 'Experience shows in the questions asked before an assignment is accepted.'),
+              ('It reveals itself less in declarations than in the questions asked\n              before a promise is made.', 'Reporting time, travel, learner ages, class size, lesson objectives,\n              materials and handover expectations all matter.'),
+              ('Knowing English is not the same as knowing how to teach it here.', 'Teaching English well in Japan requires more than fluency.'),
+              ('The principles are not separate from the work.', 'The Standard governs the work in practice.'),
+              ('There are occasions when the proper answer is no', 'There are occasions when Englishire must decline'),
+              ('For temporary teacher cover, please include', 'For teacher cover enquiries, please include'),
+          ])
+
+          replace_all('contact.html', [
+              ('Every assignment begins with a proper conversation.', 'Clear teacher cover begins with the right information.'),
+              ('Whether the requirement concerns tomorrow morning or a future\n              period of planned cover, we welcome the opportunity to hear from you.', 'Whether cover is needed tomorrow morning or planned for a future date,\n              we welcome your enquiry.'),
+              ('Provide the practical details available now. Clear dates, times,\n              location and learner information allow a more dependable response. Every enquiry is reviewed individually, and\n              cover is confirmed only when suitability and availability have\n              both been established.', 'Provide the details currently available, including dates, lesson times,\n              location and learner information. We will review the assignment\n              individually before confirming suitable cover.'),
+              ('Clear information allows a considered answer.', 'A telephone operator works at a historic airport switchboard. The image\n                reflects the value of precise information when a timely response is needed.'),
+              ('Before You Begin', 'Information to Include'),
+              ('The useful details are usually the practical ones.', 'Give us the facts needed to assess the assignment.'),
+              ('There is no need to compose an elaborate account. A clear outline\n              of the school, the timetable, the learners and the work required\n              is considerably more useful.', 'A concise outline of the school, timetable, learners and work required\n              is enough to begin.'),
+              ('Urgent circumstances do not always allow every answer to be known\n              at once. In such cases, send what is available and make\n              clear which details remain to be confirmed.', 'Urgent circumstances do not always allow every detail to be known at\n              once. Send the information currently available and identify what\n              remains to be confirmed.'),
+              ('The more complete the information, the more efficiently we can\n              consider whether a suitable teacher may be provided.', 'Complete information helps us assess availability, suitability and travel\n              practicalities without unnecessary delay.'),
+              ('An enquiry is not a confirmation. Every assignment must first be\n              reviewed properly.', 'Sending an enquiry begins the review process. Cover is confirmed only\n              after Englishire has agreed the assignment.'),
+              ('The Enquiry Form', 'Teacher Cover Enquiry'),
+              ('Before You Send the Enquiry', 'Assignment Checklist'),
+              ('Please Remember', 'Confirmation and Availability'),
+              ('Before Sending Your Email', 'Common Enquiry Questions'),
+              ('A few final practical questions.', 'Answers to common questions about submitting an enquiry.'),
+              ('Does preparing an enquiry email reserve a teacher?', 'Does sending an enquiry reserve a teacher?'),
+              ('No teacher is\n                  reserved or confirmed until Englishire has expressly agreed\n                  the assignment.', 'A teacher is reserved only after Englishire has reviewed and expressly\n                  confirmed the assignment.'),
+              ('Certainly. Advance introductions are welcome and may make a\n                  future request easier to assess.', 'Yes. Advance introductions are welcome and can make a future request\n                  easier to assess.'),
+              ('A Considered Response', 'What Happens Next'),
+              ('Clear information allows us to give your school a proper answer.', 'We will review the assignment and explain the next step.'),
+              ('We will review the timetable, location, learners and lesson\n              requirements before confirming whether suitable cover may be\n              provided.', 'Our response will address any questions, availability and the practical\n              steps required before cover can be confirmed.'),
+          ])
+
+          replace_all('englishire-standard.html', [
+              ('Ten principles of considered teacher cover.', 'Ten principles for dependable teacher cover.'),
+              ('A considered answer begins with a proper understanding of the', 'A dependable answer begins with a clear understanding of the'),
+          ])
+
+          replace_all('questions.html', [
+              ('How is teacher suitability considered?', 'How does Englishire assess teacher suitability?'),
+              ('Suitability is considered in relation to', 'Englishire assesses suitability in relation to'),
+              ('Enquiries may be considered', 'Englishire can consider enquiries'),
+          ])
+
+          replace_all('journal.html', [
+              ('Englishire Journal publishes considered essays', 'Englishire Journal publishes rigorous essays'),
+              ('The timetable is written with ink. Trust is written rather more\n              slowly.', 'A timetable can be written quickly. Trust is built over time.'),
+          ])
+
+          replace_all('thank-you.html', [
+              ('Every enquiry is considered carefully rather than processed\n                mechanically. The details matter.', 'Every enquiry is reviewed by a person rather than accepted automatically.\n                The details matter.'),
+              ('Once the assignment has been considered properly, we will', 'Once the assignment has been reviewed, we will'),
+          ])
+
+          replace_all('404.html', [
+              ('Should you still be unable to find what you require, we should be\n              delighted to help.', 'If you still cannot find what you need, contact Englishire directly.'),
+          ])
+
+          replace_all('terms.html', [
+              ('If any part of these terms is unclear, Englishire\n              should be delighted to explain it.', 'If any part of these terms is unclear, contact Englishire for clarification.'),
+          ])
+
+          for name in non_articles:
+              before = original[name]
+              after = Path(name).read_text(encoding='utf-8')
+              for marker in ('<section','</section>','<script','</script>','<link','<form','</form>','<article','</article>'):
+                  if before.count(marker) != after.count(marker):
+                      raise SystemExit(f'{name}: structural marker changed: {marker}')
+              if 'Foxjin' in after:
+                  raise SystemExit(f'{name}: Foxjin remains')
+
+          print('Validated HTML-only wording pass across', len(non_articles), 'editable pages')
+          PY
+
+      - name: Commit HTML-only result and remove temporary workflow
+        shell: bash
+        run: |
+          git config user.name "Englishire Editorial Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git rm .github/workflows/englishire-full-language-pass.yml
+          git add -- '*.html'
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Complete Englishire language refinement pass"
+          git push origin HEAD:agent/englishire-full-language-pass
