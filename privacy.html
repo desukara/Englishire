@@ -70,7 +70,7 @@
     <header class="site-header" id="englishire-site-header">
       <div class="site-shell site-header__inner">
         <a class="masthead" href="index.html" aria-label="Englishire homepage">
-          <img class="masthead__logo" src="englishire-logo.png" width="1327" height="380" alt="Englishire" />
+          <img class="masthead__logo" src="englishire-logo.png" width="1327" height="380" alt="Englishire" decoding="async"/>
         </a>
 
         <button
@@ -150,7 +150,9 @@
                 alt="A carefully arranged notebook and correspondence on a quiet desk"
                 width="1200"
                 height="1500"
-              />
+              
+              fetchpriority="high"
+              decoding="async"/>
 
               <figcaption>
                 Trust is earned not merely through promises, but through the
