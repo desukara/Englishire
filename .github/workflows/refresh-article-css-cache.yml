@@ -1,0 +1,69 @@
+name: Refresh article CSS cache key
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Update article stylesheet cache keys
+        shell: python
+        run: |
+          from pathlib import Path
+
+          files = [
+              "backup-teacher-eikaiwa.html",
+              "easy-teacher.html",
+              "eikaiwa-school-operations.html",
+              "emergency-classroom-coverage.html",
+              "hiring-foreign-teachers-in-japan.html",
+              "how-schools-can-handle-staff-shortages.html",
+              "real-cost-of-english-teacher-turnover.html",
+              "school-collapse-after-three-decades.html",
+          ]
+          old = "critical-fixes.css?v=20260720-4"
+          new = "critical-fixes.css?v=20260721-2"
+
+          for filename in files:
+              path = Path(filename)
+              text = path.read_text(encoding="utf-8")
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f"{filename}: expected one old cache key, found {count}")
+              updated = text.replace(old, new, 1)
+              path.write_text(updated, encoding="utf-8")
+
+          for filename in files:
+              text = Path(filename).read_text(encoding="utf-8")
+              if old in text or text.count(new) != 1:
+                  raise SystemExit(f"{filename}: cache-key verification failed")
+
+      - name: Remove this one-use workflow
+        run: rm .github/workflows/refresh-article-css-cache.yml
+
+      - name: Commit cache refresh
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            backup-teacher-eikaiwa.html \
+            easy-teacher.html \
+            eikaiwa-school-operations.html \
+            emergency-classroom-coverage.html \
+            hiring-foreign-teachers-in-japan.html \
+            how-schools-can-handle-staff-shortages.html \
+            real-cost-of-english-teacher-turnover.html \
+            school-collapse-after-three-decades.html \
+            .github/workflows/refresh-article-css-cache.yml
+          git commit -m "Refresh article stylesheet cache key"
+          git push origin HEAD:main
