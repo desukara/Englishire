@@ -288,3 +288,10 @@ a.button[href="englishire-standard.html"]:focus-visible {
   margin-top: 1.75rem;
   margin-bottom: 0;
 }
+
+/* Journal articles: preserve each hero image's complete composition. */
+.journal-article-hero img {
+  height: auto !important;
+  max-height: none !important;
+  object-fit: contain !important;
+}
