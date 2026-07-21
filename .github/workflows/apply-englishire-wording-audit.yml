@@ -1,0 +1,104 @@
+name: Apply Englishire wording audit
+
+on:
+  push:
+    branches:
+      - agent/englishire-wording-audit
+
+permissions:
+  contents: write
+
+jobs:
+  update-copy:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/englishire-wording-audit
+
+      - name: Apply HTML wording edits
+        shell: python
+        run: |
+          from pathlib import Path
+
+          def replace(path, old, new, count=1):
+              p = Path(path)
+              text = p.read_text(encoding="utf-8")
+              found = text.count(old)
+              if found != count:
+                  raise SystemExit(f"{path}: expected {count}, found {found}: {old[:80]!r}")
+              p.write_text(text.replace(old, new, count), encoding="utf-8")
+
+          non_articles = ["index.html", "teacher-cover.html"]
+          for path in non_articles:
+              p = Path(path)
+              text = p.read_text(encoding="utf-8")
+              text = text.replace("The Englishire Journal", "Englishire Journal")
+              text = text.replace("Request a Teacher", "Request Teacher Cover")
+              p.write_text(text, encoding="utf-8")
+
+          replace("index.html", "The timetable may change. Standards ought not to.", "Temporary English teacher cover for schools across Tokyo.")
+          replace("index.html", "Considered temporary English teacher cover for schools throughout\n              Tokyo.", "Thoughtfully matched, properly briefed and arranged around the school day.")
+          replace("index.html", "The smoothest temporary cover is frequently the cover nobody\n                notices.", "A prepared teacher leads a Tokyo classroom. The image reflects\n                Englishire’s purpose: to preserve the rhythm of the school day when\n                the usual teacher cannot be there.")
+
+          replace("teacher-cover.html", "The timetable may change. Standards ought not to.", "Cover the timetable without lowering the standard.")
+          replace("teacher-cover.html", "The smoothest temporary cover is frequently the cover nobody\n                notices.", "A temporary teacher at work in a Tokyo classroom. Proper briefing\n                allows cover to support the lesson, the learners and the routines\n                already established by the school.")
+
+          articles = [
+              "easy-teacher.html",
+              "hiring-foreign-teachers-in-japan.html",
+              "real-cost-of-english-teacher-turnover.html",
+              "how-schools-can-handle-staff-shortages.html",
+              "emergency-classroom-coverage.html",
+              "backup-teacher-eikaiwa.html",
+              "eikaiwa-school-operations.html",
+              "school-collapse-after-three-decades.html",
+          ]
+          for path in articles:
+              p = Path(path)
+              text = p.read_text(encoding="utf-8")
+              text = text.replace("The Englishire Journal", "Englishire Journal")
+              text = text.replace("Request a Teacher", "Request Teacher Cover")
+              p.write_text(text, encoding="utf-8")
+
+          replace("easy-teacher.html", "By James Simmons | Foxjin School Media", "By James Simmons | Englishire Journal")
+          replace("hiring-foreign-teachers-in-japan.html", "Queen Elizabeth II examines scientific equipment at St Paul's School,\n            London: a moment of scrutiny within an English educational institution.", "Queen Elizabeth II examines scientific equipment at St Paul's School,\n            London. The scene reflects the article’s central argument: a consequential\n            appointment deserves closer scrutiny than first impressions alone provide.")
+          replace("real-cost-of-english-teacher-turnover.html", "The visible recruitment bill is only the smallest part of what a departure costs.", "An empty classroom after a teacher’s departure represents only the visible disruption. The article examines the larger cost: lost continuity, management time, unsettled learners and weakened confidence.")
+          replace("how-schools-can-handle-staff-shortages.html", "The useful backup plan is the one written before the morning it is\n            needed.", "A prepared classroom before the school day begins reflects the article’s\n            central point: staffing resilience is built before an absence becomes a\n            morning crisis.")
+          replace("emergency-classroom-coverage.html", "Emergency cover is a bridge: valuable because it creates time for a\n            considered decision.", "The image presents emergency cover as a bridge between immediate need and\n            a permanent solution. Its value lies in preserving continuity while the\n            school makes a considered decision.")
+          replace("backup-teacher-eikaiwa.html", "Swiss Cottage at Osborne House was created as a place of practical\n            education for Queen Victoria and Prince Albert's children.", "Swiss Cottage at Osborne House was designed for the practical education\n            of Queen Victoria and Prince Albert's children. Its purpose-built\n            approach mirrors the article’s argument that dependable cover comes from\n            preparation and structure, not last-minute improvisation.")
+          replace("eikaiwa-school-operations.html", "Britannia Royal Naval College in Dartmouth: an English educational\n            institution shaped by timing, order and disciplined systems.", "Britannia Royal Naval College in Dartmouth depends upon timing, order and\n            systems that remain largely invisible when they work. The article applies\n            the same principle to a school day: smooth delivery rests on careful\n            operational machinery behind the classroom.")
+          replace("school-collapse-after-three-decades.html", "A school can survive individual problems; it may not survive a chain\n            of failures left unresolved.", "The image reflects the article’s warning that institutional collapse rarely\n            begins with one dramatic event. It develops when smaller failures are\n            allowed to connect and remain unresolved.")
+
+          for path in [*non_articles, *articles]:
+              text = Path(path).read_text(encoding="utf-8")
+              if "Foxjin" in text:
+                  raise SystemExit(f"Foxjin remains in {path}")
+
+      - name: Verify HTML-only structural safety
+        shell: python
+        run: |
+          from pathlib import Path
+          import subprocess
+
+          changed = subprocess.check_output(["git", "diff", "--name-only"], text=True).splitlines()
+          bad = [p for p in changed if not p.endswith(".html")]
+          if bad:
+              raise SystemExit(f"Non-HTML files changed: {bad}")
+
+          for path in changed:
+              before = subprocess.check_output(["git", "show", f"HEAD:{path}"], text=True)
+              after = Path(path).read_text(encoding="utf-8")
+              for marker in ("<section", "</section>", "<article", "</article>", "<script", "</script>", "<form", "</form>"):
+                  if before.count(marker) != after.count(marker):
+                      raise SystemExit(f"{path}: structural marker changed: {marker}")
+
+      - name: Commit wording edits and remove workflow
+        run: |
+          rm -f .github/workflows/apply-englishire-wording-audit.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- '*.html' .github/workflows/apply-englishire-wording-audit.yml
+          git commit -m "Refine Englishire wording and Journal captions"
+          git push origin HEAD:agent/englishire-wording-audit
