@@ -1,1 +1,0 @@
-trigger journal case-study thumbnail update
