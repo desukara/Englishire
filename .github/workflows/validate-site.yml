@@ -1,0 +1,93 @@
+name: Validate static site
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check HTML, local assets and JSON-LD
+        continue-on-error: true
+        shell: python
+        run: |
+          from html.parser import HTMLParser
+          from pathlib import Path
+          from urllib.parse import urlsplit
+          import json
+          import re
+          import sys
+
+          allowed_missing = {'contact-image-hero.png'}
+          failures = []
+
+          class Parser(HTMLParser):
+              def __init__(self):
+                  super().__init__(convert_charrefs=True)
+                  self.ids = []
+                  self.refs = []
+
+              def handle_starttag(self, tag, attrs):
+                  data = dict(attrs)
+                  if data.get('id'):
+                      self.ids.append(data['id'])
+                  key = {
+                      'a': 'href',
+                      'img': 'src',
+                      'script': 'src',
+                      'link': 'href',
+                      'source': 'srcset',
+                  }.get(tag)
+                  if key and data.get(key):
+                      self.refs.append(data[key])
+
+          for page in sorted(Path('.').glob('*.html')):
+              text = page.read_text(encoding='utf-8')
+              parser = Parser()
+              try:
+                  parser.feed(text)
+              except Exception as exc:
+                  failures.append(f'{page}: HTML parse error: {exc}')
+                  continue
+
+              duplicates = sorted({item for item in parser.ids if parser.ids.count(item) > 1})
+              if duplicates:
+                  failures.append(f'{page}: duplicate IDs: {", ".join(duplicates)}')
+
+              for ref in parser.refs:
+                  if ref.startswith(('http://', 'https://', 'mailto:', 'tel:', '#', 'data:')):
+                      continue
+                  ref = ref.split(',')[0].strip().split()[0]
+                  target = urlsplit(ref).path
+                  if not target or target.startswith('/') or Path(target).name in allowed_missing:
+                      continue
+                  if not (page.parent / target).exists():
+                      failures.append(f'{page}: missing local reference: {ref}')
+
+              pattern = r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>'
+              for block in re.findall(pattern, text, re.I | re.S):
+                  try:
+                      json.loads(block)
+                  except json.JSONDecodeError as exc:
+                      failures.append(f'{page}: invalid JSON-LD: {exc}')
+
+          if failures:
+              print('Advisory validation findings:')
+              print('\n'.join(f'- {item}' for item in failures))
+              sys.exit(1)
+
+          print('Static-site advisory checks passed.')
+
+      - name: Check JavaScript syntax
+        continue-on-error: true
+        run: |
+          for file in *.js; do
+            [ -e "$file" ] || continue
+            node --check "$file"
+          done
