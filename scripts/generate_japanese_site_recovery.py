@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Production recovery runner for structurally exact Japanese counterparts."""
+"""Build production Japanese pages from the canonical English HTML.
+
+The English files remain the source of truth for structure, classes, IDs, assets,
+forms, inline CSS, scripts and page-specific components. Only visible language,
+localised metadata and page-to-page routes change.
+"""
 from __future__ import annotations
 
 import json
@@ -12,7 +17,6 @@ from bs4 import BeautifulSoup, Doctype
 import generate_japanese_site as generator
 import generate_japanese_site_fast as fast
 
-# Terms routinely mistranslated by generic engines in the school staffing context.
 CONTEXT_REPLACEMENTS = [
     ("一時的な英語教師の補償", "英語講師の代講・短期手配"),
     ("臨時の英語教師の補償", "英語講師の代講・短期手配"),
@@ -21,19 +25,24 @@ CONTEXT_REPLACEMENTS = [
     ("英語教師の補償", "英語講師の代講"),
     ("教師の補償", "講師の代講"),
     ("教師カバー", "講師の代講"),
+    ("教師のカバー", "講師の代講"),
+    ("教師の表紙", "講師手配"),
+    ("表紙教師", "代講講師"),
     ("英語教師", "英語講師"),
     ("臨時教師", "短期講師"),
     ("代替教師", "代講講師"),
     ("採用ギャップ", "採用までの空白期間"),
     ("追加需要", "一時的な授業増"),
     ("スケジュールをカバー", "時間割を維持"),
+    ("タイムテーブル", "時間割"),
     ("プライマリナビゲーション", "メインナビゲーション"),
     ("英語のホームページ", "Englishireホームページ"),
     ("教師の表紙のアクション", "講師手配ページの操作"),
-    ("教師の表紙", "講師手配"),
     ("かなり長い課題", "より長期の業務"),
     ("課題が確認され", "業務が確認され"),
     ("割り当て", "業務"),
+    ("仕事を見つけるまで", "学校が新しい講師を採用するまで"),
+    ("新しい仕事を見つけるまで", "学校が新しい講師を採用するまで"),
     ("英語IRE", "Englishire"),
     ("|英語", "| Englishire"),
 ]
@@ -47,15 +56,18 @@ EXACT_OVERRIDES = {
     "Primary navigation": "メインナビゲーション",
     "Englishire homepage": "Englishireホームページ",
     "Teacher cover page actions": "講師手配ページの操作",
+    "Request Teacher Cover": "講師手配を相談する",
+    "When We Help": "対応できるケース",
 }
 
 JSON_TRANSLATABLE_KEYS = {
     "name", "description", "serviceType", "headline", "alternativeHeadline",
-    "caption", "articleSection", "keywords", "text", "inLanguage",
+    "caption", "articleSection", "keywords", "text",
 }
 JSON_TECHNICAL_KEYS = {
     "@context", "@type", "url", "image", "logo", "sameAs", "email",
-    "telephone", "datePublished", "dateModified", "contentUrl", "mainEntityOfPage",
+    "telephone", "datePublished", "dateModified", "contentUrl",
+    "mainEntityOfPage", "inLanguage",
 }
 
 original_ja_text = generator.ja_text
@@ -121,37 +133,72 @@ def localise_json_ld(tag, cache: dict[str, str]) -> None:
     tag.string = json.dumps(walk(data), ensure_ascii=False, indent=2)
 
 
+def restore_technical_semantics(en: BeautifulSoup, ja: BeautifulSoup) -> None:
+    """Restore attributes that must never be translated or reinterpreted."""
+    en_tags = en.find_all(True)
+    ja_tags = ja.find_all(True)
+    if len(en_tags) != len(ja_tags):
+        raise RuntimeError("Generated DOM no longer matches canonical English structure")
+
+    for source, target in zip(en_tags, ja_tags):
+        for attr in ("name", "type", "method", "enctype", "autocomplete", "min", "max", "step", "pattern", "accept", "multiple", "required"):
+            if source.has_attr(attr):
+                target[attr] = source[attr]
+            elif target.has_attr(attr):
+                del target[attr]
+        if source.name in {"input", "option"} and source.has_attr("value"):
+            input_type = str(source.get("type", "")).lower()
+            if source.name == "option" or input_type in {"hidden", "checkbox", "radio", "date", "time", "number", "email"}:
+                target["value"] = source["value"]
+        for attr in list(target.attrs):
+            if attr.startswith("data-") and source.has_attr(attr):
+                target[attr] = source[attr]
+
+
 def postprocess_page(page_name: str, cache: dict[str, str]) -> None:
     path = generator.JA_DIR / page_name
     raw = path.read_text(encoding="utf-8")
     raw = re.sub(r"^<!DOCTYPE html>\s*html\s*", "<!DOCTYPE html>\n", raw, count=1, flags=re.I)
-    soup = BeautifulSoup(raw, "html.parser")
+    ja = BeautifulSoup(raw, "html.parser")
+    en = BeautifulSoup((generator.ROOT / page_name).read_text(encoding="utf-8"), "html.parser")
 
-    # Remove duplicate parsed doctypes, then emit one valid declaration.
-    for node in list(soup.contents):
+    for node in list(ja.contents):
         if isinstance(node, Doctype):
             node.extract()
 
+    # No Japanese-only page sections: translated pages must mirror the English DOM.
+    for notice in ja.select(".language-notice--service-boundary"):
+        notice.decompose()
+
+    restore_technical_semantics(en, ja)
+
     canonical_url = "https://englishire.com/ja/" + ("" if page_name == "index.html" else page_name)
-    og_url = soup.find("meta", attrs={"property": "og:url"})
+    canonical = ja.find("link", rel="canonical")
+    if canonical:
+        canonical["href"] = canonical_url
+    og_url = ja.find("meta", attrs={"property": "og:url"})
     if og_url:
         og_url["content"] = canonical_url
-    og_type = soup.find("meta", attrs={"property": "og:type"})
-    if og_type:
-        original = BeautifulSoup((generator.ROOT / page_name).read_text(encoding="utf-8"), "html.parser").find("meta", attrs={"property": "og:type"})
-        if original:
-            og_type["content"] = original.get("content", "website")
-    twitter_card = soup.find("meta", attrs={"name": "twitter:card"})
-    if twitter_card:
-        original = BeautifulSoup((generator.ROOT / page_name).read_text(encoding="utf-8"), "html.parser").find("meta", attrs={"name": "twitter:card"})
-        if original:
-            twitter_card["content"] = original.get("content", "summary_large_image")
-    msconfig = soup.find("meta", attrs={"name": "msapplication-config"})
-    if msconfig and not str(msconfig.get("content", "")).startswith(("http://", "https://", "../")):
-        msconfig["content"] = "../" + str(msconfig.get("content", "")).lstrip("./")
 
-    # Apply the editorial terminology pass to every translated visible string and metadata value.
-    for node in list(soup.find_all(string=True)):
+    for selector, attribute in [
+        ('meta[property="og:type"]', "content"),
+        ('meta[name="twitter:card"]', "content"),
+        ('meta[name="robots"]', "content"),
+        ('meta[name="msapplication-config"]', "content"),
+    ]:
+        source = en.select_one(selector)
+        target = ja.select_one(selector)
+        if source and target and source.has_attr(attribute):
+            value = str(source[attribute])
+            if selector == 'meta[name="msapplication-config"]' and value and not value.startswith(("http://", "https://", "../")):
+                value = "../" + value.lstrip("./")
+            target[attribute] = value
+
+    # Preserve technical Schema.org values while localising human-readable fields.
+    for tag in ja.find_all("script", attrs={"type": "application/ld+json"}):
+        localise_json_ld(tag, cache)
+
+    for node in list(ja.find_all(string=True)):
         if node.parent and node.parent.name in {"script", "style", "code", "pre"}:
             continue
         text = str(node)
@@ -160,13 +207,13 @@ def postprocess_page(page_name: str, cache: dict[str, str]) -> None:
             revised = revised.replace(old, new)
         if revised != text:
             node.replace_with(revised)
-    for meta in soup.find_all("meta", content=True):
+    for meta in ja.find_all("meta", content=True):
         content = str(meta["content"])
         for old, new in CONTEXT_REPLACEMENTS:
             content = content.replace(old, new)
         meta["content"] = content
 
-    path.write_text("<!DOCTYPE html>\n" + str(soup), encoding="utf-8")
+    path.write_text("<!DOCTYPE html>\n" + str(ja), encoding="utf-8")
 
 
 def hardened_generate_page(page_name: str, cache: dict[str, str]) -> None:
