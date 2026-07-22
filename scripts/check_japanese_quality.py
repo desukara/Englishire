@@ -9,6 +9,7 @@ JA = ROOT / "ja"
 BANNED = {
     "info@englishshire.com": "info@englishire.com",
     "イングリッシュアイレ": "Englishire",
+    "イングリッシュアイア": "Englishire",
     "英語IRE": "Englishire",
     "© 2026 英語です。": "© 2026 Englishire.",
     "英語です。無断転載を禁じます。": "Englishire. 無断転載を禁じます。",
@@ -18,6 +19,7 @@ BANNED = {
     "採用ギャップ": "採用までの空白期間",
     "仕事を見つけるまで": "学校が新しい講師を採用するまで",
     "新しい仕事を見つけるまで": "学校が新しい講師を採用するまで",
+    "適切に配置された呼吸室": "学校が適切な判断をするための時間",
 }
 
 errors = []
