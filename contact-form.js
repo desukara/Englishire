@@ -6,8 +6,6 @@
   if (!(form instanceof HTMLFormElement)) {
     return;
   }
-
-  const directEmailLink = form.querySelector("[data-direct-email]");
   const emailFallback = form.querySelector(
     ".email-enquiry-form__email-fallback"
   );
