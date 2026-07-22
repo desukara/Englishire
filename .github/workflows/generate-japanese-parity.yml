@@ -1,19 +1,15 @@
 name: Validate Japanese parity site
 
 on:
-  push:
-    branches:
-      - agent/strict-japanese-retranslation
   pull_request:
     branches:
       - main
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   validate-japanese:
-    if: ${{ github.event_name == 'pull_request' || !contains(github.event.head_commit.message, '[generated-ja]') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,19 +28,6 @@ jobs:
 
       - name: Regenerate reviewed Japanese counterparts
         run: python scripts/generate_japanese_site_release.py
-
-      - name: Commit deterministic Japanese pages
-        if: ${{ github.event_name == 'push' }}
-        run: |
-          git config user.name "Englishire parity bot"
-          git config user.email "actions@users.noreply.github.com"
-          git add ja scripts/ja_translation_cache.json
-          if git diff --cached --quiet; then
-            echo "No generated changes"
-          else
-            git commit -m "Apply reviewed Japanese structured data [generated-ja]"
-            git push origin HEAD:${{ github.ref_name }}
-          fi
 
       - name: Ensure generated Japanese pages are committed
         run: git diff --exit-code -- ja scripts/ja_translation_cache.json
