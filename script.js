@@ -650,6 +650,24 @@
 
     const status = getElement("#englishire-email-enquiry-status");
     const submitButton = form.querySelector('button[type="submit"]');
+    const directEmailLink = form.querySelector("[data-direct-email]");
+    const successPage = form.dataset.successPage || "thank-you.html";
+
+    if (directEmailLink instanceof HTMLAnchorElement) {
+      directEmailLink.addEventListener("click", () => {
+        const emailAddress =
+          directEmailLink.dataset.emailAddress || "info@englishire.com";
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(emailAddress).catch(() => {});
+        }
+
+        if (status) {
+          status.textContent =
+            "Your email application should open. The address info@englishire.com has also been copied where supported.";
+        }
+      });
+    }
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -657,14 +675,14 @@
       if (!form.reportValidity()) {
         if (status) {
           status.textContent =
-            "Kindly complete the required fields before sending your enquiry.";
+            "Complete the required fields before sending your enquiry.";
         }
 
         return;
       }
 
       if (status) {
-        status.textContent = "Your enquiry is being sent securely.";
+        status.textContent = "Sending your enquiry securely…";
       }
 
       form.setAttribute("aria-busy", "true");
@@ -674,6 +692,9 @@
         submitButton.textContent = "Sending…";
       }
 
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 20000);
+
       try {
         const response = await fetch(form.action, {
           method: "POST",
@@ -681,17 +702,49 @@
           headers: {
             Accept: "application/json",
           },
+          signal: controller.signal,
         });
 
-        if (!response.ok) {
-          throw new Error("The enquiry service did not accept the submission.");
+        let responseData = null;
+
+        try {
+          responseData = await response.json();
+        } catch (error) {
+          responseData = null;
         }
 
-        window.location.assign("thank-you.html");
+        if (!response.ok) {
+          const serviceMessage =
+            responseData && Array.isArray(responseData.errors)
+              ? responseData.errors
+                  .map((item) => item && item.message)
+                  .filter(Boolean)
+                  .join(" ")
+              : "";
+
+          throw new Error(
+            serviceMessage || "The enquiry service did not accept the submission."
+          );
+        }
+
+        try {
+          window.sessionStorage.setItem(
+            "englishire-enquiry-submitted",
+            new Date().toISOString()
+          );
+        } catch (error) {
+          // The confirmation page remains valid when storage is unavailable.
+        }
+
+        window.location.assign(new URL(successPage, window.location.href).href);
       } catch (error) {
+        const timedOut =
+          error instanceof DOMException && error.name === "AbortError";
+
         if (status) {
-          status.textContent =
-            "We could not send your enquiry just now. Kindly try again or email info@englishire.com directly.";
+          status.textContent = timedOut
+            ? "The enquiry service took too long to respond. Please try again, or email info@englishire.com directly."
+            : "Your enquiry could not be sent just now. Please try again, or email info@englishire.com directly.";
         }
 
         form.removeAttribute("aria-busy");
@@ -699,7 +752,10 @@
         if (submitButton instanceof HTMLButtonElement) {
           submitButton.disabled = false;
           submitButton.textContent = "Send Enquiry";
+          submitButton.focus();
         }
+      } finally {
+        window.clearTimeout(timeout);
       }
     });
   };
