@@ -63,7 +63,8 @@ def postprocess_with_language_boundary(page_name: str, cache: dict[str, str]) ->
     else:
         main.insert(0, notice)
 
-    path.write_text("<!DOCTYPE html>\n" + str(soup), encoding="utf-8")
+    # BeautifulSoup preserves the original document type, so serialise once.
+    path.write_text(str(soup), encoding="utf-8")
 
 
 reviewed.final.recovery.postprocess_page = postprocess_with_language_boundary
