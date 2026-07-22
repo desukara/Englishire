@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
-"""Final release runner for reviewed Japanese counterparts."""
+"""Release runner for fully reviewed Japanese counterparts."""
 
 import generate_japanese_site_reviewed as reviewed
+from japanese_strict import STRICT_OVERRIDES
+
+# Source-keyed translations take precedence over every machine-generated cache
+# entry and every earlier repair layer.
+reviewed.final.recovery.EXACT_OVERRIDES.update(STRICT_OVERRIDES)
 
 reviewed.final.FINAL_REPLACEMENTS.extend([
     ("可用性", "空き状況"),
