@@ -41,6 +41,8 @@ jobs:
         run: python scripts/check_japanese_quality.py
 
       - name: Run Japanese naturalness audit
+        id: naturalness
+        continue-on-error: true
         run: python scripts/check_japanese_naturalness.py
 
       - name: Run existing static-site validation
@@ -60,3 +62,7 @@ jobs:
             git commit -m "Apply post-merge Japanese refinements [generated-ja]"
             git push origin HEAD:${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}
           fi
+
+      - name: Enforce Japanese naturalness audit
+        if: steps.naturalness.outcome == 'failure'
+        run: exit 1
