@@ -28,10 +28,19 @@ jobs:
       - name: Install generator dependencies
         run: pip install beautifulsoup4 deep-translator
 
-      - name: Generate Japanese counterparts from English source
-        run: python scripts/generate_japanese_site_fast.py
+      - name: Generate hardened Japanese counterparts
+        run: python scripts/generate_japanese_site_recovery.py
 
-      - name: Commit generated Japanese pages to recovery branch
+      - name: Run strict Japanese parity audit
+        run: python scripts/check_japanese_parity.py
+
+      - name: Run existing static-site validation
+        run: |
+          python -m compileall scripts
+          if [ -f package.json ]; then npm install --ignore-scripts --no-audit --no-fund; fi
+          if npm run | grep -q 'validate'; then npm run validate; fi
+
+      - name: Commit validated Japanese pages to recovery branch
         if: ${{ github.event_name == 'push' }}
         run: |
           git config user.name "Englishire parity bot"
@@ -43,12 +52,3 @@ jobs:
             git commit -m "Rebuild Japanese site from canonical English pages [generated-ja]"
             git push origin HEAD:agent/japanese-parity-recovery
           fi
-
-      - name: Run strict parity audit
-        run: python scripts/check_japanese_parity.py
-
-      - name: Run existing static-site validation
-        run: |
-          python -m compileall scripts
-          if [ -f package.json ]; then npm install --ignore-scripts --no-audit --no-fund; fi
-          if npm run | grep -q 'validate'; then npm run validate; fi
