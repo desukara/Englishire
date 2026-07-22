@@ -28,8 +28,8 @@ jobs:
       - name: Install generator dependencies
         run: pip install beautifulsoup4 deep-translator
 
-      - name: Generate hardened Japanese counterparts
-        run: python scripts/generate_japanese_site_recovery.py
+      - name: Generate final Japanese counterparts
+        run: python scripts/generate_japanese_site_final.py
 
       - name: Run strict Japanese parity audit
         run: python scripts/check_japanese_parity.py
