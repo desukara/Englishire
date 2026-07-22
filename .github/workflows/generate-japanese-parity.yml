@@ -29,7 +29,7 @@ jobs:
         run: pip install beautifulsoup4 deep-translator
 
       - name: Generate Japanese counterparts from English source
-        run: python scripts/generate_japanese_site.py
+        run: python scripts/generate_japanese_site_fast.py
 
       - name: Run strict parity audit
         run: python scripts/check_japanese_parity.py
