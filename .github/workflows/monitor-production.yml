@@ -1,0 +1,58 @@
+name: Monitor production website
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check public endpoints and critical content
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://englishire.com"
+
+          check_url() {
+            local path="$1"
+            curl --fail --silent --show-error --location \
+              --connect-timeout 10 --max-time 30 \
+              --retry 2 --retry-delay 3 \
+              -A "Englishire production monitor" \
+              "$base/$path" > "/tmp/$(echo "$path" | tr '/.' '__')"
+          }
+
+          for path in \
+            "" \
+            "contact.html" \
+            "thank-you.html" \
+            "service-standards.html" \
+            "robots.txt" \
+            "sitemap.xml" \
+            "sitemap-pages.xml" \
+            "feed.xml" \
+            "llms.txt"
+          do
+            check_url "$path"
+          done
+
+          homepage="/tmp/"
+          contact="/tmp/contact_html"
+          standards="/tmp/service-standards_html"
+          robots="/tmp/robots_txt"
+          sitemap="/tmp/sitemap_xml"
+
+          grep -q "Englishire" "$homepage"
+          grep -q 'action="https://formspree.io/f/xbdnydnb"' "$contact"
+          grep -q 'Send Enquiry' "$contact"
+          ! grep -q 'Email Englishire Directly' "$contact"
+          grep -q 'within one business day' "$standards"
+          grep -q 'Sitemap: https://englishire.com/sitemap.xml' "$robots"
+          grep -q 'sitemap-pages.xml' "$sitemap"
+
+          echo "Production health checks passed."
