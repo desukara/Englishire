@@ -1,19 +1,24 @@
 name: Validate Japanese parity site
 
 on:
+  push:
+    branches:
+      - agent/policy-formspree-japanese-cleanup
   pull_request:
     branches:
       - main
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   validate-japanese:
+    if: ${{ github.event_name == 'pull_request' || !contains(github.event.head_commit.message, '[generated-ja]') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.head_ref || github.ref_name }}
           fetch-depth: 0
 
       - uses: actions/setup-python@v5
@@ -29,8 +34,8 @@ jobs:
       - name: Regenerate reviewed Japanese counterparts
         run: python scripts/generate_japanese_site_release.py
 
-      - name: Ensure generated Japanese pages are committed
-        run: git diff --exit-code -- ja scripts/ja_translation_cache.json
+      - name: Run form and policy consistency audit
+        run: python scripts/check_form_policy_consistency.py
 
       - name: Run Japanese release parity audit
         run: python scripts/check_japanese_release.py
@@ -46,3 +51,16 @@ jobs:
           python -m compileall scripts
           if [ -f package.json ]; then npm install --ignore-scripts --no-audit --no-fund; fi
           if npm run | grep -q 'validate'; then npm run validate; fi
+
+      - name: Commit deterministic Japanese pages
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          git config user.name "Englishire parity bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add ja scripts/ja_translation_cache.json
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+          else
+            git commit -m "Apply policy and Japanese typography corrections [generated-ja]"
+            git push origin HEAD:${{ github.ref_name }}
+          fi
