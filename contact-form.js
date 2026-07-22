@@ -7,14 +7,6 @@
     return;
   }
 
-  const directEmailLink = form.querySelector("[data-direct-email]");
-  const emailFallback = form.querySelector(
-    ".email-enquiry-form__email-fallback"
-  );
-
-  directEmailLink?.remove();
-  emailFallback?.remove();
-
   const status = document.querySelector("#englishire-email-enquiry-status");
   const submitButton = form.querySelector('button[type="submit"]');
   const successPage = form.dataset.successPage || "thank-you.html";
