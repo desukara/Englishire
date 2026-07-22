@@ -1,0 +1,14 @@
+/* ORGANISATION */
+Name: Englishire
+Location: Tokyo, Japan
+Contact: info@englishire.com
+
+/* PUBLICATION */
+Name: Englishire Journal
+Language: British English
+Editorial policy: https://englishire.com/editorial-policy.html
+
+/* SITE */
+Canonical: https://englishire.com/
+Accessibility: https://englishire.com/accessibility.html
+Security: https://englishire.com/.well-known/security.txt
