@@ -7,9 +7,16 @@
     return;
   }
 
+  const directEmailLink = form.querySelector("[data-direct-email]");
+  const emailFallback = form.querySelector(
+    ".email-enquiry-form__email-fallback"
+  );
+
+  directEmailLink?.remove();
+  emailFallback?.remove();
+
   const status = document.querySelector("#englishire-email-enquiry-status");
   const submitButton = form.querySelector('button[type="submit"]');
-  const directEmailLink = form.querySelector("[data-direct-email]");
   const successPage = form.dataset.successPage || "thank-you.html";
 
   const setStatus = (message) => {
@@ -17,21 +24,6 @@
       status.textContent = message;
     }
   };
-
-  if (directEmailLink instanceof HTMLAnchorElement) {
-    directEmailLink.addEventListener("click", () => {
-      const emailAddress =
-        directEmailLink.dataset.emailAddress || "info@englishire.com";
-
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(emailAddress).catch(() => {});
-      }
-
-      setStatus(
-        "Your email application should open. The address info@englishire.com has also been copied where supported."
-      );
-    });
-  }
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
