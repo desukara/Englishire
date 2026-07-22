@@ -17,7 +17,7 @@
     const standardsNotice = document.createElement("p");
     standardsNotice.className = "email-enquiry-form__notice";
     standardsNotice.innerHTML = japanese
-      ? '送信前に、応答、正式確定、費用、安全管理、言語に関する<a href="service-standards.html">サービス対応基準</a>をご確認ください。'
+      ? '送信前に、返信、正式な手配、料金、安全管理、言語対応についての<a href="service-standards.html">サービス方針</a>をご確認ください。'
       : 'Before submitting, review our <a href="service-standards.html">Service Standards</a> for response, confirmation, commercial and safeguarding expectations.';
     form.before(standardsNotice);
   }
@@ -29,14 +29,14 @@
   ) {
     const footerLink = document.createElement("a");
     footerLink.href = standardsHref;
-    footerLink.textContent = japanese ? "対応基準" : "Service Standards";
+    footerLink.textContent = japanese ? "サービス方針" : "Service Standards";
     footerLegal.prepend(footerLink);
   }
 
   const status = document.querySelector("#englishire-email-enquiry-status");
   const submitButton = form.querySelector('button[type="submit"]');
   const successPage = form.dataset.successPage || "thank-you.html";
-  const idleButtonText = japanese ? "お問い合わせを送信" : "Send Enquiry";
+  const idleButtonText = japanese ? "送信する" : "Send Enquiry";
 
   const setStatus = (message) => {
     if (status instanceof HTMLElement) {
@@ -50,14 +50,14 @@
     if (!form.reportValidity()) {
       setStatus(
         japanese
-          ? "必須項目を入力してから送信してください。"
+          ? "必須項目をご確認ください。"
           : "Complete the required fields before sending your enquiry."
       );
       return;
     }
 
     setStatus(
-      japanese ? "お問い合わせを安全に送信しています…" : "Sending your enquiry securely…"
+      japanese ? "送信しています…" : "Sending your enquiry securely…"
     );
     form.setAttribute("aria-busy", "true");
 
@@ -96,7 +96,7 @@
         throw new Error(
           serviceMessage ||
             (japanese
-              ? "お問い合わせサービスが送信を受け付けませんでした。"
+              ? "送信を受け付けられませんでした。"
               : "The enquiry service did not accept the submission.")
         );
       }
@@ -109,8 +109,8 @@
       setStatus(
         japanese
           ? timedOut
-            ? "送信サービスからの応答に時間がかかっています。もう一度お試しいただくか、info@englishire.com へメールでご連絡ください。"
-            : "現在、お問い合わせを送信できませんでした。もう一度お試しいただくか、info@englishire.com へメールでご連絡ください。"
+            ? "送信に時間がかかっています。もう一度お試しいただくか、info@englishire.com までメールでご連絡ください。"
+            : "送信できませんでした。時間をおいてもう一度お試しいただくか、info@englishire.com までメールでご連絡ください。"
           : timedOut
             ? "The enquiry service took too long to respond. Please try again, or email info@englishire.com directly."
             : "Your enquiry could not be sent just now. Please try again, or email info@englishire.com directly."
