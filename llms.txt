@@ -9,6 +9,7 @@
 - [Englishire Standard](https://englishire.com/englishire-standard.html)
 - [Questions](https://englishire.com/questions.html)
 - [Request Teacher Cover](https://englishire.com/contact.html)
+- [Service Standards](https://englishire.com/service-standards.html): Response expectations, commercial framework, safeguarding principles and assignment practice.
 
 ## Englishire Journal
 - [Journal index](https://englishire.com/journal.html)
@@ -16,15 +17,16 @@
 - [JSON Feed](https://englishire.com/feed.json)
 - [When the Teacher Doesn't Show: Inside Japan's Eikaiwa Staffing Squeeze](https://englishire.com/backup-teacher-eikaiwa.html): A staffing gap at a single classroom rarely stays contained. What starts as one empty chair on a Tuesday morning becomes a test of a school's entire operating system.
 - [The End of the Easy Teacher](https://englishire.com/easy-teacher.html): How Japan's English schools spent twenty years hiring people who wanted to come to Japan — and are only now discovering that this was never the same thing as hiring teachers.
-- [The Invisible Machinery Behind a Smooth School Day](https://englishire.com/eikaiwa-school-operations.html): When an eikaiwa is running well, nobody notices the operation underneath it. That invisibility is either a sign of excellent systems — or a sign that no one has yet found out how fragile they are. The two conditions look identical from the front desk, on the ordinary Tuesday when everything happens to go right. They only reveal which one you're in on the day something doesn't.
-- [The Bridge, Not the Fix](https://englishire.com/emergency-classroom-coverage.html): Emergency cover doesn't solve a school's staffing problem. It buys the one thing every good decision actually requires: time to make it without panic.
-- [The Hire You're Actually Making](https://englishire.com/hiring-foreign-teachers-in-japan.html): A school posting a vacancy thinks it is filling a role. What it is actually doing, whether it realises it or not, is placing a long-term bet on continuity — and that bet is decided long before the first lesson is taught.
-- [The Backup Plan Nobody Writes Until They Need One](https://englishire.com/how-schools-can-handle-staff-shortages.html): Most eikaiwa owners never think about emergency teacher cover — until the morning they suddenly do. By then, the plan they wish they had is the one they no longer have time to build.
-- [The Turnover Bill Nobody Puts on the Invoice](https://englishire.com/real-cost-of-english-teacher-turnover.html): Recruiters count the cost of a departing teacher in job adverts and interview hours. The larger bill — the one that shows up in a child's confidence and a parent's patience — never appears on any invoice at all.
-- [How One Unresolved Staff Conflict Helped Collapse a 35-Year-Old International School](https://englishire.com/school-collapse-after-three-decades.html): A false accusation, management inaction, a missing toddler, and the nine-month chain reaction that permanently closed a Tokyo preschool after more than three decades.
+- [The Invisible Machinery Behind a Smooth School Day](https://englishire.com/eikaiwa-school-operations.html): When an eikaiwa is running well, nobody notices the operation underneath it. That invisibility is either a sign of excellent systems — or a sign that no one has yet found out how fragile they are.
+- [The Bridge, Not the Fix](https://englishire.com/emergency-classroom-coverage.html): Emergency cover does not solve a school's staffing problem. It buys time to make a sound decision without panic.
+- [The Hire You're Actually Making](https://englishire.com/hiring-foreign-teachers-in-japan.html): A school posting a vacancy is placing a long-term bet on continuity.
+- [The Backup Plan Nobody Writes Until They Need One](https://englishire.com/how-schools-can-handle-staff-shortages.html): Most school operators do not think about emergency teacher cover until the morning they need it.
+- [The Turnover Bill Nobody Puts on the Invoice](https://englishire.com/real-cost-of-english-teacher-turnover.html): The larger cost of turnover often appears in confidence, continuity and trust rather than on an invoice.
+- [How One Unresolved Staff Conflict Helped Collapse a 35-Year-Old International School](https://englishire.com/school-collapse-after-three-decades.html): A nine-month chain reaction that permanently closed a Tokyo preschool after more than three decades.
 
 ## Institutional information
 - [About](https://englishire.com/about.html)
+- [Service Standards](https://englishire.com/service-standards.html)
 - [Accessibility](https://englishire.com/accessibility.html)
 - [Editorial policy](https://englishire.com/editorial-policy.html)
 - [Copyright and permissions](https://englishire.com/permissions.html)
