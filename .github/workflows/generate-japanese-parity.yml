@@ -32,7 +32,6 @@ jobs:
         run: python scripts/generate_japanese_site_reviewed.py
 
       - name: Commit generated Japanese pages for inspection
-        if: ${{ github.event_name == 'push' }}
         run: |
           git config user.name "Englishire parity bot"
           git config user.email "actions@users.noreply.github.com"
