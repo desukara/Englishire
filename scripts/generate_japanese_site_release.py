@@ -21,6 +21,7 @@ SERVICE_PAGES = {
 }
 
 JAPANESE_CHARACTER = re.compile(r"[\u3040-\u30ff\u3400-\u9fff]")
+JAPANESE_INLINE_EDGE = r"[\u3040-\u30ff\u3400-\u9fff、。：；）」』】]"
 INLINE_CONTAINERS = ("p", "li", "dd", "dt", "figcaption", "span")
 
 original_postprocess = reviewed.final.recovery.postprocess_page
@@ -42,14 +43,14 @@ def normalize_japanese_inline_typography(soup: BeautifulSoup) -> None:
             if isinstance(node.previous_sibling, Tag):
                 text = re.sub(r"^\s*\.\s*", "。", text, count=1)
                 text = re.sub(
-                    r"^\s+(?=[\u3040-\u30ff\u3400-\u9fff、。])",
+                    rf"^\s+(?={JAPANESE_INLINE_EDGE})",
                     "",
                     text,
                 )
 
             if isinstance(node.next_sibling, Tag):
                 text = re.sub(
-                    r"(?<=[\u3040-\u30ff\u3400-\u9fff、。])\s+$",
+                    rf"(?<={JAPANESE_INLINE_EDGE})\s+$",
                     "",
                     text,
                 )
