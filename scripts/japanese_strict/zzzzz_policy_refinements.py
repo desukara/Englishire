@@ -11,5 +11,6 @@ TRANSLATIONS = {
     "Questions, requests or concerns concerning privacy may be sent through the Englishire": "プライバシーに関するご質問、ご請求、懸念事項は、こちらからお送りください：",
     "Questions, correction requests and attribution concerns may be sent to": "ご質問、訂正のご依頼、出典表示に関する懸念事項は、こちらへお送りください：",
     "Permission requests should describe the material, intended use, format, audience and publication date and be sent to": "転載・利用許可を申請する際は、対象資料、利用目的、形式、想定読者、公開予定日を記載のうえ、こちらへお送りください：",
+    "Englishire Journal publishes analysis and commentary on English education, school operations, staffing and continuity. Articles are selected for relevance, clarity and practical value rather than search volume alone.": "Englishire Journalは、英語教育、学校運営、人員体制、授業の継続に関する分析と論考を掲載します。記事は検索数の多さだけで選ぶのではなく、テーマとの関連性、明確さ、実務的な価値を基準に選びます。",
     "22 July 2026": "2026年7月22日",
 }
