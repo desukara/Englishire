@@ -38,6 +38,9 @@ jobs:
       - name: Run Japanese editorial quality audit
         run: python scripts/check_japanese_quality.py
 
+      - name: Run Japanese naturalness audit
+        run: python scripts/check_japanese_naturalness.py
+
       - name: Run existing static-site validation
         run: |
           python -m compileall scripts
