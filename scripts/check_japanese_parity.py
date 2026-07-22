@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
-"""Fail when a Japanese page drifts structurally from its English source."""
+"""Fail when a Japanese page drifts from its canonical English counterpart."""
 from __future__ import annotations
 
 import re
 import sys
 from collections import Counter
-from copy import deepcopy
 from pathlib import Path
 from urllib.parse import urlsplit
 
-from bs4 import BeautifulSoup, Comment
+from bs4 import BeautifulSoup, Comment, Doctype, NavigableString
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = [
@@ -20,57 +19,52 @@ PAGES = [
     "permissions.html", "thank-you.html",
 ]
 
+BANNED_TERMS = {
+    "教師の補償": "講師の代講",
+    "英語教師の補償": "英語講師の代講",
+    "一時的な英語教師の補償": "英語講師の代講・短期手配",
+    "教師の表紙": "講師手配",
+    "採用ギャップ": "採用までの空白期間",
+    "仕事を見つけるまで": "学校が新しい講師を採用するまで",
+    "新しい仕事を見つけるまで": "学校が新しい講師を採用するまで",
+    "英語IRE": "Englishire",
+}
 
-def soup(path: Path) -> BeautifulSoup:
-    return BeautifulSoup(path.read_text(encoding="utf-8"), "html.parser")
+TECHNICAL_META = {
+    ("property", "og:type"),
+    ("name", "twitter:card"),
+    ("name", "robots"),
+}
 
 
-def comparable(doc: BeautifulSoup) -> BeautifulSoup:
-    """Remove only additions explicitly authorised for Japanese localisation."""
-    clone = deepcopy(doc)
-    for element in clone.select('link[rel="alternate"][hreflang], .language-notice--service-boundary'):
-        element.decompose()
-    return clone
+def parse(path: Path) -> BeautifulSoup:
+    text = path.read_text(encoding="utf-8")
+    if not re.match(r"^<!DOCTYPE html>\s*<html", text, re.I):
+        raise ValueError(f"{path}: malformed or missing HTML doctype")
+    return BeautifulSoup(text, "html.parser")
 
 
-def structural_tokens(doc: BeautifulSoup) -> list[tuple]:
+def normalised_body_tokens(doc: BeautifulSoup) -> list[tuple]:
+    body = doc.body
+    if body is None:
+        return []
     tokens: list[tuple] = []
-    for node in doc.descendants:
-        if isinstance(node, Comment):
+    for node in body.descendants:
+        if isinstance(node, (Comment, Doctype, NavigableString)):
             continue
         name = getattr(node, "name", None)
         if not name:
             continue
         classes = tuple(sorted(node.get("class", [])))
         attrs = []
-        for key in ("id", "name", "type", "method", "required", "multiple", "min", "max", "step", "autocomplete"):
+        for key in (
+            "id", "name", "type", "method", "enctype", "required", "multiple",
+            "min", "max", "step", "autocomplete", "role",
+        ):
             if node.has_attr(key):
                 attrs.append((key, str(node.get(key))))
         tokens.append((name, classes, tuple(attrs)))
     return tokens
-
-
-def asset_names(doc: BeautifulSoup) -> Counter:
-    values = []
-    for tag, attr in (("img", "src"), ("source", "src"), ("source", "srcset"), ("script", "src"), ("link", "href")):
-        for element in doc.find_all(tag):
-            value = element.get(attr)
-            if not value or str(value).startswith(("http://", "https://", "data:")):
-                continue
-            if tag == "link" and element.get("rel") and not set(element.get("rel", [])) & {"stylesheet", "icon", "manifest", "apple-touch-icon"}:
-                continue
-            values.append(Path(urlsplit(str(value)).path).name)
-    return Counter(values)
-
-
-def form_signature(doc: BeautifulSoup) -> list[tuple]:
-    signature = []
-    for form in doc.find_all("form"):
-        controls = []
-        for field in form.find_all(["input", "select", "textarea", "button"]):
-            controls.append((field.name, field.get("name"), field.get("type"), field.has_attr("required")))
-        signature.append((form.get("method", "get").lower(), tuple(controls)))
-    return signature
 
 
 def section_signature(doc: BeautifulSoup) -> list[tuple]:
@@ -78,9 +72,95 @@ def section_signature(doc: BeautifulSoup) -> list[tuple]:
     if not main:
         return []
     return [
-        (section.name, tuple(sorted(section.get("class", []))), section.get("id"))
-        for section in main.find_all(["section", "article", "aside"], recursive=True)
+        (tag.name, tuple(sorted(tag.get("class", []))), tag.get("id"))
+        for tag in main.find_all(["section", "article", "aside"], recursive=True)
     ]
+
+
+def asset_names(doc: BeautifulSoup) -> Counter:
+    values = []
+    for tag, attr in (
+        ("img", "src"), ("source", "src"), ("source", "srcset"),
+        ("script", "src"), ("link", "href"),
+    ):
+        for element in doc.find_all(tag):
+            value = element.get(attr)
+            if not value or str(value).startswith(("http://", "https://", "data:")):
+                continue
+            if tag == "link":
+                rels = set(element.get("rel", []))
+                if not rels & {"stylesheet", "icon", "manifest", "apple-touch-icon"}:
+                    continue
+            values.append(Path(urlsplit(str(value)).path).name)
+    return Counter(values)
+
+
+def form_signature(doc: BeautifulSoup) -> list[tuple]:
+    result = []
+    for form in doc.find_all("form"):
+        controls = []
+        for field in form.find_all(["input", "select", "textarea", "button", "option"]):
+            controls.append((
+                field.name,
+                field.get("name"),
+                field.get("type"),
+                field.has_attr("required"),
+                field.get("value") if field.name == "option" or str(field.get("type", "")).lower() in {"hidden", "checkbox", "radio"} else None,
+            ))
+        result.append((form.get("method", "get").lower(), form.get("action"), tuple(controls)))
+    return result
+
+
+def counterpart_href(english_href: str) -> str:
+    if not english_href or english_href.startswith(("#", "mailto:", "tel:", "javascript:", "data:")):
+        return english_href
+    if re.match(r"^[a-z]+://", english_href):
+        if english_href.startswith("https://englishire.com/"):
+            suffix = english_href.removeprefix("https://englishire.com/")
+            if suffix in PAGES or suffix == "":
+                return "https://englishire.com/ja/" + suffix
+        return english_href
+    base, hashmark, fragment = english_href.partition("#")
+    query = ""
+    if "?" in base:
+        base, query = base.split("?", 1)
+        query = "?" + query
+    if not base:
+        return english_href
+    filename = Path(base).name
+    if filename in PAGES:
+        target = filename
+    elif filename.endswith((".html", ".htm")):
+        target = "../" + base.lstrip("./")
+    else:
+        target = "../" + base.lstrip("./")
+    return target + query + (("#" + fragment) if hashmark else "")
+
+
+def check_links(en: BeautifulSoup, ja: BeautifulSoup, name: str) -> list[str]:
+    errors = []
+    en_links = en.find_all("a", href=True)
+    ja_links = ja.find_all("a", href=True)
+    if len(en_links) != len(ja_links):
+        return [f"{name}: anchor count differs ({len(en_links)} vs {len(ja_links)})"]
+    for index, (source, target) in enumerate(zip(en_links, ja_links), start=1):
+        expected = counterpart_href(str(source["href"]))
+        actual = str(target["href"])
+        if expected != actual:
+            errors.append(f"{name}: link {index} maps to {actual!r}; expected {expected!r}")
+    return errors
+
+
+def check_technical_meta(en: BeautifulSoup, ja: BeautifulSoup, name: str) -> list[str]:
+    errors = []
+    for attr, key in TECHNICAL_META:
+        source = en.find("meta", attrs={attr: key})
+        target = ja.find("meta", attrs={attr: key})
+        if bool(source) != bool(target):
+            errors.append(f"{name}: technical meta {key} presence differs")
+        elif source and target and source.get("content") != target.get("content"):
+            errors.append(f"{name}: technical meta {key} was translated or changed")
+    return errors
 
 
 def check_pair(name: str) -> list[str]:
@@ -89,43 +169,42 @@ def check_pair(name: str) -> list[str]:
     ja_path = ROOT / "ja" / name
     if not ja_path.exists():
         return [f"{name}: missing ja/{name}"]
-    en_raw, ja_raw = soup(en_path), soup(ja_path)
+    try:
+        en, ja = parse(en_path), parse(ja_path)
+    except ValueError as exc:
+        return [str(exc)]
 
-    if ja_raw.html.get("lang") != "ja":
+    if ja.html is None or ja.html.get("lang") != "ja":
         errors.append(f"{name}: Japanese html lang is not ja")
-
-    en, ja = comparable(en_raw), comparable(ja_raw)
-    if structural_tokens(en) != structural_tokens(ja):
-        errors.append(f"{name}: DOM tag/class/form structure differs")
-    if asset_names(en) != asset_names(ja):
-        errors.append(f"{name}: images, stylesheets, scripts or icons differ")
-    if form_signature(en) != form_signature(ja):
-        errors.append(f"{name}: form controls or requirements differ")
+    if normalised_body_tokens(en) != normalised_body_tokens(ja):
+        errors.append(f"{name}: body DOM, classes, IDs or form semantics differ")
     if section_signature(en) != section_signature(ja):
-        errors.append(f"{name}: section/article sequence differs")
+        errors.append(f"{name}: section/article/aside sequence differs")
+    if asset_names(en) != asset_names(ja):
+        errors.append(f"{name}: images, stylesheets, scripts, icons or manifests differ")
+    if form_signature(en) != form_signature(ja):
+        errors.append(f"{name}: form controls, actions or technical values differ")
 
     en_ids = Counter(tag.get("id") for tag in en.find_all(id=True))
     ja_ids = Counter(tag.get("id") for tag in ja.find_all(id=True))
     if en_ids != ja_ids:
         errors.append(f"{name}: element IDs differ")
 
-    # Localised pages must not accidentally point to the Japanese homepage for unrelated pages.
-    for link in ja_raw.find_all("a", href=True):
-        href = str(link["href"])
-        if href in {"index.html", "./", "/ja/"} and name != "index.html":
-            label = " ".join(link.stripped_strings)
-            if label not in {"Englishire", "ホーム", "ホームページ", "サービス案内"}:
-                errors.append(f"{name}: suspicious unrelated homepage link: {label!r}")
+    errors.extend(check_links(en, ja, name))
+    errors.extend(check_technical_meta(en, ja, name))
 
-    # Catch obviously untranslated prose while allowing brand and technical terms.
     visible = " ".join(
-        str(node).strip() for node in ja_raw.find_all(string=True)
+        str(node).strip() for node in ja.find_all(string=True)
         if node.parent and node.parent.name not in {"script", "style", "code", "pre"}
     )
+    for bad, preferred in BANNED_TERMS.items():
+        if bad in visible:
+            errors.append(f"{name}: banned mistranslation {bad!r}; use {preferred!r}")
+
     words = re.findall(r"\b[A-Za-z]{4,}\b", visible)
     allowed = {
         "Englishire", "Journal", "Tokyo", "Formspree", "Cookie", "WCAG",
-        "Email", "English", "Google", "JSON", "HTML", "CSS", "JavaScript",
+        "Email", "English", "Google", "LinkedIn", "Instagram", "YouTube",
     }
     unexplained = [word for word in words if word not in allowed]
     if len(unexplained) > 20:
