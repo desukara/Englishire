@@ -1,0 +1,150 @@
+/* Englishire bilingual interface */
+
+.language-switch {
+  display: inline-flex;
+  flex: 0 0 auto;
+  min-height: 2.8rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 0.85rem;
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(226, 202, 139, 0.65);
+  border-radius: var(--radius-small);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.language-switch:hover,
+.language-switch:focus-visible {
+  color: var(--royal-navy-deep);
+  background: var(--crown-gold-light);
+  border-color: var(--crown-gold);
+}
+
+.site-header__controls {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.language-notice {
+  margin: 0 0 1.25rem;
+  padding: 1rem 1.1rem;
+  color: var(--royal-navy-deep);
+  background: rgba(226, 202, 139, 0.24);
+  border: 1px solid rgba(139, 106, 45, 0.5);
+  border-left: 4px solid var(--crimson);
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+.language-notice strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.site-footer__language {
+  display: grid;
+  align-content: start;
+  gap: 0.55rem;
+}
+
+.site-footer__language a {
+  width: fit-content;
+  border-bottom: 1px solid rgba(226, 202, 139, 0.6);
+  font-weight: 800;
+}
+
+html[lang="ja"] body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", "Yu Gothic", "YuGothic", "Noto Sans JP", Meiryo,
+    sans-serif;
+  line-height: 1.85;
+}
+
+html[lang="ja"] h1,
+html[lang="ja"] h2,
+html[lang="ja"] h3,
+html[lang="ja"] .service-hero__lead,
+html[lang="ja"] .section-heading__summary {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho",
+    "Noto Serif JP", Georgia, serif;
+  letter-spacing: -0.02em;
+}
+
+html[lang="ja"] .service-hero h1 {
+  max-width: 16ch;
+  font-size: clamp(2.65rem, 8vw, 6.2rem);
+  line-height: 1.15;
+}
+
+html[lang="ja"] .section-label,
+html[lang="ja"] .eyebrow,
+html[lang="ja"] .site-footer__navigation-title {
+  letter-spacing: 0.08em;
+  text-transform: none;
+}
+
+.bilingual-content {
+  padding-block: clamp(3rem, 7vw, 6rem);
+}
+
+.bilingual-content__grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.bilingual-card {
+  padding: clamp(1.35rem, 3vw, 2rem);
+  background: var(--ivory-light);
+  border: 1px solid var(--rule);
+  box-shadow: var(--shadow-small);
+}
+
+.bilingual-card h2,
+.bilingual-card h3 {
+  color: var(--royal-navy);
+}
+
+@media (max-width: 25rem) {
+  .language-switch {
+    min-height: 2.65rem;
+    padding-inline: 0.65rem;
+    font-size: 0.7rem;
+  }
+
+  .mobile-nav-toggle {
+    min-width: 4.15rem;
+  }
+
+  .mobile-nav-toggle__label {
+    display: none;
+  }
+}
+
+@media (min-width: 48rem) {
+  .bilingual-content__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .site-header__controls {
+    order: 3;
+  }
+
+  .language-switch {
+    min-height: 2.65rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .language-switch {
+    transition: none;
+  }
+}

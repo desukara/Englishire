@@ -7,6 +7,7 @@
     return;
   }
 
+  const japanese = document.documentElement.lang.toLowerCase().startsWith("ja");
   const standardsHref = "service-standards.html";
   const existingContextLink = document.querySelector(
     '.contact-enquiry a[href="service-standards.html"]'
@@ -15,8 +16,9 @@
   if (!existingContextLink) {
     const standardsNotice = document.createElement("p");
     standardsNotice.className = "email-enquiry-form__notice";
-    standardsNotice.innerHTML =
-      'Before submitting, review our <a href="service-standards.html">Service Standards</a> for response, confirmation, commercial and safeguarding expectations.';
+    standardsNotice.innerHTML = japanese
+      ? '送信前に、応答、正式確定、費用、安全管理、言語に関する<a href="service-standards.html">サービス対応基準</a>をご確認ください。'
+      : 'Before submitting, review our <a href="service-standards.html">Service Standards</a> for response, confirmation, commercial and safeguarding expectations.';
     form.before(standardsNotice);
   }
 
@@ -27,13 +29,14 @@
   ) {
     const footerLink = document.createElement("a");
     footerLink.href = standardsHref;
-    footerLink.textContent = "Service Standards";
+    footerLink.textContent = japanese ? "対応基準" : "Service Standards";
     footerLegal.prepend(footerLink);
   }
 
   const status = document.querySelector("#englishire-email-enquiry-status");
   const submitButton = form.querySelector('button[type="submit"]');
   const successPage = form.dataset.successPage || "thank-you.html";
+  const idleButtonText = japanese ? "お問い合わせを送信" : "Send Enquiry";
 
   const setStatus = (message) => {
     if (status instanceof HTMLElement) {
@@ -45,16 +48,22 @@
     event.preventDefault();
 
     if (!form.reportValidity()) {
-      setStatus("Complete the required fields before sending your enquiry.");
+      setStatus(
+        japanese
+          ? "必須項目を入力してから送信してください。"
+          : "Complete the required fields before sending your enquiry."
+      );
       return;
     }
 
-    setStatus("Sending your enquiry securely…");
+    setStatus(
+      japanese ? "お問い合わせを安全に送信しています…" : "Sending your enquiry securely…"
+    );
     form.setAttribute("aria-busy", "true");
 
     if (submitButton instanceof HTMLButtonElement) {
       submitButton.disabled = true;
-      submitButton.textContent = "Sending…";
+      submitButton.textContent = japanese ? "送信中…" : "Sending…";
     }
 
     const controller = new AbortController();
@@ -85,7 +94,10 @@
             : "";
 
         throw new Error(
-          serviceMessage || "The enquiry service did not accept the submission."
+          serviceMessage ||
+            (japanese
+              ? "お問い合わせサービスが送信を受け付けませんでした。"
+              : "The enquiry service did not accept the submission.")
         );
       }
 
@@ -95,16 +107,20 @@
         error instanceof DOMException && error.name === "AbortError";
 
       setStatus(
-        timedOut
-          ? "The enquiry service took too long to respond. Please try again, or email info@englishire.com directly."
-          : "Your enquiry could not be sent just now. Please try again, or email info@englishire.com directly."
+        japanese
+          ? timedOut
+            ? "送信サービスからの応答に時間がかかっています。もう一度お試しいただくか、info@englishire.com へメールでご連絡ください。"
+            : "現在、お問い合わせを送信できませんでした。もう一度お試しいただくか、info@englishire.com へメールでご連絡ください。"
+          : timedOut
+            ? "The enquiry service took too long to respond. Please try again, or email info@englishire.com directly."
+            : "Your enquiry could not be sent just now. Please try again, or email info@englishire.com directly."
       );
 
       form.removeAttribute("aria-busy");
 
       if (submitButton instanceof HTMLButtonElement) {
         submitButton.disabled = false;
-        submitButton.textContent = "Send Enquiry";
+        submitButton.textContent = idleButtonText;
         submitButton.focus();
       }
     } finally {
