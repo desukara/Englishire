@@ -7,16 +7,11 @@ from bs4 import BeautifulSoup
 import generate_japanese_site_reviewed as reviewed
 from japanese_strict import STRICT_OVERRIDES
 
-# Source-keyed translations take precedence over every machine-generated cache
-# entry and every earlier repair layer.
+# Exact source-keyed translations are the only language source used by the
+# release build. The strict coverage audit fails before generation if any
+# canonical English string lacks a reviewed Japanese counterpart.
 reviewed.final.recovery.EXACT_OVERRIDES.update(STRICT_OVERRIDES)
-
-reviewed.final.FINAL_REPLACEMENTS.extend([
-    ("可用性", "空き状況"),
-    ("時間割のエントリ", "時間割上の項目"),
-    ("司牧", "学習者支援"),
-    ("臨時教員", "短期講師"),
-])
+reviewed.final.recovery.generator.translate_all = lambda strings, cache: None
 
 SERVICE_PAGES = {
     "index.html", "teacher-cover.html", "how-it-works.html",
