@@ -31,6 +31,19 @@ jobs:
       - name: Generate Japanese counterparts from English source
         run: python scripts/generate_japanese_site_fast.py
 
+      - name: Commit generated Japanese pages to recovery branch
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          git config user.name "Englishire parity bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add ja scripts/ja_translation_cache.json
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+          else
+            git commit -m "Rebuild Japanese site from canonical English pages [generated-ja]"
+            git push origin HEAD:agent/japanese-parity-recovery
+          fi
+
       - name: Run strict parity audit
         run: python scripts/check_japanese_parity.py
 
@@ -39,16 +52,3 @@ jobs:
           python -m compileall scripts
           if [ -f package.json ]; then npm install --ignore-scripts --no-audit --no-fund; fi
           if npm run | grep -q 'validate'; then npm run validate; fi
-
-      - name: Commit generated Japanese pages
-        if: ${{ github.event_name == 'push' }}
-        run: |
-          git config user.name "Englishire parity bot"
-          git config user.email "actions@users.noreply.github.com"
-          git add ja scripts/ja_translation_cache.json
-          if git diff --cached --quiet; then
-            echo "No generated changes"
-            exit 0
-          fi
-          git commit -m "Rebuild Japanese site from canonical English pages [generated-ja]"
-          git push origin HEAD:agent/japanese-parity-recovery
