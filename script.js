@@ -29,7 +29,7 @@
   const targetHref = equivalent ? (japanese ? `../${equivalent}` : `ja/${equivalent}`) : null;
   const targetLabel = japanese ? "English" : "日本語";
   const targetLang = japanese ? "en" : "ja";
-  const cssHref = japanese ? "../bilingual.css?v=20260722-2" : "bilingual.css?v=20260722-2";
+  const cssHref = japanese ? "../bilingual.css?v=20260722-3" : "bilingual.css?v=20260722-3";
 
   if (!document.querySelector('link[href*="bilingual.css"]')) {
     const stylesheet = document.createElement("link");
@@ -56,6 +56,27 @@
     return element;
   };
 
+  if (japanese) {
+    const nav = document.querySelector("#englishire-primary-navigation");
+    if (nav instanceof HTMLElement) {
+      nav.setAttribute("aria-label", "メインナビゲーション");
+      nav.innerHTML = '<a href="teacher-cover.html">講師手配</a><a href="how-it-works.html">ご利用の流れ</a><a href="englishire-standard.html">Englishireの基準</a><a href="about.html">Englishireについて</a><a href="questions.html">よくあるご質問</a><a class="primary-nav__enquiry" href="contact.html">お問い合わせ</a>';
+      nav.querySelectorAll("a").forEach((link) => {
+        if (link.getAttribute("href") === file) link.setAttribute("aria-current", "page");
+      });
+    }
+
+    const footerTop = document.querySelector(".site-footer__top");
+    if (footerTop instanceof HTMLElement) {
+      footerTop.innerHTML = '<div class="site-footer__brand"><a class="site-footer__masthead" href="index.html"><img src="../englishire-logo.png" width="1327" height="380" alt="Englishire" style="width:250px;height:auto;display:block;margin-bottom:.75rem"></a><p class="site-footer__statement">東京都内の学校向け英語講師の代講・短期手配。</p></div><nav class="site-footer__navigation" aria-label="サービス"><p class="site-footer__navigation-title">サービス</p><a href="teacher-cover.html">講師手配</a><a href="how-it-works.html">ご利用の流れ</a><a href="englishire-standard.html">Englishireの基準</a><a href="about.html">Englishireについて</a><a href="questions.html">よくあるご質問</a><a href="contact.html">お問い合わせ</a></nav><nav class="site-footer__navigation" aria-label="方針と案内"><p class="site-footer__navigation-title">方針と案内</p><a href="service-standards.html">サービス方針</a><a href="accessibility.html">アクセシビリティ</a><a href="editorial-policy.html">編集方針</a><a href="permissions.html">転載・利用許可</a></nav>';
+    }
+
+    const legal = document.querySelector(".site-footer__legal");
+    if (legal instanceof HTMLElement) {
+      legal.innerHTML = '<a href="privacy.html">プライバシー</a><a href="terms.html">利用規約</a><a href="cookies.html">Cookie</a>';
+    }
+  }
+
   const headerInner = document.querySelector(".site-header__inner");
   const menuButton = document.querySelector("#englishire-mobile-nav-toggle");
   if (headerInner instanceof HTMLElement && !headerInner.querySelector(".language-switch")) {
@@ -65,24 +86,6 @@
     if (menuButton instanceof HTMLElement) controls.append(menuButton);
     const navigation = headerInner.querySelector(".primary-nav");
     navigation ? headerInner.insertBefore(controls, navigation) : headerInner.append(controls);
-  }
-
-  if (japanese) {
-    const nav = document.querySelector("#englishire-primary-navigation");
-    if (nav instanceof HTMLElement) {
-      nav.setAttribute("aria-label", "メインナビゲーション");
-      nav.innerHTML = '<a href="teacher-cover.html">講師手配</a><a href="how-it-works.html">ご利用の流れ</a><a href="about.html">Englishireについて</a><a href="questions.html">よくあるご質問</a><a class="primary-nav__enquiry" href="contact.html">お問い合わせ</a>';
-    }
-    document.querySelectorAll(".site-footer__navigation-title").forEach((item) => {
-      if (item.textContent.trim().toLowerCase() === "services") item.textContent = "サービス";
-      if (item.textContent.trim().toLowerCase() === "enquiries") item.textContent = "お問い合わせ";
-    });
-    document.querySelectorAll(".site-footer__legal a").forEach((link) => {
-      const href = link.getAttribute("href") || "";
-      if (href.includes("privacy")) { link.textContent = "プライバシー"; link.setAttribute("href", "privacy.html"); }
-      if (href.includes("terms")) { link.textContent = "利用規約"; link.setAttribute("href", "terms.html"); }
-      if (href.includes("cookies")) { link.textContent = "Cookie"; link.setAttribute("href", "cookies.html"); }
-    });
   }
 
   const footerTop = document.querySelector(".site-footer__top");
@@ -107,7 +110,7 @@
   }
 
   const core = document.createElement("script");
-  core.src = japanese ? "../script-core.js" : "script-core.js";
+  core.src = japanese ? "../script-core.js?v=20260722-3" : "script-core.js?v=20260722-3";
   core.async = false;
   document.head.append(core);
 })();
