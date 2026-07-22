@@ -2,6 +2,7 @@
 """Fail when canonical English source text lacks a reviewed Japanese translation."""
 from __future__ import annotations
 
+import csv
 import json
 import re
 from pathlib import Path
@@ -12,6 +13,7 @@ from bs4 import BeautifulSoup, Comment
 from japanese_strict import STRICT_OVERRIDES
 
 ROOT = Path(__file__).resolve().parents[1]
+REPORT = ROOT / "scripts" / "missing_strict_sources.tsv"
 PAGES = [
     "index.html", "teacher-cover.html", "how-it-works.html",
     "englishire-standard.html", "questions.html", "contact.html",
@@ -103,6 +105,11 @@ for page in PAGES:
         seen.add(source)
         if source not in STRICT_OVERRIDES:
             missing.append((page, kind, element, source))
+
+with REPORT.open("w", encoding="utf-8", newline="") as handle:
+    writer = csv.writer(handle, delimiter="\t", lineterminator="\n")
+    writer.writerow(("page", "kind", "element", "english"))
+    writer.writerows(missing)
 
 if missing:
     print(f"Strict Japanese coverage failed: {len(missing)} English source strings are unreviewed.")
