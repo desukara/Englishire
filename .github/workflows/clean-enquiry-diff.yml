@@ -1,0 +1,145 @@
+name: Clean enquiry repair diff
+
+on:
+  push:
+    branches: [agent/fix-enquiry-flow]
+    paths: [.github/workflows/clean-enquiry-diff.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/fix-enquiry-flow
+          fetch-depth: 0
+      - name: Isolate contact form logic
+        run: |
+          git fetch origin main
+          git checkout origin/main -- script.js
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('contact.html')
+          text = p.read_text(encoding='utf-8')
+          text = text.replace('<script defer="" src="script.js"></script>', '<script defer="" src="script.js"></script>\n<script defer src="contact-form.js"></script>')
+          text = text.replace('id="englishire-email-enquiry-form"', 'id="englishire-contact-form"')
+          p.write_text(text, encoding='utf-8', newline='\n')
+          PY
+          cat > contact-form.js <<'JS'
+          "use strict";
+
+          (() => {
+            const form = document.querySelector("#englishire-contact-form");
+
+            if (!(form instanceof HTMLFormElement)) {
+              return;
+            }
+
+            const status = document.querySelector("#englishire-email-enquiry-status");
+            const submitButton = form.querySelector('button[type="submit"]');
+            const directEmailLink = form.querySelector("[data-direct-email]");
+            const successPage = form.dataset.successPage || "thank-you.html";
+
+            const setStatus = (message) => {
+              if (status instanceof HTMLElement) {
+                status.textContent = message;
+              }
+            };
+
+            if (directEmailLink instanceof HTMLAnchorElement) {
+              directEmailLink.addEventListener("click", () => {
+                const emailAddress =
+                  directEmailLink.dataset.emailAddress || "info@englishire.com";
+
+                if (navigator.clipboard && window.isSecureContext) {
+                  navigator.clipboard.writeText(emailAddress).catch(() => {});
+                }
+
+                setStatus(
+                  "Your email application should open. The address info@englishire.com has also been copied where supported."
+                );
+              });
+            }
+
+            form.addEventListener("submit", async (event) => {
+              event.preventDefault();
+
+              if (!form.reportValidity()) {
+                setStatus("Complete the required fields before sending your enquiry.");
+                return;
+              }
+
+              setStatus("Sending your enquiry securely…");
+              form.setAttribute("aria-busy", "true");
+
+              if (submitButton instanceof HTMLButtonElement) {
+                submitButton.disabled = true;
+                submitButton.textContent = "Sending…";
+              }
+
+              const controller = new AbortController();
+              const timeout = window.setTimeout(() => controller.abort(), 20000);
+
+              try {
+                const response = await fetch(form.action, {
+                  method: "POST",
+                  body: new FormData(form),
+                  headers: { Accept: "application/json" },
+                  signal: controller.signal,
+                });
+
+                let responseData = null;
+                try {
+                  responseData = await response.json();
+                } catch (error) {
+                  responseData = null;
+                }
+
+                if (!response.ok) {
+                  const serviceMessage =
+                    responseData && Array.isArray(responseData.errors)
+                      ? responseData.errors
+                          .map((item) => item && item.message)
+                          .filter(Boolean)
+                          .join(" ")
+                      : "";
+
+                  throw new Error(
+                    serviceMessage || "The enquiry service did not accept the submission."
+                  );
+                }
+
+                window.location.assign(new URL(successPage, window.location.href).href);
+              } catch (error) {
+                const timedOut =
+                  error instanceof DOMException && error.name === "AbortError";
+
+                setStatus(
+                  timedOut
+                    ? "The enquiry service took too long to respond. Please try again, or email info@englishire.com directly."
+                    : "Your enquiry could not be sent just now. Please try again, or email info@englishire.com directly."
+                );
+
+                form.removeAttribute("aria-busy");
+
+                if (submitButton instanceof HTMLButtonElement) {
+                  submitButton.disabled = false;
+                  submitButton.textContent = "Send Enquiry";
+                  submitButton.focus();
+                }
+              } finally {
+                window.clearTimeout(timeout);
+              }
+            });
+          })();
+          JS
+          node --check contact-form.js
+          rm .github/workflows/clean-enquiry-diff.yml
+          git config user.name "Englishire automation"
+          git config user.email "info@englishire.com"
+          git add contact.html contact-form.js script.js .github/workflows/clean-enquiry-diff.yml
+          git commit -m "Isolate reliable contact form handling"
+          git push origin HEAD:agent/fix-enquiry-flow
