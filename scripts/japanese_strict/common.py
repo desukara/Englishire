@@ -1,10 +1,15 @@
-"""Common navigation, footer and interface translations."""
+"""Common navigation, footer, interface and structured-data translations."""
 
 TRANSLATIONS = {
     "Temporary English Teacher Cover in Tokyo | Englishire": "東京の学校向け英語講師の代講・短期手配 | Englishire",
     "Temporary English Teacher Cover for Tokyo Schools | Englishire": "東京の学校向け英語講師の代講・短期手配 | Englishire",
     "Temporary English Teacher Cover · Tokyo": "東京都内の学校向け英語講師の代講・短期手配",
     "Temporary Teacher Cover · Tokyo": "東京都内の学校向け英語講師の代講・短期手配",
+    "Temporary English Teacher Cover": "英語講師の代講・短期手配",
+    "Temporary English teacher cover": "英語講師の代講・短期手配",
+    "Temporary teacher cover": "講師の代講・短期手配",
+    "Englishire provides considered temporary English teacher cover for schools throughout Tokyo.": "Englishireは、東京都内の学校向けに、ご依頼内容を丁寧に確認したうえで英語講師の代講・短期手配を提供します。",
+    "Tokyo, Japan": "東京都",
     "Skip to main content": "本文へ移動",
     "Menu": "メニュー",
     "Teacher Cover": "講師の代講・短期手配",
