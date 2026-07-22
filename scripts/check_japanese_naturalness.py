@@ -5,7 +5,6 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 JA = ROOT / "ja"
-REPORT = ROOT / "scripts" / "naturalness_failures.txt"
 
 BANNED = {
     "長期の短期手配": "数週間以上にわたる一時的な手配",
@@ -29,8 +28,6 @@ for path in sorted(JA.glob("*.html")):
     for bad, preferred in BANNED.items():
         if bad in text:
             errors.append(f"{path.name}: found {bad!r}; prefer {preferred!r}")
-
-REPORT.write_text("\n".join(errors) + ("\n" if errors else ""), encoding="utf-8")
 
 if errors:
     print("Japanese naturalness audit failed:", file=sys.stderr)
