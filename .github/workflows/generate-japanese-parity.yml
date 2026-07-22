@@ -18,6 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.head_ref || github.ref_name }}
           fetch-depth: 0
 
       - uses: actions/setup-python@v5
@@ -49,7 +50,6 @@ jobs:
           if npm run | grep -q 'validate'; then npm run validate; fi
 
       - name: Commit deterministic Japanese pages
-        if: ${{ github.event_name == 'push' }}
         run: |
           git config user.name "Englishire parity bot"
           git config user.email "actions@users.noreply.github.com"
@@ -58,5 +58,5 @@ jobs:
             echo "No generated changes"
           else
             git commit -m "Apply post-merge Japanese refinements [generated-ja]"
-            git push origin HEAD:${{ github.ref_name }}
+            git push origin HEAD:${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}
           fi
