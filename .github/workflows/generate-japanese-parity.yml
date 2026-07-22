@@ -3,7 +3,7 @@ name: Generate Japanese parity site
 on:
   push:
     branches:
-      - agent/japanese-editorial-corrections
+      - agent/final-japanese-editorial-audit
   pull_request:
     branches:
       - main
@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: agent/japanese-editorial-corrections
+          ref: agent/final-japanese-editorial-audit
           fetch-depth: 0
 
       - uses: actions/setup-python@v5
@@ -28,13 +28,13 @@ jobs:
       - name: Install generator dependencies
         run: pip install beautifulsoup4 deep-translator
 
-      - name: Generate reviewed Japanese counterparts
-        run: python scripts/generate_japanese_site_reviewed.py
+      - name: Generate final reviewed Japanese counterparts
+        run: python scripts/generate_japanese_site_release.py
 
       - name: Run strict Japanese parity audit
         run: python scripts/check_japanese_parity.py
 
-      - name: Run Japanese brand and contact quality audit
+      - name: Run Japanese editorial quality audit
         run: python scripts/check_japanese_quality.py
 
       - name: Run existing static-site validation
@@ -43,7 +43,7 @@ jobs:
           if [ -f package.json ]; then npm install --ignore-scripts --no-audit --no-fund; fi
           if npm run | grep -q 'validate'; then npm run validate; fi
 
-      - name: Commit validated Japanese pages to correction branch
+      - name: Commit validated Japanese pages to audit branch
         if: ${{ github.event_name == 'push' }}
         run: |
           git config user.name "Englishire parity bot"
@@ -52,6 +52,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No generated changes"
           else
-            git commit -m "Correct Japanese company voice and mistranslations [generated-ja]"
-            git push origin HEAD:agent/japanese-editorial-corrections
+            git commit -m "Complete Japanese editorial audit [generated-ja]"
+            git push origin HEAD:agent/final-japanese-editorial-audit
           fi
