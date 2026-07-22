@@ -3,7 +3,7 @@ name: Generate Japanese parity site
 on:
   push:
     branches:
-      - agent/final-japanese-editorial-audit
+      - agent/strict-japanese-retranslation
   pull_request:
     branches:
       - main
@@ -18,7 +18,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: agent/final-japanese-editorial-audit
           fetch-depth: 0
 
       - uses: actions/setup-python@v5
@@ -28,7 +27,7 @@ jobs:
       - name: Install generator dependencies
         run: pip install beautifulsoup4 deep-translator
 
-      - name: Generate final reviewed Japanese counterparts
+      - name: Generate strictly reviewed Japanese counterparts
         run: python scripts/generate_japanese_site_release.py
 
       - name: Run strict Japanese parity audit
@@ -52,6 +51,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No generated changes"
           else
-            git commit -m "Complete Japanese editorial audit [generated-ja]"
-            git push origin HEAD:agent/final-japanese-editorial-audit
+            git commit -m "Apply strict Japanese translations [generated-ja]"
+            git push origin HEAD:${{ github.ref_name }}
           fi
