@@ -29,22 +29,7 @@ jobs:
         run: pip install beautifulsoup4 deep-translator
 
       - name: Generate final reviewed Japanese counterparts
-        run: python scripts/generate_japanese_site_reviewed.py
-
-      - name: Build Japanese quality diagnostic
-        run: python scripts/report_japanese_quality.py
-
-      - name: Commit generated Japanese pages for inspection
-        run: |
-          git config user.name "Englishire parity bot"
-          git config user.email "actions@users.noreply.github.com"
-          git add ja scripts/ja_translation_cache.json scripts/japanese_quality_report.txt
-          if git diff --cached --quiet; then
-            echo "No generated changes"
-          else
-            git commit -m "Complete Japanese editorial audit [generated-ja]"
-            git push origin HEAD:agent/final-japanese-editorial-audit
-          fi
+        run: python scripts/generate_japanese_site_release.py
 
       - name: Run strict Japanese parity audit
         run: python scripts/check_japanese_parity.py
@@ -57,3 +42,16 @@ jobs:
           python -m compileall scripts
           if [ -f package.json ]; then npm install --ignore-scripts --no-audit --no-fund; fi
           if npm run | grep -q 'validate'; then npm run validate; fi
+
+      - name: Commit validated Japanese pages to audit branch
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          git config user.name "Englishire parity bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add ja scripts/ja_translation_cache.json
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+          else
+            git commit -m "Complete Japanese editorial audit [generated-ja]"
+            git push origin HEAD:agent/final-japanese-editorial-audit
+          fi
