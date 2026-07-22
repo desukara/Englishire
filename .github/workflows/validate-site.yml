@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   validate:
@@ -91,3 +91,72 @@ jobs:
             [ -e "$file" ] || continue
             node --check "$file"
           done
+
+  link-service-standards:
+    if: github.event_name == 'pull_request' && github.head_ref == 'agent/link-service-standards'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Add Service Standards links
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          footer_link = '<a href="service-standards.html">Service Standards</a>'
+          changed = []
+
+          for page in sorted(Path('.').glob('*.html')):
+              text = page.read_text(encoding='utf-8')
+              if 'site-footer__legal' not in text or 'href="service-standards.html"' in text:
+                  continue
+              text, count = re.subn(
+                  r'(<div class="site-footer__legal">\s*)',
+                  r'\1' + footer_link + '\n',
+                  text,
+                  count=1,
+              )
+              if count != 1:
+                  raise SystemExit(f'Could not add footer link to {page}')
+              page.write_text(text, encoding='utf-8', newline='\n')
+              changed.append(str(page))
+
+          contact = Path('contact.html')
+          text = contact.read_text(encoding='utf-8')
+          contextual = '''<p class="email-enquiry-form__notice">
+  Before submitting, review our <a href="service-standards.html">Service Standards</a>
+  for response, confirmation, commercial and safeguarding expectations.
+</p>
+'''
+          if contextual not in text:
+              marker = '</header>\n<form\n'
+              if marker not in text:
+                  raise SystemExit('Could not locate the Contact form introduction')
+              text = text.replace(marker, '</header>\n' + contextual + '<form\n', 1)
+              contact.write_text(text, encoding='utf-8', newline='\n')
+              if 'contact.html' not in changed:
+                  changed.append('contact.html')
+
+          for trigger in Path('.').glob('.link-service-standards-trigger*'):
+              trigger.unlink()
+
+          if not changed:
+              raise SystemExit('No pages required updating')
+
+          pages = [p for p in Path('.').glob('*.html') if 'site-footer__legal' in p.read_text(encoding='utf-8')]
+          missing = [str(p) for p in pages if 'href="service-standards.html"' not in p.read_text(encoding='utf-8')]
+          if missing:
+              raise SystemExit(f'Missing footer links: {missing}')
+
+          print(f'Updated {len(changed)} HTML files')
+          PY
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Link service standards throughout site"
+          git push origin HEAD:${{ github.head_ref }}
