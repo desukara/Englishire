@@ -1135,7 +1135,7 @@ questions.html	282	meta	twitter:title	Questions About Temporary English Teacher 
 questions.html	283	meta	twitter:description	A clear reference concerning schools, teachers, lessons, assignments and temporary English teacher cover in Tokyo.	東京の学校、講師、授業、ご依頼、英語講師の短期代講について明確にご案内します。
 questions.html	284	meta	twitter:image	https://englishire.com/englishire-social-preview.jpg	https://englishire.com/englishire-social-preview.jpg
 contact.html	1	text	[document]	html	html
-contact.html	2	text	title	Request Temporary English Teacher Cover | Englishire	英語講師の代講・短期手配をリクエスト | Englishire
+contact.html	2	text	title	Request Temporary English Teacher Cover | Englishire	英語講師の代講・短期手配を相談する | Englishire
 contact.html	3	text	a	Skip to main content	本文へ移動
 contact.html	4	text	span	Menu	メニュー
 contact.html	5	text	a	Teacher Cover	講師の代講・短期手配
@@ -1145,74 +1145,74 @@ contact.html	8	text	a	Journal	Journal
 contact.html	9	text	a	About	Englishireについて
 contact.html	10	text	a	Request Teacher Cover	代講について相談する
 contact.html	11	text	p	Request Teacher Cover	代講について相談する
-contact.html	12	text	h1	Clear teacher cover begins with the right information.	透明な講師の代講は正しい情報から始まります。
-contact.html	13	text	p	Whether cover is needed tomorrow morning or planned for a future date, we welcome your enquiry.	明日の朝にカバーが必要な場合でも、将来の予定がある場合でも、お問い合わせをお待ちしております。
-contact.html	14	text	p	Provide the details currently available, including dates, lesson times, location and learner information. We will review the assignment individually before confirming suitable cover.	日付、レッスン時間、場所、学習者情報など、現在入手可能な詳細を入力します。適切なカバーを確認する前に、課題を個別に確認します。
-contact.html	15	text	a	Complete the Enquiry Form	お問い合わせフォームに記入してください
+contact.html	12	text	h1	Clear teacher cover begins with the right information.	適切な講師代講は、必要な情報を正確に共有することから始まります。
+contact.html	13	text	p	Whether cover is needed tomorrow morning or planned for a future date, we welcome your enquiry.	明日の朝に代講が必要な場合も、先の日程を計画している場合も、お問い合わせください。
+contact.html	14	text	p	Provide the details currently available, including dates, lesson times, location and learner information. We will review the assignment individually before confirming suitable cover.	日程、授業時間、所在地、学習者情報など、現時点で分かる内容をお知らせください。適切な代講を確定する前に、ご依頼を個別に確認します。
+contact.html	15	text	a	Complete the Enquiry Form	お問い合わせフォームへ
 contact.html	16	text	a	Read How It Works	ご利用の流れを見る
-contact.html	17	text	figcaption	A telephone operator works at a historic airport switchboard. The image reflects the value of precise information when a timely response is needed.	電話交換手は歴史ある空港の交換局で働いています。画像は、タイムリーな応答が必要な場合の正確な情報の価値を反映しています。
-contact.html	18	text	p	Information to Include	含める情報
-contact.html	19	text	h2	Give us the facts needed to assess the assignment.	課題を評価するために必要な事実を教えてください。
-contact.html	20	text	p	A concise outline of the school, timetable, learners and work required is enough to begin.	学校、時間割、学習者、必要な作業の簡潔な概要を説明するだけで始めるのに十分です。
-contact.html	21	text	p	Urgent circumstances do not always allow every detail to be known at once. Send the information currently available and identify what remains to be confirmed.	緊急の状況では、すべての詳細を一度に把握できるとは限りません。現在入手可能な情報を送信し、確認が必要な情報を特定します。
-contact.html	22	text	p	Complete information helps us assess availability, suitability and travel practicalities without unnecessary delay.	完全な情報は、不必要な遅延なく空き状況、適合性、旅行の実用性を評価するのに役立ちます。
-contact.html	23	text	p	Sending an enquiry begins the review process. Cover is confirmed only after Englishire has agreed the assignment.	問い合わせを送信すると、審査プロセスが開始されます。表紙は、Englishire が業務に同意した後にのみ確認されます。
-contact.html	24	text	p	Teacher Cover Enquiry	講師の代講のお問い合わせ
-contact.html	25	text	h2	Request temporary English teacher cover.	一時的な英語講師の代講をリクエストします。
-contact.html	26	text	p	Fields marked with an asterisk are required before your enquiry can be submitted securely.	アスタリスクの付いたフィールドは、お問い合わせを安全に送信するために必須です。
-contact.html	27	text	label	Leave this field empty	このフィールドは空のままにしておきます
-contact.html	28	text	p	Your enquiry will be transmitted securely to Englishire when you select “Send Enquiry”.	「お問い合わせを送信」を選択すると、お問い合わせは Englishire に安全に送信されます。
-contact.html	29	text	label	Contact name *	連絡先名 *
-contact.html	30	text	label	Contact email *	連絡先メールアドレス *
+contact.html	17	text	figcaption	A telephone operator works at a historic airport switchboard. The image reflects the value of precise information when a timely response is needed.	歴史ある空港の交換台で電話交換手が業務を行っています。迅速な対応が必要なときほど、正確な情報が重要であることを表す写真です。
+contact.html	18	text	p	Information to Include	お知らせいただきたい情報
+contact.html	19	text	h2	Give us the facts needed to assess the assignment.	ご依頼を検討するために必要な事実をお知らせください。
+contact.html	20	text	p	A concise outline of the school, timetable, learners and work required is enough to begin.	学校、時間割、学習者、必要な業務について簡潔にお知らせいただければ、検討を始められます。
+contact.html	21	text	p	Urgent circumstances do not always allow every detail to be known at once. Send the information currently available and identify what remains to be confirmed.	急ぎの場合、すべての情報がすぐに分からないこともあります。現時点で分かる内容を送り、未確認の点を明記してください。
+contact.html	22	text	p	Complete information helps us assess availability, suitability and travel practicalities without unnecessary delay.	情報がそろっているほど、講師の空き状況、適合性、移動条件を不要な遅れなく確認できます。
+contact.html	23	text	p	Sending an enquiry begins the review process. Cover is confirmed only after Englishire has agreed the assignment.	お問い合わせを送ると検討が始まります。Englishireがご依頼内容を確認し、明確に合意した後に代講が確定します。
+contact.html	24	text	p	Teacher Cover Enquiry	英語講師の代講に関するお問い合わせ
+contact.html	25	text	h2	Request temporary English teacher cover.	英語講師の代講・短期手配をご相談ください。
+contact.html	26	text	p	Fields marked with an asterisk are required before your enquiry can be submitted securely.	アスタリスク（*）の付いた項目は必須です。
+contact.html	27	text	label	Leave this field empty	この項目には入力しないでください
+contact.html	28	text	p	Your enquiry will be transmitted securely to Englishire when you select “Send Enquiry”.	「お問い合わせを送信」を選ぶと、入力内容がEnglishireへ安全に送信されます。
+contact.html	29	text	label	Contact name *	ご担当者名 *
+contact.html	30	text	label	Contact email *	ご担当者のメールアドレス *
 contact.html	31	text	label	School name *	学校名 *
-contact.html	32	text	label	School location *	学校の所在地 *
+contact.html	32	text	label	School location *	学校所在地 *
 contact.html	33	text	label	Nearest station	最寄り駅
-contact.html	34	text	label	Requested dates *	希望日 *
-contact.html	35	text	p	For example, 12–16 October 2026.	たとえば、2026 年 10 月 12 日から 16 日までです。
-contact.html	36	text	label	Lesson times *	レッスン時間*
-contact.html	37	text	label	Learner ages and class sizes *	学習者の年齢とクラスの規模 *
-contact.html	38	text	label	Lesson type and objectives *	レッスンの種類と目的 *
-contact.html	39	text	label	Materials provided	提供される資料
-contact.html	40	text	label	Arrival and reporting instructions	到着と報告の手順
-contact.html	41	text	label	Special requirements	特別な要件
-contact.html	42	text	span	This is an urgent enquiry.	緊急のお問い合わせです。
+contact.html	34	text	label	Requested dates *	ご希望の日程 *
+contact.html	35	text	p	For example, 12–16 October 2026.	例：2026年10月12日〜16日
+contact.html	36	text	label	Lesson times *	授業時間・時間割 *
+contact.html	37	text	label	Learner ages and class sizes *	学習者の年齢・クラス人数 *
+contact.html	38	text	label	Lesson type and objectives *	授業形式・学習目標 *
+contact.html	39	text	label	Materials provided	学校で用意する教材
+contact.html	40	text	label	Arrival and reporting instructions	来校・受付・報告方法
+contact.html	41	text	label	Special requirements	その他のご要望・注意事項
+contact.html	42	text	span	This is an urgent enquiry.	急ぎのご相談です。
 contact.html	43	text	button	Send Enquiry	お問い合わせを送信
-contact.html	44	text	h3	Prefer to write the email yourself?	自分でメールを書きたいですか?
-contact.html	45	text	p	For temporary teacher cover enquiries, please email Englishire directly.	短期講師カバーに関するお問い合わせは、Englishire に直接メールしてください。
+contact.html	44	text	h3	Prefer to write the email yourself?	メールで直接問い合わせる場合
+contact.html	45	text	p	For temporary teacher cover enquiries, please email Englishire directly.	英語講師の代講について、Englishireへ直接メールでお問い合わせいただけます。
 contact.html	46	text	a	info@englishire.com	info@englishire.com
 contact.html	47	text	p	Please include the school location, requested dates, lesson times, learner age groups and the nature of the assignment.	学校所在地、ご希望の日程、授業時間、学習者の年齢層、ご依頼内容をお知らせください。
-contact.html	48	text	p	Assignment Checklist	課題チェックリスト
-contact.html	49	text	h2	Check that the essential details are included.	重要な詳細が含まれていることを確認してください。
-contact.html	50	text	li	School name and location	学校名と所在地
+contact.html	48	text	p	Assignment Checklist	送信前の確認事項
+contact.html	49	text	h2	Check that the essential details are included.	必要な情報が含まれているかご確認ください。
+contact.html	50	text	li	School name and location	学校名・所在地
 contact.html	51	text	li	Nearest station	最寄り駅
-contact.html	52	text	li	Dates and lesson times	日程とレッスン時間
-contact.html	53	text	li	Learner ages and class sizes	学習者の年齢とクラスの規模
-contact.html	54	text	li	Lesson type and objectives	レッスンの種類と目的
-contact.html	55	text	li	Materials provided	提供される資料
-contact.html	56	text	li	Arrival and reporting instructions	到着と報告の手順
-contact.html	57	text	li	Any special requirements	特別な要件
-contact.html	58	text	p	Urgent Enquiries	お急ぎのお問い合わせ
-contact.html	59	text	h2	Send the confirmed details first.	まずは確認済みの内容を送信してください。
-contact.html	60	text	p	If the requirement is urgent and certain details remain uncertain, send the available information and identify what still requires confirmation.	要件が緊急であり、特定の詳細が不明な場合は、利用可能な情報を送信し、まだ確認が必要なものを特定します。
-contact.html	61	text	p	Confirmation and Availability	確認と在庫状況
-contact.html	62	text	h2	An enquiry is reviewed before cover is confirmed.	問い合わせはカバーが確認される前に検討されます。
-contact.html	63	text	p	Teacher cover cannot be confirmed until the assignment has been reviewed and both suitability and availability have been established.	課題がレビューされ、適合性と利用可能性の両方が確立されるまで、講師の代講を確認することはできません。
-contact.html	64	text	p	Common Enquiry Questions	よくあるお問い合わせの質問
-contact.html	65	text	h2	Answers to common questions about submitting an enquiry.	お問い合わせの送信に関するよくある質問への回答。
-contact.html	66	text	p	These answers concern the enquiry itself. The full questions page contains further information about temporary teacher cover.	これらの回答は調査自体に関するものです。完全な質問ページには、短期講師のカバーに関する詳細情報が含まれています。
-contact.html	67	text	summary	What if the timetable is not yet final?	スケジュールがまだ最終決定されていない場合はどうなりますか?
-contact.html	68	text	p	Provide the current version and make clear that it remains provisional. Any material change must be reviewed before cover can be confirmed.	現在のバージョンを提供し、それが暫定版であることを明確にします。材質の変更は、カバーを確認する前にレビューする必要があります。
-contact.html	69	text	summary	May we send supporting documents separately?	添付書類を個別に送ってもいいですか？
-contact.html	70	text	p	Yes. Timetables, lesson plans, school maps and other useful documents may be supplied after the initial enquiry, subject to the communication arrangements provided in our response.	はい。時間割、授業計画、学校地図、その他の有用な文書は、最初の問い合わせ後に、当社からの返答で提供された連絡手配に従って提供される場合があります。
-contact.html	71	text	summary	Does sending an enquiry reserve a teacher?	問い合わせを送ると講師が予約されますか?
-contact.html	72	text	p	No. Sending an enquiry begins the review process. A teacher is reserved only after Englishire has reviewed and expressly confirmed the assignment.	いいえ。問い合わせを送信すると、審査プロセスが開始されます。講師は、Englishire が課題を確認し、明示的に確認した後にのみ予約されます。
-contact.html	73	text	summary	Can we enquire before the need becomes urgent?	緊急の必要が生じる前に問い合わせることはできますか?
-contact.html	74	text	p	Yes. Advance introductions are welcome and can make a future request easier to assess.	はい。事前のご紹介は歓迎です。これにより、将来のリクエストを評価しやすくなります。
+contact.html	52	text	li	Dates and lesson times	日程・授業時間
+contact.html	53	text	li	Learner ages and class sizes	学習者の年齢・クラス人数
+contact.html	54	text	li	Lesson type and objectives	授業形式・学習目標
+contact.html	55	text	li	Materials provided	学校で用意する教材
+contact.html	56	text	li	Arrival and reporting instructions	来校・受付・報告方法
+contact.html	57	text	li	Any special requirements	その他のご要望・注意事項
+contact.html	58	text	p	Urgent Enquiries	急ぎのご相談
+contact.html	59	text	h2	Send the confirmed details first.	まず、確認できている情報をお送りください。
+contact.html	60	text	p	If the requirement is urgent and certain details remain uncertain, send the available information and identify what still requires confirmation.	急ぎで、一部の情報がまだ分からない場合は、現時点で分かる内容を送り、未確認の点を明記してください。
+contact.html	61	text	p	Confirmation and Availability	手配の確定と空き状況
+contact.html	62	text	h2	An enquiry is reviewed before cover is confirmed.	代講を確定する前に、お問い合わせ内容を確認します。
+contact.html	63	text	p	Teacher cover cannot be confirmed until the assignment has been reviewed and both suitability and availability have been established.	ご依頼内容を確認し、講師の適合性と空き状況の両方を確認するまでは、代講を確定できません。
+contact.html	64	text	p	Common Enquiry Questions	お問い合わせに関するよくあるご質問
+contact.html	65	text	h2	Answers to common questions about submitting an enquiry.	お問い合わせの送信について、よくある質問にお答えします。
+contact.html	66	text	p	These answers concern the enquiry itself. The full questions page contains further information about temporary teacher cover.	ここではお問い合わせ手続きについて説明します。英語講師の代講・短期手配全体については、よくあるご質問のページをご覧ください。
+contact.html	67	text	summary	What if the timetable is not yet final?	時間割がまだ確定していない場合はどうすればよいですか？
+contact.html	68	text	p	Provide the current version and make clear that it remains provisional. Any material change must be reviewed before cover can be confirmed.	現在の時間割を送り、暫定版であることを明記してください。重要な変更がある場合は、代講の確定前に改めて確認します。
+contact.html	69	text	summary	May we send supporting documents separately?	関連資料を別に送ることはできますか？
+contact.html	70	text	p	Yes. Timetables, lesson plans, school maps and other useful documents may be supplied after the initial enquiry, subject to the communication arrangements provided in our response.	はい。時間割、授業計画、学校案内図などの資料は、最初のお問い合わせ後に、Englishireからご案内する方法で送付できます。
+contact.html	71	text	summary	Does sending an enquiry reserve a teacher?	問い合わせを送ると講師を確保できますか？
+contact.html	72	text	p	No. Sending an enquiry begins the review process. A teacher is reserved only after Englishire has reviewed and expressly confirmed the assignment.	いいえ。お問い合わせを送ると検討が始まります。Englishireが内容を確認し、明確に手配を確定した後に講師を確保します。
+contact.html	73	text	summary	Can we enquire before the need becomes urgent?	急ぎになる前に問い合わせてもよいですか？
+contact.html	74	text	p	Yes. Advance introductions are welcome and can make a future request easier to assess.	はい。事前に学校について共有していただくと、将来のご依頼をより円滑に検討できます。
 contact.html	75	text	a	View All Questions	よくあるご質問をすべて見る
-contact.html	76	text	p	What Happens Next	次に何が起こるか
-contact.html	77	text	h2	We will review the assignment and explain the next step.	課題を確認し、次のステップについて説明します。
-contact.html	78	text	p	Our response will address any questions, availability and the practical steps required before cover can be confirmed.	弊社からの回答は、ご質問、在庫状況、補償内容を確認する前に必要な実際的な手順などに対応します。
-contact.html	79	text	a	Return to the Form	フォームに戻る
+contact.html	76	text	p	What Happens Next	お問い合わせ後の流れ
+contact.html	77	text	h2	We will review the assignment and explain the next step.	ご依頼内容を確認し、次の手順をご説明します。
+contact.html	78	text	p	Our response will address any questions, availability and the practical steps required before cover can be confirmed.	ご質問への回答、講師の空き状況、代講を確定する前に必要な実務手順をお伝えします。
+contact.html	79	text	a	Return to the Form	フォームへ戻る
 contact.html	80	text	a	Read about teacher cover	講師の代講・短期手配について見る
 contact.html	81	text	span	Temporary Teacher Cover · Tokyo	東京都内の学校向け英語講師の代講・短期手配
 contact.html	82	text	p	Considered temporary English teacher cover for Tokyo schools.	東京の学校を対象に、内容を丁寧に確認したうえで英語講師の代講・短期手配を行います。
@@ -1239,25 +1239,25 @@ contact.html	102	text	p	This website works best with JavaScript enabled. Without
 contact.html	103	attr:aria-label	a	Englishire homepage	Englishireホームページ
 contact.html	104	attr:alt	img	Englishire	Englishire
 contact.html	105	attr:aria-label	nav	Primary navigation	メインナビゲーション
-contact.html	106	attr:aria-label	div	Contact page actions	お問い合わせページのアクション
-contact.html	107	attr:alt	img	A telephone operator working at a historic airport switchboard	歴史ある空港交換局で働く電話交換手
+contact.html	106	attr:aria-label	div	Contact page actions	お問い合わせページの操作
+contact.html	107	attr:alt	img	A telephone operator working at a historic airport switchboard	歴史ある空港の交換台で業務を行う電話交換手
 contact.html	108	attr:aria-label	a	Return to Englishire homepage	Englishireホームページへ戻る
 contact.html	109	attr:alt	img	Englishire	Englishire
 contact.html	110	attr:aria-label	nav	Footer service navigation	フッターのサービス案内
 contact.html	111	attr:aria-label	nav	Footer company navigation	フッターのEnglishire案内
-contact.html	112	meta	description	Request temporary English teacher cover for your school in Tokyo. Send Englishire the timetable, location, learner and lesson details required to review the assignment properly.	東京の学校の英語講師の臨時カバーをリクエストしてください。課題を適切にレビューするために必要な時間割、場所、学習者、およびレッスンの詳細を Englishire に送信します。
+contact.html	112	meta	description	Request temporary English teacher cover for your school in Tokyo. Send Englishire the timetable, location, learner and lesson details required to review the assignment properly.	東京の学校向け英語講師の代講・短期手配をご相談ください。時間割、所在地、学習者、授業内容をお送りいただき、Englishireがご依頼を適切に確認します。
 contact.html	113	meta	og:type	website	website
-contact.html	114	meta	og:title	Request Temporary English Teacher Cover | Englishire	英語講師の代講・短期手配をリクエスト | Englishire
-contact.html	115	meta	og:description	Send Englishire the details of your school, timetable and temporary English teacher cover requirement.	学校、時間割、英語講師の代講・短期手配要件の詳細を Englishire に送信してください。
+contact.html	114	meta	og:title	Request Temporary English Teacher Cover | Englishire	英語講師の代講・短期手配を相談する | Englishire
+contact.html	115	meta	og:description	Send Englishire the details of your school, timetable and temporary English teacher cover requirement.	学校の概要、時間割、必要な英語講師の代講・短期手配についてEnglishireへお知らせください。
 contact.html	116	meta	og:url	https://englishire.com/contact.html	https://englishire.com/ja/contact.html
 contact.html	117	meta	og:image	https://englishire.com/englishire-social-preview.jpg	https://englishire.com/englishire-social-preview.jpg
 contact.html	118	meta	og:image:alt	Englishire temporary English teacher cover for Tokyo schools	東京の学校向けEnglishire英語講師代講サービス
 contact.html	119	meta	twitter:card	summary_large_image	summary_large_image
-contact.html	120	meta	twitter:title	Request Temporary English Teacher Cover | Englishire	英語講師の代講・短期手配をリクエスト | Englishire
-contact.html	121	meta	twitter:description	A considered enquiry form for temporary English teacher cover in Tokyo.	東京の臨時英語講師の募集に関する検討済みの問い合わせフォーム。
+contact.html	120	meta	twitter:title	Request Temporary English Teacher Cover | Englishire	英語講師の代講・短期手配を相談する | Englishire
+contact.html	121	meta	twitter:description	A considered enquiry form for temporary English teacher cover in Tokyo.	東京の学校向け英語講師代講を、必要事項に基づいて丁寧に検討するためのお問い合わせフォームです。
 contact.html	122	meta	twitter:image	https://englishire.com/englishire-social-preview.jpg	https://englishire.com/englishire-social-preview.jpg
 about.html	1	text	[document]	html	html
-about.html	2	text	title	About Englishire | Why We Exist	Englishireについて |Englishireが存在する理由
+about.html	2	text	title	About Englishire | Why We Exist	Englishireについて | 設立の理由
 about.html	3	text	a	Skip to main content	本文へ移動
 about.html	4	text	span	Menu	メニュー
 about.html	5	text	a	Teacher Cover	講師の代講・短期手配
@@ -1267,85 +1267,85 @@ about.html	8	text	a	Journal	Journal
 about.html	9	text	a	About	Englishireについて
 about.html	10	text	a	Request Teacher Cover	代講について相談する
 about.html	11	text	p	About Englishire	Englishireについて
-about.html	12	text	h1	Continuity deserves more than a hurried answer.	継続性には、急いで答える以上の価値があります。
-about.html	13	text	p	Englishire was established to help schools preserve the quiet order of education when circumstances require a temporary change of teacher.	Englishire は、状況により講師の一時的な変更が必要な場合に、学校が静かな教育秩序を維持できるように支援するために設立されました。
-about.html	14	text	p	Our work is shaped by Tokyo classrooms, Japanese learners and a simple conviction: temporary cover should support what a school has carefully built, not oblige it to lower its expectations merely because the timetable has become difficult.	Englishireの活動は、東京の教室、日本語を母語とする学習者、そしてシンプルな信念によって形作られています。それは、一時的な代講は、学校が慎重に構築してきたものをサポートするものであるべきであり、単に時間割が難しくなったという理由だけで学校の期待を下げる義務を負うものではありません。
+about.html	12	text	h1	Continuity deserves more than a hurried answer.	授業の継続には、急場しのぎではない対応が必要です。
+about.html	13	text	p	Englishire was established to help schools preserve the quiet order of education when circumstances require a temporary change of teacher.	Englishireは、事情により講師を一時的に替える必要があるときも、学校が落ち着いた教育環境を保てるよう支援するために設立されました。
+about.html	14	text	p	Our work is shaped by Tokyo classrooms, Japanese learners and a simple conviction: temporary cover should support what a school has carefully built, not oblige it to lower its expectations merely because the timetable has become difficult.	Englishireの仕事は、東京の教室、日本の学習者、そして一つの明確な考えに基づいています。短期の代講は、学校が丁寧に築いてきたものを支えるべきであり、時間割が難しくなったというだけで教育への期待を下げさせるものであってはなりません。
 about.html	15	text	a	Read the Englishire Standard	Englishireの基準を読む
 about.html	16	text	a	View Teacher Cover	講師の代講・短期手配を見る
-about.html	17	text	figcaption	Every school has its own character. Temporary cover should enter it with care.	どの学校にもそれぞれの特徴があります。一時的な代講は慎重に入れてください。
-about.html	18	text	p	Why We Exist	Englishireが存在する理由
-about.html	19	text	h2	Schools need time to make sound staffing decisions.	学校は人員配置を適切に決定する時間が必要です。
-about.html	20	text	p	Every school develops its own character over time. Its routines become familiar. Its expectations become understood. Pupils recognise the people who greet them, the classrooms in which they learn and the standards which quietly shape each school day.	どの学校も時間の経過とともに独自の個性を発展させます。そのルーチンは慣れ親しんだものになります。その期待が理解されるようになります。学習者たちは、挨拶してくれる人々、学習する教室、そして毎日の学校生活を静かに形作る基準を認識します。
-about.html	21	text	p	A teacher's absence interrupts that continuity. It need not diminish it.	講師の不在により、その継続は中断されます。それを減らす必要はありません。
-about.html	22	text	p	Englishire was established from a practical observation. Schools rarely lack goodwill when a staffing difficulty arises. What they lack is time. An absence may require an answer before the first lesson. A recruitment process may take longer than expected. A growing timetable may ask more of the existing team than can reasonably be sustained.	Englishire は実践的な観察から設立されました。人員配置に問題が生じた場合、学校が善意を欠くことはほとんどありません。彼らに欠けているのは時間だ。欠席の場合は、最初のレッスンの前に回答が必要になる場合があります。採用プロセスには予想よりも時間がかかる場合があります。スケジュールが拡大すると、合理的に維持できる以上に既存のチームに多くのことが求められる可能性があります。
-about.html	23	text	p	Yet the sound permanent decision is seldom the one made in haste. Proper temporary cover gives a school room to think, recruit and plan without allowing the quality of the school day to become the price of that time.	しかし、健全な永続的な決定が急いで下されることはめったにありません。適切な一時的な代講は、学校に、授業日の質をその時の代償にすることなく、考え、採用し、計画する余地を与えます。
+about.html	17	text	figcaption	Every school has its own character. Temporary cover should enter it with care.	どの学校にも独自の文化があります。短期の代講は、それを尊重して慎重に入るべきです。
+about.html	18	text	p	Why We Exist	Englishireを設立した理由
+about.html	19	text	h2	Schools need time to make sound staffing decisions.	学校が適切な人員判断を行うには、時間が必要です。
+about.html	20	text	p	Every school develops its own character over time. Its routines become familiar. Its expectations become understood. Pupils recognise the people who greet them, the classrooms in which they learn and the standards which quietly shape each school day.	学校は時間をかけて独自の文化を築きます。日常の手順が定着し、期待されることが共有されます。生徒は、自分を迎える人、学ぶ教室、毎日の学校生活を静かに形づくる基準を知っています。
+about.html	21	text	p	A teacher's absence interrupts that continuity. It need not diminish it.	講師の欠勤はその継続を中断しますが、教育の質まで下げる必要はありません。
+about.html	22	text	p	Englishire was established from a practical observation. Schools rarely lack goodwill when a staffing difficulty arises. What they lack is time. An absence may require an answer before the first lesson. A recruitment process may take longer than expected. A growing timetable may ask more of the existing team than can reasonably be sustained.	Englishireは、教育現場での実際の気づきから始まりました。人員の問題が起きたとき、学校に不足しているのは誠意ではなく時間です。欠勤には最初の授業前の回答が必要になり、採用は予定より長引くことがあり、増える時間割が既存の職員に無理な負担を求めることもあります。
+about.html	23	text	p	Yet the sound permanent decision is seldom the one made in haste. Proper temporary cover gives a school room to think, recruit and plan without allowing the quality of the school day to become the price of that time.	しかし、常勤人員についての適切な判断が、急いで行った判断であることはほとんどありません。適切な短期代講は、学校の一日の質を犠牲にせずに、考え、採用し、計画する時間を確保します。
 about.html	24	text	p	Temporary cover should relieve pressure without lowering standards.	短期の代講は、教育の質を下げずに学校の負担を軽減するものであるべきです。
-about.html	25	text	p	The Observation Behind Englishire	Englishire の背後にある観察
-about.html	26	text	h2	The difficulty was never simply finding a teacher.	難しかったのは、単に講師を見つけることではありませんでした。
-about.html	27	text	p	The real difficulty was finding the right teacher, with sufficient understanding, in the time available.	本当に難しかったのは、十分な理解を備えた適切な講師を時間内に見つけることでした。
-about.html	28	text	p	Availability alone does not make a teacher suitable for a classroom. The school, the learners, the timetable, the lesson format, the journey and the responsibilities attached to the assignment all matter.	空き状況だけでは、講師が教室に適しているとは限りません。学校、学習者、時間割、レッスン形式、旅程、課題に伴う責任はすべて重要です。
-about.html	29	text	p	Englishire grew from the belief that these details should be considered before an assignment is accepted, not discovered after a teacher has arrived. That belief remains the basis of the organisation.	Englishire は、これらの詳細は、講師が到着した後に発見されるのではなく、課題が受け入れられる前に考慮されるべきであるという信念から生まれました。その信念が今でも組織の基盤となっています。
-about.html	30	text	dt	The school is not interchangeable	学校は替えられない
-about.html	31	text	dd	Each organisation has its own culture, routines and reasonable expectations of professional conduct.	各組織には独自の文化、ルーチン、および職業上の行動に対する合理的な期待があります。
-about.html	32	text	dt	The learner is not a timetable entry	学習者は時間割上の項目ーではありません
-about.html	33	text	dd	Age, confidence, level and prior classroom experience shape how a lesson should be approached.	年齢、自信、レベル、およびこれまでの教室での経験が、レッスンへの取り組み方を形作ります。
-about.html	34	text	dt	The assignment is not merely a vacancy	この任務は単なる欠員ではありません
-about.html	35	text	dd	A single day, recurring timetable and extended placement demand different forms of preparation and judgement.	1 日のスケジュール、繰り返しのスケジュール、および延長された配置では、さまざまな形の準備と判断が必要になります。
-about.html	36	text	dt	Urgency does not remove responsibility	緊急だからといって責任がなくなるわけではない
-about.html	37	text	dd	Indeed, the less time available, the more valuable calm and accurate judgement become.	実際、使える時間が少ないほど、冷静で正確な判断の価値が高まります。
-about.html	38	text	p	Experience Applied Where It Matters	経験が重要な場面で活かされる
-about.html	39	text	h2	Experience shows in the questions asked before an assignment is accepted.	経験は、任務が受け入れられる前に尋ねられる質問に表れます。
-about.html	40	text	p	Reporting time, travel, learner ages, class size, lesson objectives, materials and handover expectations all matter.	報告時間、移動距離、学習者の年齢、クラスの規模、レッスンの目的、教材、引き継ぎの期待などがすべて重要です。
-about.html	41	text	p	Englishire's approach has been shaped across the varied landscape of English education in Tokyo: independent language schools, children's programmes, private and international settings, adult classes, specialist courses and other organisations with their own methods and expectations.	Englishire のアプローチは、独立した語学学校、子供向けプログラム、民間および国際的な環境、成人クラス、専門コース、および独自の方法と期待を持つその他の組織など、東京の英語教育のさまざまな環境にわたって形成されてきました。
-about.html	42	text	p	That breadth matters because no universal formula can serve every classroom. A lively afternoon class for young children bears little resemblance to an evening programme for working adults. A formal academic setting asks something different of a teacher than a conversational school with a highly personal atmosphere.	すべての教室に対応できる普遍的な公式はないため、その幅広さが重要です。幼児向けの活発な午後のクラスは、社会人向けの夜のプログラムとはほとんど似ていません。正式な学術的な環境では、非常に個人的な雰囲気の会話中心の学校とは異なることが講師に求められます。
-about.html	43	text	p	Familiarity with these distinctions does not encourage assumption. Quite the reverse. It teaches one to ask better questions, notice practical risks and recognise when an arrangement which appears straightforward requires closer examination.	これらの区別を知っていても、思い込みを助長するものではありません。まったく逆です。それは、より良い質問をすること、現実的なリスクに気づくこと、そして簡単に見える取り決めがいつ綿密な検討を必要とするかを認識することを教えます。
+about.html	25	text	p	The Observation Behind Englishire	Englishireの出発点となった気づき
+about.html	26	text	h2	The difficulty was never simply finding a teacher.	問題は、単に講師を見つけることではありませんでした。
+about.html	27	text	p	The real difficulty was finding the right teacher, with sufficient understanding, in the time available.	限られた時間の中で、必要な理解を持つ適切な講師を見つけることが本当の難しさでした。
+about.html	28	text	p	Availability alone does not make a teacher suitable for a classroom. The school, the learners, the timetable, the lesson format, the journey and the responsibilities attached to the assignment all matter.	予定が空いているだけでは、その講師が教室に適しているとはいえません。学校、学習者、時間割、授業形式、移動条件、担当業務のすべてが関係します。
+about.html	29	text	p	Englishire grew from the belief that these details should be considered before an assignment is accepted, not discovered after a teacher has arrived. That belief remains the basis of the organisation.	こうした事項は、講師が到着してから判明するのではなく、ご依頼を引き受ける前に確認すべきだという考えからEnglishireは生まれました。その考えが今も組織の基礎です。
+about.html	30	text	dt	The school is not interchangeable	学校はどこでも同じではありません
+about.html	31	text	dd	Each organisation has its own culture, routines and reasonable expectations of professional conduct.	教育機関ごとに、独自の文化、日常の手順、職務上の行動への合理的な期待があります。
+about.html	32	text	dt	The learner is not a timetable entry	学習者は時間割上の一枠ではありません
+about.html	33	text	dd	Age, confidence, level and prior classroom experience shape how a lesson should be approached.	年齢、自信、レベル、これまでの授業経験によって、適切な授業の進め方は変わります。
+about.html	34	text	dt	The assignment is not merely a vacancy	ご依頼は単なる空き時間ではありません
+about.html	35	text	dd	A single day, recurring timetable and extended placement demand different forms of preparation and judgement.	1日だけの代講、定期的な時間割、長期の短期手配では、それぞれ異なる準備と判断が必要です。
+about.html	36	text	dt	Urgency does not remove responsibility	急ぎでも責任は変わりません
+about.html	37	text	dd	Indeed, the less time available, the more valuable calm and accurate judgement become.	むしろ、使える時間が少ないほど、落ち着いた正確な判断が重要になります。
+about.html	38	text	p	Experience Applied Where It Matters	必要な場面で経験を生かす
+about.html	39	text	h2	Experience shows in the questions asked before an assignment is accepted.	経験は、ご依頼を引き受ける前に何を確認するかに表れます。
+about.html	40	text	p	Reporting time, travel, learner ages, class size, lesson objectives, materials and handover expectations all matter.	到着時刻、移動条件、学習者の年齢、クラス人数、授業目標、教材、引き継ぎへの期待はすべて重要です。
+about.html	41	text	p	Englishire's approach has been shaped across the varied landscape of English education in Tokyo: independent language schools, children's programmes, private and international settings, adult classes, specialist courses and other organisations with their own methods and expectations.	Englishireの考え方は、東京にある多様な英語教育の現場で形づくられてきました。独立系の語学学校、子ども向けプログラム、私立・国際教育環境、成人クラス、専門コースなど、それぞれに独自の方法と期待があります。
+about.html	42	text	p	That breadth matters because no universal formula can serve every classroom. A lively afternoon class for young children bears little resemblance to an evening programme for working adults. A formal academic setting asks something different of a teacher than a conversational school with a highly personal atmosphere.	幅広い経験が重要なのは、すべての教室に通用する一つの方法がないからです。幼い子どもの活気ある午後クラスと、社会人向け夜間プログラムでは授業の形が大きく異なります。学術的な環境と、個別性の高い英会話スクールでも、講師に求められることは異なります。
+about.html	43	text	p	Familiarity with these distinctions does not encourage assumption. Quite the reverse. It teaches one to ask better questions, notice practical risks and recognise when an arrangement which appears straightforward requires closer examination.	こうした違いを知ることは、思い込みを強めることではありません。むしろ、より適切な質問をし、実務上のリスクに気づき、簡単に見える手配に詳しい確認が必要な場面を見極める助けになります。
 about.html	44	text	p	01	01
 about.html	45	text	h3	We notice the timetable	Englishireは時間割と移動条件を確認します
-about.html	46	text	p	Travel, lesson length, preparation time and movement between classes all affect whether an assignment can be undertaken punctually and properly.	移動距離、レッスンの長さ、準備時間、クラス間の移動はすべて、課題を時間通りに適切に実行できるかどうかに影響します。
+about.html	46	text	p	Travel, lesson length, preparation time and movement between classes all affect whether an assignment can be undertaken punctually and properly.	移動、授業時間、準備時間、クラス間の移動は、ご依頼を時間どおり適切に実施できるかに影響します。
 about.html	47	text	p	02	02
 about.html	48	text	h3	We notice the learners	Englishireは学習者の状況を確認します
-about.html	49	text	p	Age, confidence, language level, classroom habits and learning purpose influence the manner in which a teacher should enter the room.	年齢、自信、言語レベル、教室での習慣、学習目的は、講師が教室に入る方法に影響を与えます。
+about.html	49	text	p	Age, confidence, language level, classroom habits and learning purpose influence the manner in which a teacher should enter the room.	年齢、自信、英語レベル、教室での習慣、学習目的によって、講師が授業に入る際の適切な対応は変わります。
 about.html	50	text	p	03	03
 about.html	51	text	h3	We notice the school	Englishireは学校の方針と運営を確認します
-about.html	52	text	p	Every organisation has established standards, routines and ways of communicating with pupils, parents and colleagues.	どの組織も、学習者、保護者、同僚とのコミュニケーションの基準、ルーチン、方法を確立しています。
+about.html	52	text	p	Every organisation has established standards, routines and ways of communicating with pupils, parents and colleagues.	どの教育機関にも、築かれた基準、日常の手順、生徒・保護者・同僚との連絡方法があります。
 about.html	53	text	p	04	04
 about.html	54	text	h3	We notice what has not yet been explained	Englishireは未共有の事項を確認します
-about.html	55	text	p	The unanswered question is often the detail which determines whether an otherwise sensible arrangement will actually work.	答えのない質問は、多くの場合、賢明な取り決めが実際に機能するかどうかを決定する詳細です。
+about.html	55	text	p	The unanswered question is often the detail which determines whether an otherwise sensible arrangement will actually work.	まだ答えのない一つの質問が、ほかの条件は妥当な手配を実際に実施できるかどうかを決めることがあります。
 about.html	56	text	p	Understanding Japanese Learners	日本語を母語とする学習者への理解
 about.html	57	text	h2	Teaching English well in Japan requires more than fluency.	日本で英語を適切に教えるには、英語力だけでは足りません。
-about.html	58	text	p	A capable teacher reads the room as carefully as the lesson plan.	有能な講師は授業計画と同じくらい注意深く部屋を読みます。
+about.html	58	text	p	A capable teacher reads the room as carefully as the lesson plan.	適切な講師は、授業計画と同じくらい注意深く教室の様子を読み取ります。
 about.html	59	text	p	01	01
-about.html	60	text	h3	Confidence before display	表示前の自信
-about.html	61	text	p	Some learners speak readily. Others require time and reassurance before they are willing to take a linguistic risk in public.	すぐに話す学習者もいます。人前で言語的なリスクを冒す前に、時間と安心感が必要な人もいます。
-about.html	62	text	p	Participation should not be measured solely by who speaks first or loudest.	参加は、誰が最初に発言するか、誰が最も大きな声で発言するかだけで評価されるべきではありません。
+about.html	60	text	h3	Confidence before display	目立つ発言より、安心して参加できる自信を
+about.html	61	text	p	Some learners speak readily. Others require time and reassurance before they are willing to take a linguistic risk in public.	すぐに話す学習者もいれば、人前で英語を試すまでに時間と安心感を必要とする学習者もいます。
+about.html	62	text	p	Participation should not be measured solely by who speaks first or loudest.	参加の度合いを、最初に話した人や最も声の大きい人だけで測るべきではありません。
 about.html	63	text	p	02	02
-about.html	64	text	h3	Structure without rigidity	剛性のない構造
-about.html	65	text	p	Clear expectations and an orderly lesson often create the security from which genuine participation becomes possible.	明確な期待と秩序あるレッスンは、多くの場合、真の参加を可能にする安心感を生み出します。
-about.html	66	text	p	Warmth and classroom command are not opposites. Good teaching frequently requires both.	温かさと教室の指揮は相反するものではありません。優れた教育には両方が必要となることがよくあります。
+about.html	64	text	h3	Structure without rigidity	窮屈にせず、明確な授業構成を
+about.html	65	text	p	Clear expectations and an orderly lesson often create the security from which genuine participation becomes possible.	求められることが明確で、授業が秩序立っていると、学習者は安心して本当に参加できるようになります。
+about.html	66	text	p	Warmth and classroom command are not opposites. Good teaching frequently requires both.	親しみやすさと適切な授業運営は対立するものではありません。良い授業には、その両方が必要です。
 about.html	67	text	p	03	03
-about.html	68	text	h3	Respect for purpose	目的の尊重
+about.html	68	text	h3	Respect for purpose	学習目的を尊重する
 about.html	69	text	p	Children, teenagers, adults and specialist learners do not arrive with identical aims or expectations.	子ども、中高生、成人、専門分野の学習者では、英語を学ぶ目的や期待が異なります。
 about.html	70	text	p	The reason for studying English should influence the manner in which it is taught.	英語を学ぶ目的に応じて、授業方法や重点を調整する必要があります。
 about.html	71	text	p	04	04
-about.html	72	text	h3	Continuity with what came before	以前のものとの継続性
-about.html	73	text	p	A temporary teacher should understand where the class has been, what it is working towards and how the school ordinarily supports progress.	短期講師は、クラスがどこにいたのか、何に取り組んでいるのか、学校が通常どのように進歩をサポートしているのかを理解する必要があります。
-about.html	74	text	p	The object is not to perform a disconnected lesson, but to serve the course already in progress.	目的は、切り離されたレッスンを実行することではなく、すでに進行中のコースを提供することです。
-about.html	75	text	p	Our Written Standard	当社の文書化された基準
-about.html	76	text	h2	The Standard governs the work in practice.	この規格は実際の作業を管理します。
+about.html	72	text	h3	Continuity with what came before	これまでの学習を引き継ぐ
+about.html	73	text	p	A temporary teacher should understand where the class has been, what it is working towards and how the school ordinarily supports progress.	短期講師は、クラスがこれまで何を学び、何を目指し、学校が通常どのように学習の進展を支えているかを理解する必要があります。
+about.html	74	text	p	The object is not to perform a disconnected lesson, but to serve the course already in progress.	前後から切り離された授業を行うのではなく、すでに進んでいるコースを支えることが目的です。
+about.html	75	text	p	Our Written Standard	Englishireが明文化した基準
+about.html	76	text	h2	The Standard governs the work in practice.	この基準を実務に適用します。
 about.html	77	text	em	The Englishire Standard	Englishireの基準
-about.html	78	text	p	is the written expression of how we believe professional teacher cover should be approached. It describes the responsibilities which precede an assignment, the conduct expected during it and the judgement required when circumstances change.	は、専門講師の代講にどのようにアプローチすべきであるとEnglishireが信じているかを書面で表現したものです。任務に先立つ責任、任務中に期待される行動、状況が変化した場合に必要な判断について説明します。
-about.html	79	text	p	It is neither a slogan nor a collection of extravagant promises. It exists so that schools, teachers and Englishire itself may understand the principles against which each decision should be considered.	それはスローガンでもなければ、贅沢な約束を集めたものでもありません。これは、学校、講師、そして Englishire 自体が、それぞれの決定を考慮すべき原則を理解できるようにするために存在します。
+about.html	78	text	p	is the written expression of how we believe professional teacher cover should be approached. It describes the responsibilities which precede an assignment, the conduct expected during it and the judgement required when circumstances change.	は、専門的な講師代講をどのように行うべきかというEnglishireの考えを明文化したものです。ご依頼前の責任、担当期間中に求める行動、状況が変わったときに必要な判断を説明します。
+about.html	79	text	p	It is neither a slogan nor a collection of extravagant promises. It exists so that schools, teachers and Englishire itself may understand the principles against which each decision should be considered.	スローガンでも、大げさな約束を集めたものでもありません。学校、講師、Englishireが、各判断をどの原則に照らして検討するかを共有するための文書です。
 about.html	80	text	a	Read the Englishire Standard	Englishireの基準を読む
-about.html	81	text	strong	Suitability before availability	入手可能になる前の適合性
-about.html	82	text	span	A free teacher is not necessarily the right teacher.	無料の講師が必ずしも適切な講師であるとは限りません。
-about.html	83	text	strong	Preparation before placement	設置前の準備
-about.html	84	text	span	Professional teaching begins before the classroom door opens.	専門的な指導は教室のドアが開く前から始まります。
-about.html	85	text	strong	Continuity before convenience	便利さの前に継続性
-about.html	86	text	span	The assignment should protect the course already in progress.	業務は、すでに進行中のコースを保護する必要があります。
-about.html	87	text	strong	Honesty before reassurance	安心させる前に正直さを
-about.html	88	text	span	A measured answer is preferable to a promise which cannot be kept.	守れない約束よりも、慎重な答えの方が望ましいのです。
+about.html	81	text	strong	Suitability before availability	空き状況より適合性を優先する
+about.html	82	text	span	A free teacher is not necessarily the right teacher.	予定が空いている講師が、必ずしも適切な講師とは限りません。
+about.html	83	text	strong	Preparation before placement	配置より先に準備を行う
+about.html	84	text	span	Professional teaching begins before the classroom door opens.	専門的な指導は、教室の扉が開く前から始まります。
+about.html	85	text	strong	Continuity before convenience	利便性より継続性を優先する
+about.html	86	text	span	The assignment should protect the course already in progress.	ご依頼は、すでに進んでいるコースの継続を守るべきです。
+about.html	87	text	strong	Honesty before reassurance	安心させることより、まず正直に伝える
+about.html	88	text	span	A measured answer is preferable to a promise which cannot be kept.	守れない約束より、慎重に確認した回答の方が適切です。
 about.html	89	text	p	Our Responsibility	Englishireの責任
-about.html	90	text	h2	Trust should be answered with proportionate care.	信頼には相応の注意を払う必要があります。
+about.html	90	text	h2	Trust should be answered with proportionate care.	託された信頼には、相応の配慮で応えます。
 about.html	91	text	p	Schools entrust temporary teachers with far more than a vacant hour in the timetable.	学校が短期講師に託すものは、時間割上の空いた一コマだけではありません。
 about.html	92	text	h3	To the school	学校に対して
 about.html	93	text	p	We owe clear communication, realistic expectations and respect for the organisation's established procedures and culture.	Englishireは、明確な連絡、現実的な見通し、そして学校が築いてきた手順や文化への敬意を大切にします。
@@ -1353,9 +1353,9 @@ about.html	94	text	h3	To the learner	学習者に対して
 about.html	95	text	p	We owe purposeful teaching, calm conduct and recognition that a change of teacher should not make the school day feel careless.	Englishireは、目的のある授業、落ち着いた対応、そして講師が替わっても授業が安易なものにならないことを重視します。
 about.html	96	text	h3	To the teacher	講師に対して
 about.html	97	text	p	We owe sufficient information, a proper briefing and an honest account of the assignment before responsibility is accepted.	Englishireは、講師が責任を引き受ける前に、必要な情報、適切な説明、ご依頼内容の正確な提示を行います。
-about.html	98	text	p	What We Believe	Englishireが信じていること
-about.html	99	text	h2	Reasonable principles, consistently applied.	合理的な原則が一貫して適用されます。
-about.html	100	text	p	Not grand declarations. Simply the habits required to conduct temporary teacher cover properly.	壮大な宣言ではありません。短期講師のカバーを適切に行うために必要な習慣だけです。
+about.html	98	text	p	What We Believe	Englishireが大切にすること
+about.html	99	text	h2	Reasonable principles, consistently applied.	合理的な原則を、一貫して適用します。
+about.html	100	text	p	Not grand declarations. Simply the habits required to conduct temporary teacher cover properly.	大げさな宣言ではありません。短期の講師代講を適切に行うために必要な、日々の実務姿勢です。
 about.html	101	text	summary	Clarity should precede confirmation	必要事項を明確にしてから確定する
 about.html	102	text	p	Dates, times, location, learners, lesson format, materials and expectations should be understood before an assignment is agreed.	ご依頼を確定する前に、日付、時間、場所、学習者、授業形式、教材、ご要望を確認します。
 about.html	103	text	summary	Urgency should not disguise uncertainty	急ぎであっても不明点を残さない
@@ -1368,17 +1368,17 @@ about.html	109	text	summary	There are occasions when Englishire must decline	Eng
 about.html	110	text	p	An assignment should be declined where it cannot be undertaken suitably, punctually or with the level of preparation the circumstances require.	適切な講師を手配できない場合、時間どおりの到着を見込めない場合、または必要な準備を確保できない場合は、ご依頼をお断りします。
 about.html	111	text	p	Working With Schools	学校との連携
 about.html	112	text	h2	A sensible introduction is preferable to a frantic first conversation.	緊急時に慌てて初めて連絡するより、事前に学校について共有していただく方が、適切な対応につながります。
-about.html	113	text	p	Schools need not wait for an absence before introducing themselves. A prior understanding of the school, its timetable and the sort of assignment which may one day arise can make future enquiries considerably more straightforward.	学校は自己紹介をする前に欠席を待つ必要はありません。学校、その時間割、ある日突然発生する可能性のある課題の種類について事前に理解しておくと、将来の問い合わせがかなり簡単になります。
+about.html	113	text	p	Schools need not wait for an absence before introducing themselves. A prior understanding of the school, its timetable and the sort of assignment which may one day arise can make future enquiries considerably more straightforward.	講師が欠勤するまで待たずに、学校についてご連絡いただけます。学校、時間割、将来想定されるご依頼を事前に理解しておくと、今後のお問い合わせをより円滑に検討できます。
 about.html	114	text	p	Tell us about the school, its learners and the circumstances in which temporary English teacher cover might prove useful.	学校、学習者、英語講師の代講・短期手配が必要となり得る状況をお知らせください。
 about.html	115	text	a	Introduce Your School	学校について知らせる
-about.html	116	text	p	Looking Ahead	将来を見据えて
-about.html	117	text	h2	A reputation should be earned quietly.	評判は静かに獲得されるべきです。
-about.html	118	text	p	Englishire does not seek to appear larger, louder or more certain than the circumstances justify. We would rather be known for sound judgement, clear communication and work carried out with proper respect for the schools which place confidence in us.	Englishire は、状況が正当化する以上に大きく、騒々しく、またはより確実に見えるように努めません。Englishireはむしろ、健全な判断力、明確なコミュニケーション、そしてEnglishireに信頼を置いている学校への適切な敬意を持って遂行される仕事で知られることを望んでいます。
-about.html	119	text	p	We hope the organisation becomes known not simply for providing temporary teachers, but for approaching every assignment with the same care, proportion and professional judgement that schools seek to preserve within their own classrooms.	Englishireは、この組織が単に短期講師を提供するだけでなく、学校が教室内で維持しようとしているのと同じ注意、バランス、専門的判断を持ってあらゆる課題に取り組むことで知られることを願っています。
-about.html	120	text	p	Standards are seldom maintained by accident. They are maintained by people who choose not to compromise them.	基準が偶然に維持されることはほとんどありません。それらは、妥協しないことを選択した人々によって維持されています。
-about.html	121	text	p	At Your Service	あなたのサービスで
-about.html	122	text	h2	When the timetable requires a capable pair of hands, we should be pleased to hear from you.	スケジュールに有能な人材が必要な場合は、喜んでご連絡させていただきます。
-about.html	123	text	p	Send the school location, requested dates, lesson times, learner age groups and the nature of the assignment. We will review the requirement with proper care.	学校の場所、希望日、レッスン時間、学習者の年齢層、課題の内容を送信します。当社は要件を適切に検討します。
+about.html	116	text	p	Looking Ahead	今後に向けて
+about.html	117	text	h2	A reputation should be earned quietly.	信頼は、着実な仕事によって得るものです。
+about.html	118	text	p	Englishire does not seek to appear larger, louder or more certain than the circumstances justify. We would rather be known for sound judgement, clear communication and work carried out with proper respect for the schools which place confidence in us.	Englishireは、実際の状況以上に大きく見せたり、強く断言したりしません。適切な判断、明確な連絡、信頼を寄せる学校への敬意を持った仕事によって知られることを目指します。
+about.html	119	text	p	We hope the organisation becomes known not simply for providing temporary teachers, but for approaching every assignment with the same care, proportion and professional judgement that schools seek to preserve within their own classrooms.	単に短期講師を提供する組織ではなく、学校が教室で守ろうとしているのと同じ配慮、節度、専門的判断を持って、すべてのご依頼に向き合う組織として信頼されることを目指します。
+about.html	120	text	p	Standards are seldom maintained by accident. They are maintained by people who choose not to compromise them.	基準が偶然に守られることはほとんどありません。妥協しないと決めた人々によって守られます。
+about.html	121	text	p	At Your Service	ご相談ください
+about.html	122	text	h2	When the timetable requires a capable pair of hands, we should be pleased to hear from you.	時間割を支える適切な講師が必要なときは、Englishireへご相談ください。
+about.html	123	text	p	Send the school location, requested dates, lesson times, learner age groups and the nature of the assignment. We will review the requirement with proper care.	学校所在地、ご希望の日程、授業時間、学習者の年齢層、ご依頼内容をお送りください。必要事項を丁寧に確認します。
 about.html	124	text	a	Request Teacher Cover	代講について相談する
 about.html	125	text	a	Read how it works	ご利用の流れを見る
 about.html	126	text	span	Temporary Teacher Cover · Tokyo	東京都内の学校向け英語講師の代講・短期手配
@@ -1406,23 +1406,23 @@ about.html	147	text	p	This website works best with JavaScript enabled, though al
 about.html	148	attr:aria-label	a	Englishire homepage	Englishireホームページ
 about.html	149	attr:alt	img	Englishire	Englishire
 about.html	150	attr:aria-label	nav	Primary navigation	メインナビゲーション
-about.html	151	attr:aria-label	div	Englishire about page actions	ページアクションについて
-about.html	152	attr:alt	img	Officials addressing an assembly of schoolchildren outside a civic building	市庁舎の外で学童の集会に演説する当局者
-about.html	153	attr:aria-label	ol	Selected Englishire principles	厳選された英語の原則
+about.html	151	attr:aria-label	div	Englishire about page actions	Englishireについてのページ操作
+about.html	152	attr:alt	img	Officials addressing an assembly of schoolchildren outside a civic building	公共施設の前で、集まった児童に話す関係者
+about.html	153	attr:aria-label	ol	Selected Englishire principles	Englishireの主な原則
 about.html	154	attr:aria-label	a	Return to Englishire homepage	Englishireホームページへ戻る
 about.html	155	attr:alt	img	Englishire	Englishire
 about.html	156	attr:aria-label	nav	Footer service navigation	フッターのサービス案内
 about.html	157	attr:aria-label	nav	Footer company navigation	フッターのEnglishire案内
-about.html	158	meta	description	Why Englishire exists: a considered approach to temporary English teacher cover, shaped by Tokyo classrooms, Japanese learners and a belief that continuity should never be treated carelessly.	Englishire の存在理由: 東京の教室、日本人学習者、そして継続性を決して軽率に扱ってはいけないという信念によって形作られた、英語講師の代講・短期手配に対する熟慮されたアプローチです。
+about.html	158	meta	description	Why Englishire exists: a considered approach to temporary English teacher cover, shaped by Tokyo classrooms, Japanese learners and a belief that continuity should never be treated carelessly.	Englishireの設立理由。東京の教室と日本の学習者への理解に基づき、授業の継続を決して安易に扱わない英語講師代講の考え方を紹介します。
 about.html	159	meta	og:type	website	website
-about.html	160	meta	og:title	About Englishire | Why We Exist	Englishireについて |Englishireが存在する理由
-about.html	161	meta	og:description	Englishire was established to help Tokyo schools preserve continuity, exercise sound judgement and maintain standards when circumstances require temporary teacher cover.	Englishire は、東京の学校が継続性を維持し、健全な判断を下し、状況により一時的に講師の代講が必要な場合に基準を維持できるよう支援するために設立されました。
+about.html	160	meta	og:title	About Englishire | Why We Exist	Englishireについて | 設立の理由
+about.html	161	meta	og:description	Englishire was established to help Tokyo schools preserve continuity, exercise sound judgement and maintain standards when circumstances require temporary teacher cover.	Englishireは、短期の講師代講が必要なときも、東京の学校が授業を継続し、適切に判断し、教育水準を保てるよう支援するために設立されました。
 about.html	162	meta	og:url	https://englishire.com/about.html	https://englishire.com/ja/about.html
 about.html	163	meta	og:image	https://englishire.com/englishire-social-preview.jpg	https://englishire.com/englishire-social-preview.jpg
 about.html	164	meta	og:image:alt	Englishire temporary English teacher cover for Tokyo schools	東京の学校向けEnglishire英語講師代講サービス
 about.html	165	meta	twitter:card	summary_large_image	summary_large_image
-about.html	166	meta	twitter:title	About Englishire | Why We Exist	Englishireについて |Englishireが存在する理由
-about.html	167	meta	twitter:description	A considered approach to teacher cover, shaped by Tokyo schools, Japanese learners and the practical responsibility of preserving continuity.	東京の学校、日本語を母語とする学習者、そして継続性を維持するという実際的な責任によって形成された、英語講師の代講・短期手配に対する慎重な方針。
+about.html	166	meta	twitter:title	About Englishire | Why We Exist	Englishireについて | 設立の理由
+about.html	167	meta	twitter:description	A considered approach to teacher cover, shaped by Tokyo schools, Japanese learners and the practical responsibility of preserving continuity.	東京の学校と日本の学習者への理解、授業を継続する実務上の責任に基づく、英語講師代講への慎重な考え方です。
 about.html	168	meta	twitter:image	https://englishire.com/englishire-social-preview.jpg	https://englishire.com/englishire-social-preview.jpg
 service-standards.html	1	text	[document]	html	html
 service-standards.html	2	text	title	Service Standards | Englishire	サービス基準 | Englishire
