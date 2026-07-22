@@ -1,3 +1,0 @@
-about.html: found '短期の講師代講'; prefer '講師の短期代講'
-englishire-standard.html: found '短期の講師代講'; prefer '講師の短期代講'
-questions.html: found 'より長い期間の短期手配'; prefer '数週間以上にわたる一時的な手配'
