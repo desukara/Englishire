@@ -2,7 +2,6 @@
 """Fail when canonical English source text lacks a reviewed Japanese translation."""
 from __future__ import annotations
 
-import csv
 import json
 import re
 from pathlib import Path
@@ -13,7 +12,6 @@ from bs4 import BeautifulSoup, Comment
 from japanese_strict import STRICT_OVERRIDES
 
 ROOT = Path(__file__).resolve().parents[1]
-REPORT = ROOT / "scripts" / "missing_strict_sources.tsv"
 PAGES = [
     "index.html", "teacher-cover.html", "how-it-works.html",
     "englishire-standard.html", "questions.html", "contact.html",
@@ -23,6 +21,9 @@ PAGES = [
 ]
 SKIP_TAGS = {"script", "style", "code", "pre", "svg", "path"}
 TRANSLATABLE_ATTRS = ("title", "aria-label", "alt", "placeholder", "value")
+TECHNICAL_VALUE_INPUT_TYPES = {
+    "hidden", "checkbox", "radio", "date", "time", "number", "email",
+}
 JSON_TRANSLATABLE_KEYS = {
     "name", "description", "serviceType", "headline", "alternativeHeadline",
     "caption", "articleSection", "keywords", "text",
@@ -77,10 +78,17 @@ def page_sources(page: str):
 
     for tag in soup.find_all(True):
         for attr in TRANSLATABLE_ATTRS:
-            if tag.has_attr(attr):
-                source = normalise(str(tag.get(attr, "")))
-                if source:
-                    yield (f"attr:{attr}", tag.name, source)
+            if not tag.has_attr(attr):
+                continue
+            if attr == "value":
+                input_type = str(tag.get("type", "")).lower()
+                if tag.name == "option" or (
+                    tag.name == "input" and input_type in TECHNICAL_VALUE_INPUT_TYPES
+                ):
+                    continue
+            source = normalise(str(tag.get(attr, "")))
+            if source:
+                yield (f"attr:{attr}", tag.name, source)
 
     for meta in soup.select('meta[name="description"], meta[property^="og:"], meta[name^="twitter:"]'):
         source = normalise(str(meta.get("content", "")))
@@ -105,11 +113,6 @@ for page in PAGES:
         seen.add(source)
         if source not in STRICT_OVERRIDES:
             missing.append((page, kind, element, source))
-
-with REPORT.open("w", encoding="utf-8", newline="") as handle:
-    writer = csv.writer(handle, delimiter="\t", lineterminator="\n")
-    writer.writerow(("page", "kind", "element", "english"))
-    writer.writerows(missing)
 
 if missing:
     print(f"Strict Japanese coverage failed: {len(missing)} English source strings are unreviewed.")
