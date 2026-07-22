@@ -5,6 +5,7 @@ from __future__ import annotations
 import re
 import sys
 from collections import Counter
+from copy import deepcopy
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -19,11 +20,17 @@ PAGES = [
     "permissions.html", "thank-you.html",
 ]
 
-IGNORE_CLASSES = {"language-switch", "site-header__controls", "site-footer__language", "language-notice--service-boundary"}
-
 
 def soup(path: Path) -> BeautifulSoup:
     return BeautifulSoup(path.read_text(encoding="utf-8"), "html.parser")
+
+
+def comparable(doc: BeautifulSoup) -> BeautifulSoup:
+    """Remove only additions explicitly authorised for Japanese localisation."""
+    clone = deepcopy(doc)
+    for element in clone.select('link[rel="alternate"][hreflang], .language-notice--service-boundary'):
+        element.decompose()
+    return clone
 
 
 def structural_tokens(doc: BeautifulSoup) -> list[tuple]:
@@ -34,7 +41,7 @@ def structural_tokens(doc: BeautifulSoup) -> list[tuple]:
         name = getattr(node, "name", None)
         if not name:
             continue
-        classes = tuple(sorted(c for c in node.get("class", []) if c not in IGNORE_CLASSES))
+        classes = tuple(sorted(node.get("class", [])))
         attrs = []
         for key in ("id", "name", "type", "method", "required", "multiple", "min", "max", "step", "autocomplete"):
             if node.has_attr(key):
@@ -70,12 +77,10 @@ def section_signature(doc: BeautifulSoup) -> list[tuple]:
     main = doc.find("main")
     if not main:
         return []
-    result = []
-    for section in main.find_all(["section", "article", "aside"], recursive=True):
-        if "language-notice--service-boundary" in section.get("class", []):
-            continue
-        result.append((section.name, tuple(sorted(section.get("class", []))), section.get("id")))
-    return result
+    return [
+        (section.name, tuple(sorted(section.get("class", []))), section.get("id"))
+        for section in main.find_all(["section", "article", "aside"], recursive=True)
+    ]
 
 
 def check_pair(name: str) -> list[str]:
@@ -84,10 +89,12 @@ def check_pair(name: str) -> list[str]:
     ja_path = ROOT / "ja" / name
     if not ja_path.exists():
         return [f"{name}: missing ja/{name}"]
-    en, ja = soup(en_path), soup(ja_path)
+    en_raw, ja_raw = soup(en_path), soup(ja_path)
 
-    if ja.html.get("lang") != "ja":
+    if ja_raw.html.get("lang") != "ja":
         errors.append(f"{name}: Japanese html lang is not ja")
+
+    en, ja = comparable(en_raw), comparable(ja_raw)
     if structural_tokens(en) != structural_tokens(ja):
         errors.append(f"{name}: DOM tag/class/form structure differs")
     if asset_names(en) != asset_names(ja):
@@ -103,21 +110,24 @@ def check_pair(name: str) -> list[str]:
         errors.append(f"{name}: element IDs differ")
 
     # Localised pages must not accidentally point to the Japanese homepage for unrelated pages.
-    for link in ja.find_all("a", href=True):
+    for link in ja_raw.find_all("a", href=True):
         href = str(link["href"])
         if href in {"index.html", "./", "/ja/"} and name != "index.html":
             label = " ".join(link.stripped_strings)
             if label not in {"Englishire", "ホーム", "ホームページ", "サービス案内"}:
                 errors.append(f"{name}: suspicious unrelated homepage link: {label!r}")
 
-    # Catch obviously untranslated prose while allowing brand names, email and Journal.
+    # Catch obviously untranslated prose while allowing brand and technical terms.
     visible = " ".join(
-        str(node).strip() for node in ja.find_all(string=True)
+        str(node).strip() for node in ja_raw.find_all(string=True)
         if node.parent and node.parent.name not in {"script", "style", "code", "pre"}
     )
     words = re.findall(r"\b[A-Za-z]{4,}\b", visible)
-    allowed = {"Englishire", "Journal", "Tokyo", "Formspree", "Cookie", "WCAG", "Email", "English"}
-    unexplained = [w for w in words if w not in allowed]
+    allowed = {
+        "Englishire", "Journal", "Tokyo", "Formspree", "Cookie", "WCAG",
+        "Email", "English", "Google", "JSON", "HTML", "CSS", "JavaScript",
+    }
+    unexplained = [word for word in words if word not in allowed]
     if len(unexplained) > 20:
         errors.append(f"{name}: too much untranslated English prose remains ({len(unexplained)} words)")
     return errors
