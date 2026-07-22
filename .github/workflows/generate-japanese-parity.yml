@@ -27,11 +27,14 @@ jobs:
       - name: Install generator dependencies
         run: pip install beautifulsoup4 deep-translator
 
+      - name: Require reviewed source-keyed translations
+        run: python scripts/check_japanese_strict_coverage.py
+
       - name: Generate strictly reviewed Japanese counterparts
         run: python scripts/generate_japanese_site_release.py
 
-      - name: Run strict Japanese parity audit
-        run: python scripts/check_japanese_parity.py
+      - name: Run Japanese release parity audit
+        run: python scripts/check_japanese_release.py
 
       - name: Run Japanese editorial quality audit
         run: python scripts/check_japanese_quality.py
