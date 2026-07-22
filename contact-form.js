@@ -7,6 +7,30 @@
     return;
   }
 
+  const standardsHref = "service-standards.html";
+  const existingContextLink = document.querySelector(
+    '.contact-enquiry a[href="service-standards.html"]'
+  );
+
+  if (!existingContextLink) {
+    const standardsNotice = document.createElement("p");
+    standardsNotice.className = "email-enquiry-form__notice";
+    standardsNotice.innerHTML =
+      'Before submitting, review our <a href="service-standards.html">Service Standards</a> for response, confirmation, commercial and safeguarding expectations.';
+    form.before(standardsNotice);
+  }
+
+  const footerLegal = document.querySelector(".site-footer__legal");
+  if (
+    footerLegal instanceof HTMLElement &&
+    !footerLegal.querySelector(`a[href="${standardsHref}"]`)
+  ) {
+    const footerLink = document.createElement("a");
+    footerLink.href = standardsHref;
+    footerLink.textContent = "Service Standards";
+    footerLegal.prepend(footerLink);
+  }
+
   const status = document.querySelector("#englishire-email-enquiry-status");
   const submitButton = form.querySelector('button[type="submit"]');
   const successPage = form.dataset.successPage || "thank-you.html";
