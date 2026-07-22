@@ -2,9 +2,20 @@
 """Final production runner for Japanese parity recovery."""
 from __future__ import annotations
 
+from pathlib import Path
+
 from bs4 import BeautifulSoup
 
 import generate_japanese_site_recovery as recovery
+
+FINAL_REPLACEMENTS = [
+    ("info@englishshire.com", "info@englishire.com"),
+    ("イングリッシュアイレ", "Englishire"),
+    ("英語IRE", "Englishire"),
+    ("© 2026 英語です。", "© 2026 Englishire."),
+    ("© 2026 英語。", "© 2026 Englishire."),
+    ("英語です。無断転載を禁じます。", "Englishire. 無断転載を禁じます。"),
+]
 
 
 def comparable_tags(doc: BeautifulSoup):
@@ -55,7 +66,20 @@ def restore_technical_semantics(en: BeautifulSoup, ja: BeautifulSoup) -> None:
                     del target[attr]
 
 
+original_postprocess = recovery.postprocess_page
+
+
+def final_postprocess(page_name: str, cache: dict[str, str]) -> None:
+    original_postprocess(page_name, cache)
+    path = recovery.generator.JA_DIR / page_name
+    content = path.read_text(encoding="utf-8")
+    for old, new in FINAL_REPLACEMENTS:
+        content = content.replace(old, new)
+    path.write_text(content, encoding="utf-8")
+
+
 recovery.restore_technical_semantics = restore_technical_semantics
+recovery.postprocess_page = final_postprocess
 
 if __name__ == "__main__":
     recovery.generator.main()
