@@ -28,21 +28,7 @@ jobs:
         run: pip install beautifulsoup4 deep-translator
 
       - name: Require reviewed source-keyed translations
-        id: coverage
-        continue-on-error: true
         run: python scripts/check_japanese_strict_coverage.py
-
-      - name: Upload exhaustive coverage report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: unreviewed-japanese-sources
-          path: scripts/unreviewed_japanese_sources.tsv
-          if-no-files-found: error
-
-      - name: Enforce reviewed coverage
-        if: steps.coverage.outcome == 'failure'
-        run: exit 1
 
       - name: Generate strictly reviewed Japanese counterparts
         run: python scripts/generate_japanese_site_release.py
