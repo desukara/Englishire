@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Englishire Journal</title>
+    <link>https://englishire.com/journal.html</link>
+    <description>Analysis and commentary on English education, school operations, staffing and continuity.</description>
+    <language>en-GB</language>
+    <lastBuildDate>Wed, 22 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://englishire.com/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>When the Teacher Doesn&#x27;t Show: Inside Japan&#x27;s Eikaiwa Staffing Squeeze</title>
+      <link>https://englishire.com/backup-teacher-eikaiwa.html</link>
+      <guid isPermaLink="true">https://englishire.com/backup-teacher-eikaiwa.html</guid>
+      <dc:creator>James Simmons</dc:creator>
+      <description>A staffing gap at a single classroom rarely stays contained. What starts as one empty chair on a Tuesday morning becomes a test of a school&#x27;s entire operating system.</description>
+      <enclosure url="https://englishire.com/backup-teacher-eikaiwa.png" type="image/png" />
+    </item>
+    <item>
+      <title>The End of the Easy Teacher</title>
+      <link>https://englishire.com/easy-teacher.html</link>
+      <guid isPermaLink="true">https://englishire.com/easy-teacher.html</guid>
+      <dc:creator>James Simmons</dc:creator>
+      <description>How Japan&#x27;s English schools spent twenty years hiring people who wanted to come to Japan — and are only now discovering that this was never the same thing as hiring teachers.</description>
+      <enclosure url="https://englishire.com/easy-teacher-article.png" type="image/png" />
+    </item>
+    <item>
+      <title>The Invisible Machinery Behind a Smooth School Day</title>
+      <link>https://englishire.com/eikaiwa-school-operations.html</link>
+      <guid isPermaLink="true">https://englishire.com/eikaiwa-school-operations.html</guid>
+      <dc:creator>James Simmons</dc:creator>
+      <description>When an eikaiwa is running well, nobody notices the operation underneath it. That invisibility is either a sign of excellent systems — or a sign that no one has yet found out how fragile they are. The two conditions look identical from the front desk, on the ordinary Tuesday when everything happens to go right. They only reveal which one you&#x27;re in on the day something doesn&#x27;t.</description>
+      <enclosure url="https://englishire.com/eikaiwa-school-operations.png" type="image/png" />
+    </item>
+    <item>
+      <title>The Bridge, Not the Fix</title>
+      <link>https://englishire.com/emergency-classroom-coverage.html</link>
+      <guid isPermaLink="true">https://englishire.com/emergency-classroom-coverage.html</guid>
+      <dc:creator>James Simmons</dc:creator>
+      <description>Emergency cover doesn&#x27;t solve a school&#x27;s staffing problem. It buys the one thing every good decision actually requires: time to make it without panic.</description>
+      <enclosure url="https://englishire.com/emergency-classroom-coverage.png" type="image/png" />
+    </item>
+    <item>
+      <title>The Hire You&#x27;re Actually Making</title>
+      <link>https://englishire.com/hiring-foreign-teachers-in-japan.html</link>
+      <guid isPermaLink="true">https://englishire.com/hiring-foreign-teachers-in-japan.html</guid>
+      <dc:creator>James Simmons</dc:creator>
+      <description>A school posting a vacancy thinks it is filling a role. What it is actually doing, whether it realises it or not, is placing a long-term bet on continuity — and that bet is decided long before the first lesson is taught.</description>
+      <enclosure url="https://englishire.com/hiring-foreign-teachers-in-japan.png" type="image/png" />
+    </item>
+    <item>
+      <title>The Backup Plan Nobody Writes Until They Need One</title>
+      <link>https://englishire.com/how-schools-can-handle-staff-shortages.html</link>
+      <guid isPermaLink="true">https://englishire.com/how-schools-can-handle-staff-shortages.html</guid>
+      <dc:creator>James Simmons</dc:creator>
+      <description>Most eikaiwa owners never think about emergency teacher cover — until the morning they suddenly do. By then, the plan they wish they had is the one they no longer have time to build.</description>
+      <enclosure url="https://englishire.com/how-schools-can-handle-staff-shortages.png" type="image/png" />
+    </item>
+    <item>
+      <title>The Turnover Bill Nobody Puts on the Invoice</title>
+      <link>https://englishire.com/real-cost-of-english-teacher-turnover.html</link>
+      <guid isPermaLink="true">https://englishire.com/real-cost-of-english-teacher-turnover.html</guid>
+      <dc:creator>James Simmons</dc:creator>
+      <description>Recruiters count the cost of a departing teacher in job adverts and interview hours. The larger bill — the one that shows up in a child&#x27;s confidence and a parent&#x27;s patience — never appears on any invoice at all.</description>
+      <enclosure url="https://englishire.com/real-cost-of-english-teacher-turnover.png" type="image/png" />
+    </item>
+    <item>
+      <title>How One Unresolved Staff Conflict Helped Collapse a 35-Year-Old International School</title>
+      <link>https://englishire.com/school-collapse-after-three-decades.html</link>
+      <guid isPermaLink="true">https://englishire.com/school-collapse-after-three-decades.html</guid>
+      <dc:creator>James Simmons</dc:creator>
+      <description>A false accusation, management inaction, a missing toddler, and the nine-month chain reaction that permanently closed a Tokyo preschool after more than three decades.</description>
+      <enclosure url="https://englishire.com/school-collapse-after-three-decades-article.png" type="image/png" />
+    </item>
+  </channel>
+</rss>
