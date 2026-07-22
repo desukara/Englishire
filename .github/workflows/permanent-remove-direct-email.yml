@@ -1,0 +1,66 @@
+name: Permanent direct email removal
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  remove:
+    if: github.head_ref == 'agent/permanent-remove-direct-email-v2'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - name: Remove misleading direct-email control from source
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          contact = Path('contact.html')
+          html = contact.read_text(encoding='utf-8')
+          html, button_count = re.subn(
+              r'\n\s*<a\s+class="button button--text"\s+href="mailto:info@englishire\.com\?subject=Teacher%20cover%20enquiry"\s+data-direct-email\s+data-email-address="info@englishire\.com"\s*>Email Englishire Directly</a>',
+              '', html, flags=re.S,
+          )
+          html, fallback_count = re.subn(
+              r'\n\s*<p class="form-field__hint email-enquiry-form__email-fallback">\s*If your email application does not open, write to\s*<a href="mailto:info@englishire\.com">info@englishire\.com</a>\.\s*</p>',
+              '', html, flags=re.S,
+          )
+          if button_count != 1 or fallback_count != 1:
+              raise SystemExit(f'Expected one button and one fallback; found {button_count}, {fallback_count}')
+          if 'Email Englishire Directly' in html or 'data-direct-email' in html:
+              raise SystemExit('Direct-email control remains in contact.html')
+          contact.write_text(html, encoding='utf-8', newline='\n')
+
+          script = Path('contact-form.js')
+          js = script.read_text(encoding='utf-8')
+          js = re.sub(r'\n\s*const directEmailLink = form\.querySelector\("\[data-direct-email\]"\);', '', js)
+          js = re.sub(r'\n\s*if \(directEmailLink instanceof HTMLAnchorElement\) \{.*?\n\s*\}\n', '\n', js, flags=re.S)
+          js = re.sub(r'\n\s*const directEmailControl = form\.querySelector\("\[data-direct-email\]"\);.*?emailFallback\?\.remove\(\);\n', '\n', js, flags=re.S)
+          if 'data-direct-email' in js or 'directEmail' in js or 'navigator.clipboard' in js:
+              raise SystemExit('Direct-email workaround remains in contact-form.js')
+          script.write_text(js, encoding='utf-8', newline='\n')
+
+          trigger = Path('.permanent-email-removal-trigger')
+          if trigger.exists(): trigger.unlink()
+          PY
+          node --check contact-form.js
+          python - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          HTMLParser().feed(Path('contact.html').read_text(encoding='utf-8'))
+          assert 'Email Englishire Directly' not in Path('contact.html').read_text(encoding='utf-8')
+          print('Permanent source removal validated')
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add contact.html contact-form.js .permanent-email-removal-trigger
+          git commit -m "Remove direct email button from source"
+          git push origin HEAD:${{ github.head_ref }}
