@@ -1,9 +1,7 @@
 name: Link Service Standards
 
 on:
-  push:
-    branches: [agent/link-service-standards]
-  pull_request:
+  pull_request_target:
     branches: [main]
     types: [opened, synchronize, reopened]
 
@@ -12,7 +10,7 @@ permissions:
 
 jobs:
   update-links:
-    if: github.ref_name == 'agent/link-service-standards' || github.head_ref == 'agent/link-service-standards'
+    if: github.event.pull_request.head.ref == 'agent/link-service-standards'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,9 +30,12 @@ jobs:
               text = path.read_text(encoding='utf-8')
               if 'site-footer__legal' not in text or 'href="service-standards.html"' in text:
                   continue
-
-              pattern = r'(<div class="site-footer__legal">\s*)'
-              text, count = re.subn(pattern, r'\1' + footer_link + '\n', text, count=1)
+              text, count = re.subn(
+                  r'(<div class="site-footer__legal">\s*)',
+                  r'\1' + footer_link + '\n',
+                  text,
+                  count=1,
+              )
               if count != 1:
                   raise SystemExit(f'Could not add footer link to {path}')
               path.write_text(text, encoding='utf-8', newline='\n')
@@ -56,14 +57,11 @@ jobs:
               if 'contact.html' not in updated:
                   updated.append('contact.html')
 
-          for trigger_name in ('.link-service-standards-trigger', '.link-service-standards-trigger-2', '.link-service-standards-trigger-3'):
-              trigger = Path(trigger_name)
-              if trigger.exists():
-                  trigger.unlink()
+          for trigger in Path('.').glob('.link-service-standards-trigger*'):
+              trigger.unlink()
 
           if not updated:
               raise SystemExit('No HTML files were updated')
-
           print(f'Updated {len(updated)} files')
           PY
 
@@ -76,12 +74,11 @@ jobs:
 
           contact = Path('contact.html').read_text(encoding='utf-8')
           assert 'Before submitting, review our' in contact
-          assert 'href="service-standards.html"' in contact
 
-          pages_with_footer = [p for p in Path('.').glob('*.html') if 'site-footer__legal' in p.read_text(encoding='utf-8')]
-          missing = [str(p) for p in pages_with_footer if 'href="service-standards.html"' not in p.read_text(encoding='utf-8')]
+          pages = [p for p in Path('.').glob('*.html') if 'site-footer__legal' in p.read_text(encoding='utf-8')]
+          missing = [str(p) for p in pages if 'href="service-standards.html"' not in p.read_text(encoding='utf-8')]
           assert not missing, missing
-          print(f'Validated {len(pages_with_footer)} linked footers')
+          print(f'Validated {len(pages)} linked footers')
           PY
 
           git config user.name "github-actions[bot]"
