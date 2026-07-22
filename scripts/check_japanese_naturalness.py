@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup, NavigableString, Tag
 ROOT = Path(__file__).resolve().parents[1]
 JA = ROOT / "ja"
 JAPANESE_CHARACTER = re.compile(r"[\u3040-\u30ff\u3400-\u9fff]")
+JAPANESE_INLINE_EDGE = r"[\u3040-\u30ff\u3400-\u9fff、。：；）」』】]"
 INLINE_CONTAINERS = ("p", "li", "dd", "dt", "figcaption", "span")
 
 BANNED = {
@@ -25,6 +26,7 @@ BANNED = {
     "ほかの条件は妥当な手配": "ほかの条件に問題のない手配",
     "短期の講師代講": "講師の短期代講",
     "早めのご紹介が役立ちます": "早めの学校情報の共有が役立ちます",
+    "記事は検索数だけでなく": "記事は検索数の多さだけで選ぶのではなく",
     "お問い合わせフォームは、利用者自身のメールアプリで送信するメッセージを作成します。": "Formspreeを通じてEnglishireへ送信されます",
     "ウェブサイト自体はフォームの入力内容を送信または保存しません。": "Formspreeによる送信処理を正確に説明する",
 }
@@ -51,16 +53,13 @@ for path in sorted(JA.glob("*.html")):
                     errors.append(
                         f"{path.name}: English full stop follows an inline element in Japanese text"
                     )
-                if re.match(
-                    r"^\s+[\u3040-\u30ff\u3400-\u9fff、。]",
-                    node_text,
-                ):
+                if re.match(rf"^\s+{JAPANESE_INLINE_EDGE}", node_text):
                     errors.append(
                         f"{path.name}: unwanted space follows an inline element in Japanese text"
                     )
 
             if isinstance(node.next_sibling, Tag) and re.search(
-                r"[\u3040-\u30ff\u3400-\u9fff、。]\s+$",
+                rf"{JAPANESE_INLINE_EDGE}\s+$",
                 node_text,
             ):
                 errors.append(
