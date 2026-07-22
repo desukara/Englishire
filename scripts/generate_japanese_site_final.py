@@ -5,6 +5,9 @@ from __future__ import annotations
 from bs4 import BeautifulSoup
 
 import generate_japanese_site_recovery as recovery
+from japanese_editorial_overrides import SOURCE_OVERRIDES
+
+recovery.EXACT_OVERRIDES.update(SOURCE_OVERRIDES)
 
 FINAL_REPLACEMENTS = [
     ("info@englishshire.com", "info@englishire.com"),
