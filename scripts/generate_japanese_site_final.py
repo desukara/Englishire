@@ -2,8 +2,6 @@
 """Final production runner for Japanese parity recovery."""
 from __future__ import annotations
 
-from pathlib import Path
-
 from bs4 import BeautifulSoup
 
 import generate_japanese_site_recovery as recovery
@@ -11,10 +9,21 @@ import generate_japanese_site_recovery as recovery
 FINAL_REPLACEMENTS = [
     ("info@englishshire.com", "info@englishire.com"),
     ("イングリッシュアイレ", "Englishire"),
+    ("イングリッシュアイア", "Englishire"),
     ("英語IRE", "Englishire"),
     ("© 2026 英語です。", "© 2026 Englishire."),
     ("© 2026 英語。", "© 2026 Englishire."),
     ("英語です。無断転載を禁じます。", "Englishire. 無断転載を禁じます。"),
+    ("一時的なカバー", "一時的な代講"),
+    ("教師のカバー", "講師の代講"),
+    ("英語教師", "英語講師"),
+    ("教師", "講師"),
+    ("先生", "講師"),
+    ("時刻表", "時間割"),
+    ("公開された標準", "明文化された基準"),
+    ("Englishire スタンダード", "Englishireの基準"),
+    ("Englishireのスタンダード", "Englishireの基準"),
+    ("適切に配置された呼吸室。", "学校が適切な判断をするための時間を確保します。"),
 ]
 
 
