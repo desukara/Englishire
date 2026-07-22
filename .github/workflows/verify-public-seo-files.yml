@@ -1,0 +1,54 @@
+name: Verify public SEO files
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-files:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate repository SEO files
+        run: |
+          test -f .nojekyll
+          test -s sitemap.xml
+          test -s sitemap-pages.xml
+          test -s sitemap-journal.xml
+          test -s sitemap-images.xml
+          test -s sitemap.txt
+          test -s robots.txt
+          grep -q '<sitemapindex' sitemap.xml
+          grep -q '<urlset' sitemap-pages.xml
+          grep -q 'https://englishire.com/' sitemap.txt
+          grep -q 'Sitemap: https://englishire.com/sitemap.xml' robots.txt
+          grep -q 'Sitemap: https://englishire.com/sitemap.txt' robots.txt
+
+      - name: Verify live publication
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        run: |
+          check_url() {
+            url="$1"
+            pattern="$2"
+            body="$(mktemp)"
+            curl --fail --silent --show-error --location \
+              --retry 18 --retry-all-errors --retry-delay 10 \
+              --output "$body" "$url"
+            grep -q "$pattern" "$body"
+          }
+
+          check_url 'https://englishire.com/sitemap.xml' '<sitemapindex'
+          check_url 'https://englishire.com/sitemap-pages.xml' '<urlset'
+          check_url 'https://englishire.com/sitemap-journal.xml' '<urlset'
+          check_url 'https://englishire.com/sitemap-images.xml' '<urlset'
+          check_url 'https://englishire.com/sitemap.txt' 'https://englishire.com/'
+          check_url 'https://englishire.com/robots.txt' 'Sitemap: https://englishire.com/sitemap.xml'
