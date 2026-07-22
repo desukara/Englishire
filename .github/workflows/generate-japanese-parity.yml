@@ -31,19 +31,7 @@ jobs:
       - name: Generate final reviewed Japanese counterparts
         run: python scripts/generate_japanese_site_reviewed.py
 
-      - name: Run strict Japanese parity audit
-        run: python scripts/check_japanese_parity.py
-
-      - name: Run Japanese editorial quality audit
-        run: python scripts/check_japanese_quality.py
-
-      - name: Run existing static-site validation
-        run: |
-          python -m compileall scripts
-          if [ -f package.json ]; then npm install --ignore-scripts --no-audit --no-fund; fi
-          if npm run | grep -q 'validate'; then npm run validate; fi
-
-      - name: Commit validated Japanese pages to audit branch
+      - name: Commit generated Japanese pages for inspection
         if: ${{ github.event_name == 'push' }}
         run: |
           git config user.name "Englishire parity bot"
@@ -55,3 +43,15 @@ jobs:
             git commit -m "Complete Japanese editorial audit [generated-ja]"
             git push origin HEAD:agent/final-japanese-editorial-audit
           fi
+
+      - name: Run strict Japanese parity audit
+        run: python scripts/check_japanese_parity.py
+
+      - name: Run Japanese editorial quality audit
+        run: python scripts/check_japanese_quality.py
+
+      - name: Run existing static-site validation
+        run: |
+          python -m compileall scripts
+          if [ -f package.json ]; then npm install --ignore-scripts --no-audit --no-fund; fi
+          if npm run | grep -q 'validate'; then npm run validate; fi
