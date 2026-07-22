@@ -32,6 +32,9 @@ jobs:
       - name: Ensure generated Japanese pages are committed
         run: git diff --exit-code -- ja scripts/ja_translation_cache.json
 
+      - name: Run form and policy consistency audit
+        run: python scripts/check_form_policy_consistency.py
+
       - name: Run Japanese release parity audit
         run: python scripts/check_japanese_release.py
 

@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
-"""Reject wording found during the post-merge natural-Japanese review."""
+"""Reject wording and inline typography defects found during Japanese review."""
 from pathlib import Path
+import re
 import sys
+
+from bs4 import BeautifulSoup, NavigableString, Tag
 
 ROOT = Path(__file__).resolve().parents[1]
 JA = ROOT / "ja"
+JAPANESE_CHARACTER = re.compile(r"[\u3040-\u30ff\u3400-\u9fff]")
+JAPANESE_INLINE_EDGE = r"[\u3040-\u30ff\u3400-\u9fff、。：；）」』】]"
+INLINE_CONTAINERS = ("p", "li", "dd", "dt", "figcaption", "span")
 
 BANNED = {
     "長期の短期手配": "数週間以上にわたる一時的な手配",
@@ -20,6 +26,9 @@ BANNED = {
     "ほかの条件は妥当な手配": "ほかの条件に問題のない手配",
     "短期の講師代講": "講師の短期代講",
     "早めのご紹介が役立ちます": "早めの学校情報の共有が役立ちます",
+    "記事は検索数だけでなく": "記事は検索数の多さだけで選ぶのではなく",
+    "お問い合わせフォームは、利用者自身のメールアプリで送信するメッセージを作成します。": "Formspreeを通じてEnglishireへ送信されます",
+    "ウェブサイト自体はフォームの入力内容を送信または保存しません。": "Formspreeによる送信処理を正確に説明する",
 }
 
 errors = []
@@ -28,6 +37,34 @@ for path in sorted(JA.glob("*.html")):
     for bad, preferred in BANNED.items():
         if bad in text:
             errors.append(f"{path.name}: found {bad!r}; prefer {preferred!r}")
+
+    soup = BeautifulSoup(text, "html.parser")
+    for container in soup.find_all(INLINE_CONTAINERS):
+        if not JAPANESE_CHARACTER.search(container.get_text()):
+            continue
+
+        for node in container.children:
+            if not isinstance(node, NavigableString):
+                continue
+
+            node_text = str(node)
+            if isinstance(node.previous_sibling, Tag):
+                if re.match(r"^\s*\.", node_text):
+                    errors.append(
+                        f"{path.name}: English full stop follows an inline element in Japanese text"
+                    )
+                if re.match(rf"^\s+{JAPANESE_INLINE_EDGE}", node_text):
+                    errors.append(
+                        f"{path.name}: unwanted space follows an inline element in Japanese text"
+                    )
+
+            if isinstance(node.next_sibling, Tag) and re.search(
+                rf"{JAPANESE_INLINE_EDGE}\s+$",
+                node_text,
+            ):
+                errors.append(
+                    f"{path.name}: unwanted space precedes an inline element in Japanese text"
+                )
 
 if errors:
     print("Japanese naturalness audit failed:", file=sys.stderr)
