@@ -4,13 +4,16 @@ on:
   push:
     branches:
       - agent/japanese-parity-recovery
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: write
 
 jobs:
   generate:
-    if: ${{ !contains(github.event.head_commit.message, '[generated-ja]') }}
+    if: ${{ github.event_name == 'pull_request' || !contains(github.event.head_commit.message, '[generated-ja]') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -38,6 +41,7 @@ jobs:
           if npm run | grep -q 'validate'; then npm run validate; fi
 
       - name: Commit generated Japanese pages
+        if: ${{ github.event_name == 'push' }}
         run: |
           git config user.name "Englishire parity bot"
           git config user.email "actions@users.noreply.github.com"
