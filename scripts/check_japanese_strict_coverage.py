@@ -10,6 +10,7 @@ from japanese_strict import STRICT_OVERRIDES
 
 ROOT = Path(__file__).resolve().parents[1]
 AUDIT = ROOT / "scripts" / "translation_audit.tsv"
+REPORT = ROOT / "scripts" / "unreviewed_japanese_sources.tsv"
 
 ALLOWED_EXACT = {
     "html", "website", "article", "summary_large_image", "index, follow",
@@ -49,12 +50,18 @@ for item in missing:
     seen.add(item[3])
     unique.append(item)
 
+with REPORT.open("w", encoding="utf-8", newline="") as handle:
+    writer = csv.writer(handle, delimiter="\t", lineterminator="\n")
+    writer.writerow(["page", "kind", "element", "english"])
+    writer.writerows(unique)
+
 if unique:
     print(f"Strict Japanese coverage failed: {len(unique)} English source strings are unreviewed.")
     for page, kind, element, source in unique[:250]:
         print(f"- {page} [{kind} {element}]: {source}")
     if len(unique) > 250:
         print(f"- ... and {len(unique) - 250} more")
+    print(f"Full report written to {REPORT.relative_to(ROOT)}")
     raise SystemExit(1)
 
 print(f"Strict Japanese coverage passed: {len(STRICT_OVERRIDES)} reviewed source strings loaded.")
