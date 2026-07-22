@@ -3,7 +3,7 @@ name: Generate Japanese parity site
 on:
   push:
     branches:
-      - agent/japanese-parity-recovery
+      - agent/japanese-editorial-corrections
   pull_request:
     branches:
       - main
@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: agent/japanese-parity-recovery
+          ref: agent/japanese-editorial-corrections
           fetch-depth: 0
 
       - uses: actions/setup-python@v5
@@ -43,7 +43,7 @@ jobs:
           if [ -f package.json ]; then npm install --ignore-scripts --no-audit --no-fund; fi
           if npm run | grep -q 'validate'; then npm run validate; fi
 
-      - name: Commit validated Japanese pages to recovery branch
+      - name: Commit validated Japanese pages to correction branch
         if: ${{ github.event_name == 'push' }}
         run: |
           git config user.name "Englishire parity bot"
@@ -52,6 +52,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No generated changes"
           else
-            git commit -m "Rebuild Japanese site from canonical English pages [generated-ja]"
-            git push origin HEAD:agent/japanese-parity-recovery
+            git commit -m "Correct Japanese company voice and mistranslations [generated-ja]"
+            git push origin HEAD:agent/japanese-editorial-corrections
           fi
