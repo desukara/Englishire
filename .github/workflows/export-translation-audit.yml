@@ -1,0 +1,36 @@
+name: Export Japanese translation audit
+
+on:
+  push:
+    branches:
+      - agent/strict-japanese-retranslation
+
+permissions:
+  contents: write
+
+jobs:
+  export:
+    if: ${{ !contains(github.event.head_commit.message, '[audit-export]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/strict-japanese-retranslation
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install beautifulsoup4
+      - name: Export aligned source and Japanese strings
+        run: python scripts/export_translation_audit.py
+      - name: Commit audit catalogue
+        run: |
+          git config user.name "Englishire audit bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add scripts/translation_audit.tsv
+          if git diff --cached --quiet; then
+            echo "No audit changes"
+          else
+            git commit -m "Export Japanese translation catalogue [audit-export]"
+            git push origin HEAD:agent/strict-japanese-retranslation
+          fi
