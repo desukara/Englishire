@@ -6,12 +6,6 @@
   if (!(form instanceof HTMLFormElement)) {
     return;
   }
-  const emailFallback = form.querySelector(
-    ".email-enquiry-form__email-fallback"
-  );
-
-  directEmailLink?.remove();
-  emailFallback?.remove();
 
   const status = document.querySelector("#englishire-email-enquiry-status");
   const submitButton = form.querySelector('button[type="submit"]');
