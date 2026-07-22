@@ -1,24 +1,19 @@
-name: Generate Japanese parity site
+name: Validate Japanese parity site
 
 on:
-  push:
-    branches:
-      - agent/final-japanese-editorial-audit
   pull_request:
     branches:
       - main
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  generate:
-    if: ${{ github.event_name == 'pull_request' || !contains(github.event.head_commit.message, '[generated-ja]') }}
+  validate-japanese:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: agent/final-japanese-editorial-audit
           fetch-depth: 0
 
       - uses: actions/setup-python@v5
@@ -28,11 +23,17 @@ jobs:
       - name: Install generator dependencies
         run: pip install beautifulsoup4 deep-translator
 
-      - name: Generate final reviewed Japanese counterparts
+      - name: Require reviewed source-keyed translations
+        run: python scripts/check_japanese_strict_coverage.py
+
+      - name: Regenerate reviewed Japanese counterparts
         run: python scripts/generate_japanese_site_release.py
 
-      - name: Run strict Japanese parity audit
-        run: python scripts/check_japanese_parity.py
+      - name: Ensure generated Japanese pages are committed
+        run: git diff --exit-code -- ja scripts/ja_translation_cache.json
+
+      - name: Run Japanese release parity audit
+        run: python scripts/check_japanese_release.py
 
       - name: Run Japanese editorial quality audit
         run: python scripts/check_japanese_quality.py
@@ -42,16 +43,3 @@ jobs:
           python -m compileall scripts
           if [ -f package.json ]; then npm install --ignore-scripts --no-audit --no-fund; fi
           if npm run | grep -q 'validate'; then npm run validate; fi
-
-      - name: Commit validated Japanese pages to audit branch
-        if: ${{ github.event_name == 'push' }}
-        run: |
-          git config user.name "Englishire parity bot"
-          git config user.email "actions@users.noreply.github.com"
-          git add ja scripts/ja_translation_cache.json
-          if git diff --cached --quiet; then
-            echo "No generated changes"
-          else
-            git commit -m "Complete Japanese editorial audit [generated-ja]"
-            git push origin HEAD:agent/final-japanese-editorial-audit
-          fi

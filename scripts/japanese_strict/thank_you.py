@@ -1,0 +1,25 @@
+"""Exact Japanese translations for the enquiry confirmation page."""
+
+TRANSLATIONS = {
+    "Thank You | Englishire": "お問い合わせありがとうございます | Englishire",
+    "Enquiry Submitted": "お問い合わせを受け付けました",
+    "Thank you. Your enquiry has been submitted successfully.": "お問い合わせありがとうございます。送信が完了しました。",
+    "Englishire has received the information you provided.": "ご入力いただいた内容をEnglishireが受け取りました。",
+    "We will review the assignment promptly and reply as soon as possible. Urgent enquiries are prioritised, while response time may depend on the timetable, location and information that still requires confirmation.": "ご依頼内容を速やかに確認し、できるだけ早くご返信します。急ぎのご相談は優先しますが、時間割、所在地、追加確認が必要な情報によっては、回答までに時間を要する場合があります。",
+    "What happens next?": "この後の流れ",
+    "Every submitted enquiry is reviewed individually so that the school, timetable, learner groups and teaching requirements can be understood before the next step is confirmed.": "送信されたお問い合わせは一件ずつ確認します。次の手順を確定する前に、学校、時間割、学習者のグループ、授業上の必要事項を把握します。",
+    "Received": "受領",
+    "Your enquiry has reached Englishire successfully. There is no need to send it again.": "お問い合わせはEnglishireへ正常に届いています。再送する必要はありません。",
+    "Reviewed": "内容確認",
+    "We assess availability, suitability, travel, timetable and the practical requirements of the assignment.": "講師の空き状況、適合性、移動条件、時間割、ご依頼の実務上の必要事項を確認します。",
+    "Answered": "回答",
+    "We will reply as soon as possible with any questions, availability information or the next practical step.": "追加のご質問、空き状況、次の実務手順について、できるだけ早くご返信します。",
+    "Our Principle": "Englishireの原則",
+    "A prompt reply begins with a careful review of the assignment.": "速やかな回答は、ご依頼内容を丁寧に確認することから始まります。",
+    "Englishire will respond clearly and without unnecessary delay. Cover is confirmed only when the assignment, suitability and availability have been established.": "Englishireは、不要な遅れなく明確に回答します。ご依頼内容、講師の適合性、空き状況を確認した後にのみ代講を確定します。",
+    "Return Home": "ホームへ戻る",
+    "Response": "ご返信について",
+    "Your enquiry is now with Englishire.": "お問い合わせはEnglishireに届いています。",
+    "We will review it promptly and contact you at the email address supplied in the form. For urgent changes, email": "内容を速やかに確認し、フォームに入力されたメールアドレスへご連絡します。急ぎの変更がある場合は、",
+    "Information about what happens after a temporary teacher cover enquiry is emailed to Englishire.": "英語講師の代講・短期手配についてEnglishireへ問い合わせた後の流れをご案内します。",
+}
