@@ -307,3 +307,47 @@ a.button[href="englishire-standard.html"]:focus-visible {
   max-height: none !important;
   object-fit: contain !important;
 }
+
+
+/* Enquiry flow and confirmation page */
+.email-enquiry-form__email-fallback {
+  margin-top: 0.8rem;
+  color: var(--muted);
+}
+
+.email-enquiry-form__email-fallback a,
+.thank-you-page .enquiry-strip a {
+  color: inherit;
+  border-bottom: 1px solid currentColor;
+}
+
+.thank-you-page .service-hero__summary {
+  max-width: 58rem;
+}
+
+.thank-you-page .about-englishire .service-hero__actions {
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+}
+
+.thank-you-page .about-englishire .button--light {
+  color: var(--royal-navy-deep);
+  background: var(--ivory-light);
+  border-color: var(--crown-gold-light);
+}
+
+.thank-you-page .about-englishire .button--light:hover,
+.thank-you-page .about-englishire .button--light:focus-visible {
+  color: var(--white);
+  background: var(--crimson);
+  border-color: var(--crimson);
+}
+
+.thank-you-page .about-englishire .button--primary {
+  border-color: var(--crown-gold-light);
+}
+
+.thank-you-page .enquiry-strip__content p {
+  color: rgba(255, 255, 255, 0.84);
+}

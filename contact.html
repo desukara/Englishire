@@ -28,6 +28,7 @@
 <title>Request Temporary English Teacher Cover | Englishire</title>
 <link href="style.css" rel="stylesheet"/>
 <script defer="" src="script.js"></script>
+<script defer src="contact-form.js"></script>
 <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -176,8 +177,9 @@
 <form
   action="https://formspree.io/f/xbdnydnb"
   class="email-enquiry-form"
-  id="englishire-email-enquiry-form"
+  id="englishire-contact-form"
   method="post"
+  data-success-page="thank-you.html"
 >
   <input name="_subject" type="hidden" value="Englishire teacher cover enquiry" />
   <div aria-hidden="true" hidden>
@@ -245,9 +247,18 @@
   </label>
   <div class="email-enquiry-form__actions">
     <button class="button button--primary" type="submit">Send Enquiry</button>
-    <a class="button button--text" href="mailto:info@englishire.com">Email Englishire Directly</a>
+    <a
+    class="button button--text"
+    href="mailto:info@englishire.com?subject=Teacher%20cover%20enquiry"
+    data-direct-email
+    data-email-address="info@englishire.com"
+  >Email Englishire Directly</a>
   </div>
   <p aria-live="polite" class="email-enquiry-form__status" id="englishire-email-enquiry-status"></p>
+  <p class="form-field__hint email-enquiry-form__email-fallback">
+    If your email application does not open, write to
+    <a href="mailto:info@englishire.com">info@englishire.com</a>.
+  </p>
 </form>
 <section aria-labelledby="email-contact-title" class="email-contact-panel">
   <h3 id="email-contact-title">Prefer to write the email yourself?</h3>
@@ -443,8 +454,8 @@
 <div class="noscript-notice">
 <p>
           This website works best with JavaScript enabled. Without JavaScript,
-          the enquiry form will use your email application directly. You may
-          alternatively write to info@englishire.com.
+          the form will be submitted through Formspree and may display its own
+          confirmation page. You may also write to info@englishire.com.
         </p>
 </div>
 </noscript>
