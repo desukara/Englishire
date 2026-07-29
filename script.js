@@ -75,6 +75,12 @@
     if (legal instanceof HTMLElement) {
       legal.innerHTML = '<a href="privacy.html">プライバシー</a><a href="terms.html">利用規約</a><a href="cookies.html">Cookie</a>';
     }
+  } else {
+    document.querySelectorAll('a[href="journal.html"]').forEach((link) => {
+      link.href = "https://eastokyo.com/";
+      link.textContent = "Eastokyo Magazine";
+      link.setAttribute("aria-label", "Eastokyo Magazine, the digital magazine of Englishire");
+    });
   }
 
   const headerInner = document.querySelector(".site-header__inner");
