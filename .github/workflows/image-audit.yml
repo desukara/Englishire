@@ -1,0 +1,72 @@
+name: Build image audit
+
+on:
+  push:
+    branches: [agent/image-runway-audit]
+    paths: [.github/workflows/image-audit.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/image-runway-audit
+      - name: Install Pillow
+        run: python -m pip install pillow
+      - name: Build manifest and contact sheets
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageOps, ImageDraw, ImageFont
+          import csv, hashlib, json, math
+          root=Path('.')
+          out=root/'audit'/'images'; out.mkdir(parents=True,exist_ok=True)
+          exts={'.png','.jpg','.jpeg','.webp','.gif','.ico'}
+          images=[p for p in root.rglob('*') if p.is_file() and p.suffix.lower() in exts and '.git' not in p.parts and 'audit' not in p.parts]
+          text_files=[p for p in root.rglob('*') if p.is_file() and p.suffix.lower() in {'.html','.css','.js','.json','.xml','.md'} and '.git' not in p.parts and 'audit' not in p.parts]
+          cache={}
+          for p in text_files:
+              try: cache[p]=p.read_text(encoding='utf-8',errors='ignore')
+              except Exception: pass
+          rows=[]
+          for p in sorted(images):
+              rel=p.as_posix(); data=p.read_bytes(); sha=hashlib.sha256(data).hexdigest(); size=len(data)
+              w=h=None; mode=''; fmt=''
+              try:
+                  with Image.open(p) as im: w,h=im.size; mode=im.mode; fmt=im.format or ''
+              except Exception: pass
+              refs=[tf.as_posix() for tf,txt in cache.items() if p.name in txt or rel in txt]
+              rows.append({'path':rel,'filename':p.name,'width':w or '', 'height':h or '', 'bytes':size,'format':fmt,'mode':mode,'sha256':sha,'references':' | '.join(refs),'reference_count':len(refs)})
+          with (out/'manifest.csv').open('w',newline='',encoding='utf-8') as f:
+              writer=csv.DictWriter(f,fieldnames=rows[0].keys() if rows else ['path']); writer.writeheader(); writer.writerows(rows)
+          (out/'manifest.json').write_text(json.dumps(rows,indent=2),encoding='utf-8')
+          groups={}
+          for r in rows: groups.setdefault(r['sha256'],[]).append(r['path'])
+          (out/'duplicates.json').write_text(json.dumps({k:v for k,v in groups.items() if len(v)>1},indent=2),encoding='utf-8')
+          usable=[]
+          for p in sorted(images):
+              try:
+                  im=Image.open(p).convert('RGB')
+                  if im.width>=180 and im.height>=120: usable.append((p,im.copy()))
+              except Exception: pass
+          font=ImageFont.load_default(); tile_w,tile_h=360,260; cols=3; per_page=12
+          for page_idx in range(math.ceil(len(usable)/per_page)):
+              items=usable[page_idx*per_page:(page_idx+1)*per_page]; rows_n=math.ceil(len(items)/cols)
+              sheet=Image.new('RGB',(cols*tile_w,rows_n*tile_h),'white'); draw=ImageDraw.Draw(sheet)
+              for i,(p,im) in enumerate(items):
+                  x=(i%cols)*tile_w; y=(i//cols)*tile_h; thumb=ImageOps.contain(im,(tile_w-20,200)); tx=x+(tile_w-thumb.width)//2; ty=y+8
+                  sheet.paste(thumb,(tx,ty)); label=p.as_posix(); label=('…'+label[-51:]) if len(label)>52 else label
+                  draw.text((x+8,y+214),label,fill='black',font=font); draw.text((x+8,y+232),f'{im.width}×{im.height}',fill='black',font=font)
+              sheet.save(out/f'contact-sheet-{page_idx+1}.jpg',quality=88)
+          PY
+      - name: Commit audit files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audit/images
+          git commit -m "Inventory repository images" || exit 0
+          git push origin HEAD:agent/image-runway-audit
