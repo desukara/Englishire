@@ -1,0 +1,225 @@
+/* Englishire teacher cover page — focused service hierarchy */
+
+.teacher-cover-page .service-hero {
+  padding-block: clamp(3.5rem, 7vw, 6.5rem);
+}
+
+.teacher-cover-page .service-hero__layout {
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.teacher-cover-page .service-hero__content {
+  max-width: 45rem;
+}
+
+.teacher-cover-page .service-hero h1 {
+  max-width: 12ch;
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 0.96;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.teacher-cover-page .service-hero__summary {
+  max-width: 40rem;
+}
+
+.teacher-cover-page .teacher-cover-assurance {
+  margin: 1.35rem 0 0;
+  padding: 1rem 1.1rem;
+  color: var(--royal-navy);
+  background: rgba(226, 202, 139, 0.32);
+  border-left: 4px solid var(--crown-gold);
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.7vw, 1.18rem);
+  line-height: 1.45;
+}
+
+.teacher-cover-page .teacher-cover-details {
+  margin: 1.4rem 0 0;
+  padding: 0;
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+.teacher-cover-page .teacher-cover-details strong {
+  color: var(--royal-navy);
+}
+
+.teacher-cover-page .service-facts {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.teacher-cover-page section:not(.service-hero) {
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.teacher-cover-page .teacher-cover-definition {
+  background: var(--ivory-light);
+  border-block: 1px solid var(--rule);
+}
+
+.teacher-cover-page .teacher-cover-split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: start;
+}
+
+.teacher-cover-page .teacher-cover-split h2,
+.teacher-cover-page .section-heading h2,
+.teacher-cover-page .frequently-asked h2,
+.teacher-cover-page .enquiry-strip h2 {
+  font-size: clamp(2.15rem, 5.2vw, 4.35rem);
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.teacher-cover-page .teacher-cover-definition-list,
+.teacher-cover-page .teacher-cover-preparation-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.teacher-cover-page .teacher-cover-definition-list > div,
+.teacher-cover-page .teacher-cover-preparation-list > div {
+  display: grid;
+  grid-template-columns: minmax(10rem, 0.55fr) minmax(0, 1fr);
+  gap: 1.25rem;
+  padding-block: 1.15rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.teacher-cover-page dt {
+  color: var(--royal-navy);
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 700;
+}
+
+.teacher-cover-page dd {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.teacher-cover-page .situation-list,
+.teacher-cover-page .process-list {
+  gap: 0;
+}
+
+.teacher-cover-page .situation-item,
+.teacher-cover-page .process-item {
+  min-height: 0;
+  padding-block: clamp(1.15rem, 2.5vw, 1.75rem);
+}
+
+.teacher-cover-page .teacher-cover-audiences {
+  background: var(--royal-navy);
+  color: var(--white);
+}
+
+.teacher-cover-page .teacher-cover-audiences .section-label,
+.teacher-cover-page .teacher-cover-audiences h2,
+.teacher-cover-page .teacher-cover-audiences dt {
+  color: var(--crown-gold-light);
+}
+
+.teacher-cover-page .teacher-cover-audiences p,
+.teacher-cover-page .teacher-cover-audiences dd {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.teacher-cover-page .teacher-cover-audiences .teacher-cover-definition-list {
+  border-top-color: rgba(255, 255, 255, 0.2);
+}
+
+.teacher-cover-page .teacher-cover-audiences .teacher-cover-definition-list > div {
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+
+.teacher-cover-page .teacher-cover-standard {
+  background: #102238;
+  color: #f7f1e6;
+}
+
+.teacher-cover-page .teacher-cover-standard .section-label,
+.teacher-cover-page .teacher-cover-standard h2 {
+  color: #e1bf72;
+}
+
+.teacher-cover-page .teacher-cover-standard p {
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.teacher-cover-page .teacher-cover-standard blockquote {
+  margin: 1.75rem 0;
+  padding: 1.25rem 0 1.25rem 1.4rem;
+  border-left: 2px solid #e1bf72;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.4vw, 1.95rem);
+  line-height: 1.35;
+}
+
+.teacher-cover-page .teacher-cover-trust-note {
+  max-width: 46rem;
+  margin-top: 1.5rem;
+  padding-top: 1.3rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-display);
+  font-size: clamp(1.08rem, 2vw, 1.35rem);
+  line-height: 1.5;
+}
+
+.teacher-cover-page .frequently-asked__list {
+  max-width: 54rem;
+}
+
+.teacher-cover-page .enquiry-strip__actions {
+  align-items: flex-start;
+}
+
+.teacher-cover-page .site-footer__masthead img {
+  width: 250px;
+  height: auto;
+  margin-bottom: 0.75rem;
+}
+
+@media (max-width: 56.25rem) {
+  .teacher-cover-page .teacher-cover-split,
+  .teacher-cover-page .service-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .teacher-cover-page .teacher-cover-definition-list > div,
+  .teacher-cover-page .teacher-cover-preparation-list > div {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+}
+
+@media (max-width: 42.5rem) {
+  .teacher-cover-page .service-hero {
+    padding-block: 2.75rem 3.5rem;
+  }
+
+  .teacher-cover-page .service-hero h1 {
+    max-width: none;
+    font-size: clamp(2.65rem, 14vw, 4.4rem);
+  }
+
+  .teacher-cover-page .service-hero__actions {
+    align-items: stretch;
+  }
+
+  .teacher-cover-page .service-hero__actions .button {
+    width: 100%;
+  }
+
+  .teacher-cover-page .enquiry-strip__actions .button {
+    width: 100%;
+  }
+}
