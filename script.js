@@ -60,7 +60,7 @@
   const normalisePublicationLanguage = () => {
     document.querySelectorAll('a[href="journal.html"],a[href$="/journal.html"],a[href="https://eastokyo.com/"]').forEach((link) => {
       link.href = eastokyoHref;
-      link.textContent = japanese ? "Eastokyo Magazine ↗" : "Eastokyo Magazine ↗";
+      link.textContent = "Eastokyo Magazine ↗";
       link.setAttribute("aria-label", japanese
         ? "Eastokyo Magazine、Englishireのデジタル出版物"
         : "Eastokyo Magazine, Englishire's digital publication");
@@ -85,6 +85,63 @@
     });
   };
 
+  const rebuildHomepagePublicationGateway = () => {
+    if (japanese || file !== "index.html") return;
+    const section = document.querySelector("#englishire-school-media");
+    if (!(section instanceof HTMLElement)) return;
+
+    const label = section.querySelector(".section-label");
+    const title = section.querySelector("#englishire-school-media-title");
+    const summary = section.querySelector(".section-heading__summary");
+    const grid = section.querySelector(".homepage-publications__grid");
+    const footer = section.querySelector(".school-media__footer");
+
+    if (label) label.textContent = "From Eastokyo Magazine";
+    if (title) title.textContent = "The publication lives across the street.";
+    if (summary) summary.textContent = "Read native Eastokyo editions on recruitment, continuity and the professional life of English teaching in Japan.";
+
+    if (grid) {
+      grid.innerHTML = `
+        <article class="homepage-publication">
+          <a class="homepage-publication__media" href="https://eastokyo.com/the-end-of-the-easy-teacher.html">
+            <img src="media-rushed-recruitment.png" alt="Editorial image for The End of the Easy Teacher" width="1200" height="900" loading="lazy" decoding="async" />
+          </a>
+          <div class="homepage-publication__content">
+            <p class="story-category">Cover Story · Recruitment</p>
+            <h3><a href="https://eastokyo.com/the-end-of-the-easy-teacher.html">The End of the Easy Teacher</a></h3>
+            <p>How Japan's English schools spent decades mistaking a desire to come to Japan for a desire to teach.</p>
+            <a class="story-link" href="https://eastokyo.com/the-end-of-the-easy-teacher.html">Read at Eastokyo ↗</a>
+          </div>
+        </article>
+        <article class="homepage-publication">
+          <a class="homepage-publication__media" href="https://eastokyo.com/hiring-foreign-teachers-in-japan.html">
+            <img src="hiring-foreign-teachers-in-japan.png" alt="Editorial image for The Hire You're Actually Making" width="1600" height="900" loading="lazy" decoding="async" />
+          </a>
+          <div class="homepage-publication__content">
+            <p class="story-category">Essay · Hiring</p>
+            <h3><a href="https://eastokyo.com/hiring-foreign-teachers-in-japan.html">The Hire You're Actually Making</a></h3>
+            <p>Why a vacancy is a long-term decision about continuity, adaptability and institutional character.</p>
+            <a class="story-link" href="https://eastokyo.com/hiring-foreign-teachers-in-japan.html">Read at Eastokyo ↗</a>
+          </div>
+        </article>
+        <article class="homepage-publication">
+          <a class="homepage-publication__media" href="https://eastokyo.com/city-life.html">
+            <img src="media-staffing-contingency.png" alt="Editorial image for Eastokyo Magazine Issue 01" width="1200" height="900" loading="lazy" decoding="async" />
+          </a>
+          <div class="homepage-publication__content">
+            <p class="story-category">Issue 01 · The Profession</p>
+            <h3><a href="https://eastokyo.com/city-life.html">The Work Behind the Classroom</a></h3>
+            <p>Eight essays on recruitment, retention, continuity, operations and the decisions that hold a school together.</p>
+            <a class="story-link" href="https://eastokyo.com/city-life.html">Open the issue ↗</a>
+          </div>
+        </article>`;
+    }
+
+    if (footer) {
+      footer.innerHTML = '<p>Eastokyo Magazine is Englishire\'s independent digital publication for the English-teaching profession in Japan.</p><a class="button button--text" href="https://eastokyo.com/">Open Eastokyo Magazine ↗</a>';
+    }
+  };
+
   if (japanese) {
     const nav = document.querySelector("#englishire-primary-navigation");
     if (nav instanceof HTMLElement) {
@@ -107,6 +164,7 @@
   }
 
   normalisePublicationLanguage();
+  rebuildHomepagePublicationGateway();
 
   const headerInner = document.querySelector(".site-header__inner");
   const menuButton = document.querySelector("#englishire-mobile-nav-toggle");
