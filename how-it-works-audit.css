@@ -81,6 +81,7 @@
 
 .process-route li {
   min-width: 0;
+  max-width: none;
   padding: clamp(1.35rem, 3vw, 2.1rem);
   background: var(--ivory, #f6f2e8);
 }
@@ -113,11 +114,15 @@
   border-top: 1px solid rgba(17, 34, 51, 0.2);
 }
 
-.process-step {
+/* Override the global li { max-width: 68ch } reading-width rule. That rule
+   was constraining every process row and leaving the right half of the page empty. */
+#englishire-process-stages .process-steps > .process-step {
   display: grid;
   grid-template-columns: clamp(3.5rem, 7vw, 6rem) minmax(0, 1fr);
   gap: clamp(1.25rem, 4vw, 3.5rem);
   width: 100%;
+  max-width: none !important;
+  margin-inline: 0;
   padding-block: clamp(1.8rem, 4vw, 3rem);
   border-bottom: 1px solid rgba(17, 34, 51, 0.18);
 }
@@ -290,7 +295,7 @@
     grid-column: auto;
   }
 
-  .process-step {
+  #englishire-process-stages .process-steps > .process-step {
     grid-template-columns: 1fr;
     gap: 0.7rem;
   }
