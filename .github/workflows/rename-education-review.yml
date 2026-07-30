@@ -1,0 +1,65 @@
+name: Apply Education Review brand
+
+on:
+  push:
+    branches:
+      - agent/education-review-brand
+    paths:
+      - .github/workflows/rename-education-review.yml
+
+permissions:
+  contents: write
+
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/education-review-brand
+
+      - name: Rename the publication across text sources
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          allowed = {'.html', '.js', '.css', '.json', '.xml', '.md', '.txt', '.webmanifest'}
+          replacements = {
+              'Eastokyo Magazine': 'Eastokyo Education Review',
+              'EASTOKYO MAGAZINE': 'EASTOKYO EDUCATION REVIEW',
+              "The English Teachers' Magazine": 'English teaching, schools and the education industry in Japan.',
+              'The English Teachers’ Magazine': 'English teaching, schools and the education industry in Japan.',
+          }
+
+          changed = []
+          for path in Path('.').rglob('*'):
+              if not path.is_file() or path.suffix.lower() not in allowed or '.git' in path.parts:
+                  continue
+              original = path.read_text(encoding='utf-8')
+              updated = original
+              for old, new in replacements.items():
+                  updated = updated.replace(old, new)
+              if updated != original:
+                  path.write_text(updated, encoding='utf-8')
+                  changed.append(str(path))
+
+          leftovers = []
+          for path in Path('.').rglob('*'):
+              if not path.is_file() or path.suffix.lower() not in allowed or '.git' in path.parts:
+                  continue
+              text = path.read_text(encoding='utf-8')
+              if 'Eastokyo Magazine' in text or 'EASTOKYO MAGAZINE' in text:
+                  leftovers.append(str(path))
+          if leftovers:
+              raise SystemExit('Old proper name remains in: ' + ', '.join(leftovers))
+          print('Updated', len(changed), 'files')
+          PY
+
+      - name: Commit brand rename
+        run: |
+          rm -f .github/workflows/rename-education-review.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Rename publication to Eastokyo Education Review"
+          git push origin HEAD:agent/education-review-brand
