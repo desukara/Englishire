@@ -3,14 +3,14 @@
 ## Canonical roles
 
 - **Englishire** is the temporary English teacher-cover service for Tokyo schools.
-- **Eastokyo Magazine** is Englishire's independent digital publication for the English-teaching profession in Tokyo and across Japan.
+- **Eastokyo Education Review** is Englishire's independent digital publication for the English-teaching profession in Tokyo and across Japan.
 - The service and publication share ownership and visual ancestry, but they have different jobs and different primary routes.
 
 ## Canonical cross-site routes
 
 ### From Englishire
 
-- Publication label: **Eastokyo Magazine**
+- Publication label: **Eastokyo Education Review**
 - Publication destination: `https://eastokyo.com/`
 - Retired visible label: **Englishire Journal** / **Journal**
 
@@ -25,7 +25,7 @@
 
 ### Englishire
 
-The primary navigation should prioritise Teacher Cover, How It Works, Englishire standards/about, Eastokyo Magazine and the teacher-cover enquiry. Japanese pages should expose Eastokyo Magazine as the publication route rather than hiding the publishing relationship.
+The primary navigation should prioritise Teacher Cover, How It Works, Englishire standards/about, Eastokyo Education Review and the teacher-cover enquiry. Japanese pages should expose Eastokyo Education Review as the publication route rather than hiding the publishing relationship.
 
 ### Eastokyo
 
@@ -43,7 +43,7 @@ Contact and Editorial Policy remain prominent in the footer.
 
 ### Englishire
 
-The footer distinguishes service, company, publication and policy routes. Eastokyo Magazine is never labelled Journal.
+The footer distinguishes service, company, publication and policy routes. Eastokyo Education Review is never labelled Journal.
 
 ### Eastokyo
 
@@ -67,7 +67,7 @@ Publisher language should state that Eastokyo is Englishire's independent digita
 ## Implementation in this pass
 
 - `script.js` normalises retired Journal links and labels across Englishire's English pages.
-- Japanese Englishire navigation and footer now include Eastokyo Magazine.
+- Japanese Englishire navigation and footer now include Eastokyo Education Review.
 - Page metadata containing `Englishire Journal` is corrected at runtime.
 - Eastokyo's shared magazine script normalises publication headers and footers across pages.
 - Eastokyo's Genki2 guide copy has been rewritten for the English-teaching profession.
