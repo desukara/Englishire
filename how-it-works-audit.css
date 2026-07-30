@@ -188,7 +188,8 @@
 }
 
 .standard-process-card {
-  max-width: 62rem;
+  width: 100%;
+  max-width: none;
   padding: clamp(2rem, 5vw, 4rem);
   color: var(--ivory-light, #fbf8f1);
   background: var(--royal-navy-deep, #071a35);
@@ -206,8 +207,35 @@
   color: rgba(255, 255, 255, 0.82);
 }
 
-#englishire-process-questions .frequently-asked__list {
-  max-width: 52rem;
+/* This page previously inherited the shared two-column FAQ layout, leaving
+   the lower-left half of the section visibly empty. Keep the heading, answers
+   and action in one full-width reading column instead. */
+#englishire-process-questions .frequently-asked__layout {
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: clamp(1.5rem, 4vw, 2.5rem) !important;
+}
+
+#englishire-process-questions .frequently-asked__heading,
+#englishire-process-questions .frequently-asked__list,
+#englishire-process-questions .section-footer-action {
+  width: 100%;
+  max-width: none;
+}
+
+#englishire-process-questions .frequently-asked__heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+}
+
+#englishire-process-questions .frequently-asked__heading h2 {
+  margin-bottom: 0;
+}
+
+#englishire-process-questions .frequently-asked__heading > p:last-child {
+  max-width: 38rem;
+  margin-bottom: 0;
 }
 
 #englishire-process-enquiry .enquiry-strip__content p:last-child {
@@ -231,7 +259,8 @@
 }
 
 @media (max-width: 56.25rem) {
-  .process-protection-grid {
+  .process-protection-grid,
+  #englishire-process-questions .frequently-asked__heading {
     grid-template-columns: 1fr;
   }
 }
