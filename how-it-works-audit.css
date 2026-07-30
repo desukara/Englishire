@@ -1,0 +1,262 @@
+/* Englishire How It Works — focused process and conversion pass */
+
+#englishire-how-it-works-hero {
+  padding-block: clamp(3.5rem, 7vw, 6.5rem);
+}
+
+#englishire-how-it-works-hero .service-hero__layout {
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+#englishire-how-it-works-hero .service-hero__content {
+  max-width: 44rem;
+}
+
+#englishire-how-it-works-hero h1 {
+  max-width: 13ch;
+  font-size: clamp(3rem, 7vw, 6.2rem);
+  line-height: 0.96;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+#englishire-how-it-works-hero .service-hero__summary {
+  max-width: 39rem;
+}
+
+#englishire-how-it-works-hero .service-hero__actions {
+  align-items: center;
+  gap: 0.85rem;
+}
+
+#englishire-how-it-works-hero .process-hero-guide {
+  margin-top: 1.4rem;
+  padding: 1.1rem 1.2rem;
+  color: var(--royal-navy);
+  background: rgba(226, 202, 139, 0.28);
+  border-left: 4px solid var(--crown-gold);
+}
+
+#englishire-how-it-works-hero .process-hero-guide strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+}
+
+#englishire-how-it-works-hero .process-hero-guide p {
+  margin: 0;
+}
+
+#englishire-process-stages,
+#englishire-process-information,
+#englishire-process-protection,
+#englishire-process-standard,
+#englishire-process-questions,
+#englishire-process-enquiry {
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+#englishire-process-stages .section-heading h2,
+#englishire-process-information h2,
+#englishire-process-protection h2,
+#englishire-process-questions h2,
+#englishire-process-enquiry h2 {
+  font-size: clamp(2.15rem, 5.2vw, 4.35rem);
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.process-route {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1px;
+  margin: clamp(2rem, 5vw, 3.25rem) 0 0;
+  padding: 1px;
+  list-style: none;
+  background: rgba(17, 34, 51, 0.16);
+}
+
+.process-route li {
+  min-width: 0;
+  padding: clamp(1.35rem, 3vw, 2.1rem);
+  background: var(--ivory, #f6f2e8);
+}
+
+.process-route__number {
+  display: block;
+  margin-bottom: 1rem;
+  color: var(--crown-gold-dark, #9a772f);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.process-route strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.08rem, 1.8vw, 1.35rem);
+  line-height: 1.25;
+}
+
+.process-steps {
+  display: grid;
+  gap: 0;
+  margin: clamp(2.5rem, 6vw, 4rem) 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba(17, 34, 51, 0.2);
+}
+
+.process-step {
+  display: grid;
+  grid-template-columns: minmax(3rem, 0.18fr) minmax(0, 1fr);
+  gap: clamp(1.25rem, 4vw, 3.5rem);
+  padding-block: clamp(1.8rem, 4vw, 3rem);
+  border-bottom: 1px solid rgba(17, 34, 51, 0.18);
+}
+
+.process-step__number {
+  margin: 0;
+  color: var(--crown-gold-dark, #9a772f);
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3vw, 2rem);
+}
+
+.process-step__content {
+  max-width: 54rem;
+}
+
+.process-step__content h3 {
+  margin: 0 0 0.75rem;
+}
+
+.process-step__content p {
+  margin: 0;
+}
+
+.process-step__content p + p {
+  margin-top: 0.85rem;
+}
+
+.process-step__assurance {
+  padding-left: 1rem;
+  border-left: 2px solid var(--crown-gold);
+  font-family: var(--font-display);
+}
+
+#englishire-process-information .service-definition-list {
+  margin-top: 0;
+}
+
+.process-confirmation-note {
+  margin-top: clamp(2rem, 5vw, 3rem);
+  padding: 1.4rem 1.5rem;
+  color: var(--royal-navy);
+  background: rgba(226, 202, 139, 0.26);
+  border-left: 4px solid var(--crown-gold);
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  line-height: 1.45;
+}
+
+.process-protection-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(2rem, 5vw, 3rem);
+  background: rgba(17, 34, 51, 0.15);
+  border: 1px solid rgba(17, 34, 51, 0.15);
+}
+
+.process-protection-grid article {
+  padding: clamp(1.5rem, 3vw, 2.4rem);
+  background: var(--ivory, #f6f2e8);
+}
+
+.process-protection-grid h3 {
+  margin-top: 0;
+}
+
+.standard-process-card {
+  max-width: 62rem;
+  padding: clamp(2rem, 5vw, 4rem);
+  color: var(--ivory-light, #fbf8f1);
+  background: var(--royal-navy-deep, #071a35);
+}
+
+.standard-process-card blockquote {
+  margin: 0 0 1.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 3vw, 2.35rem);
+  line-height: 1.3;
+}
+
+.standard-process-card p {
+  max-width: 48rem;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+#englishire-process-questions .frequently-asked__list {
+  max-width: 52rem;
+}
+
+#englishire-process-enquiry .enquiry-strip__content p:last-child {
+  max-width: 46rem;
+}
+
+.site-footer__masthead img {
+  width: 250px;
+  height: auto;
+  margin-bottom: 0.75rem;
+}
+
+@media (max-width: 68.75rem) {
+  .process-route {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .process-route li:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 56.25rem) {
+  .process-protection-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 42.5rem) {
+  #englishire-how-it-works-hero {
+    padding-block: 2.75rem 3.5rem;
+  }
+
+  #englishire-how-it-works-hero h1 {
+    max-width: none;
+    font-size: clamp(2.65rem, 14vw, 4.4rem);
+  }
+
+  #englishire-how-it-works-hero .service-hero__actions {
+    align-items: stretch;
+  }
+
+  #englishire-how-it-works-hero .service-hero__actions .button {
+    width: 100%;
+  }
+
+  .process-route {
+    grid-template-columns: 1fr;
+  }
+
+  .process-route li:last-child {
+    grid-column: auto;
+  }
+
+  .process-step {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+}
