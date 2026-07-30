@@ -1,0 +1,38 @@
+name: Apply image audit
+
+on:
+  push:
+    branches: [agent/image-runway-audit]
+    paths: [.github/workflows/apply-image-audit.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/image-runway-audit
+      - name: Clean image ownership and unused stock
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('sitemap-images.xml')
+          text=p.read_text(encoding='utf-8')
+          marker='  <url><loc>https://englishire.com/backup-teacher-eikaiwa.html</loc>'
+          if marker in text:
+              text=text.split(marker,1)[0].rstrip()+"\n</urlset>\n"
+              p.write_text(text,encoding='utf-8')
+          PY
+          rm -f about-image.jpg asset-preview.png journal-easy-teacher.png
+          rm -rf audit
+          rm -f .github/workflows/image-audit.yml .github/workflows/apply-image-audit.yml
+      - name: Commit audit decisions
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Clean Englishire image inventory"
+          git push origin HEAD:agent/image-runway-audit
