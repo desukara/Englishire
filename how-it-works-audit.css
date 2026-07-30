@@ -81,7 +81,6 @@
 
 .process-route li {
   min-width: 0;
-  max-width: none;
   padding: clamp(1.35rem, 3vw, 2.1rem);
   background: var(--ivory, #f6f2e8);
 }
@@ -106,21 +105,19 @@
 .process-steps {
   display: grid;
   gap: 0;
-  width: 100%;
-  max-width: none;
+  width: 100% !important;
+  max-width: none !important;
   margin: clamp(2.5rem, 6vw, 4rem) 0 0;
   padding: 0;
   list-style: none;
   border-top: 1px solid rgba(17, 34, 51, 0.2);
 }
 
-/* Override the global li { max-width: 68ch } reading-width rule. That rule
-   was constraining every process row and leaving the right half of the page empty. */
 #englishire-process-stages .process-steps > .process-step {
   display: grid;
-  grid-template-columns: clamp(3.5rem, 7vw, 6rem) minmax(0, 1fr);
-  gap: clamp(1.25rem, 4vw, 3.5rem);
-  width: 100%;
+  grid-template-columns: clamp(3.5rem, 6vw, 5rem) minmax(0, 1fr);
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  width: 100% !important;
   max-width: none !important;
   margin-inline: 0;
   padding-block: clamp(1.8rem, 4vw, 3rem);
@@ -135,22 +132,30 @@
 }
 
 .process-step__content {
-  width: 100%;
-  max-width: none;
+  display: grid;
+  grid-template-columns: minmax(14rem, 0.72fr) minmax(0, 1.28fr);
+  column-gap: clamp(2rem, 5vw, 5rem);
+  row-gap: 0.9rem;
+  width: 100% !important;
+  max-width: none !important;
+  align-items: start;
 }
 
 .process-step__content h3 {
-  max-width: 34ch;
-  margin: 0 0 0.75rem;
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  max-width: 24ch;
+  margin: 0;
 }
 
 .process-step__content p {
-  max-width: 76rem;
+  grid-column: 2;
+  max-width: none !important;
   margin: 0;
 }
 
 .process-step__content p + p {
-  margin-top: 0.85rem;
+  margin-top: 0;
 }
 
 .process-step__assurance {
@@ -261,11 +266,27 @@
   .process-route li:last-child {
     grid-column: 1 / -1;
   }
+
+  .process-step__content {
+    grid-template-columns: minmax(12rem, 0.8fr) minmax(0, 1.2fr);
+    column-gap: 2rem;
+  }
 }
 
 @media (max-width: 56.25rem) {
   .process-protection-grid {
     grid-template-columns: 1fr;
+  }
+
+  .process-step__content {
+    grid-template-columns: 1fr;
+  }
+
+  .process-step__content h3,
+  .process-step__content p {
+    grid-column: 1;
+    grid-row: auto;
+    max-width: none;
   }
 }
 
