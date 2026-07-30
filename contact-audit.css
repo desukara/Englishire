@@ -1,0 +1,259 @@
+/* Englishire Contact — focused enquiry and accessibility pass */
+
+#englishire-contact-hero {
+  padding-block: clamp(3.5rem, 7vw, 6.5rem);
+}
+
+#englishire-contact-hero .service-hero__layout {
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+#englishire-contact-hero .service-hero__content {
+  max-width: 44rem;
+}
+
+#englishire-contact-hero h1 {
+  max-width: 13ch;
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 0.97;
+}
+
+.contact-hero-email {
+  margin: 1.1rem 0 0;
+  font-size: 0.98rem;
+}
+
+.contact-hero-email a {
+  font-weight: 700;
+}
+
+#englishire-enquiry-form,
+#englishire-contact-questions {
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.contact-enquiry__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.34fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.contact-enquiry__main {
+  min-width: 0;
+}
+
+.contact-intro-note {
+  margin: 0 0 2rem;
+  padding: 1.2rem 1.35rem;
+  border-left: 4px solid var(--crown-gold);
+  background: rgba(226, 202, 139, 0.25);
+}
+
+.contact-intro-note p {
+  margin: 0;
+}
+
+.email-enquiry-form {
+  display: grid;
+  gap: 2rem;
+}
+
+.form-group {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.form-group + .form-group {
+  padding-top: 2rem;
+  border-top: 1px solid rgba(17, 34, 51, 0.18);
+}
+
+.form-group legend {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  line-height: 1.2;
+}
+
+.email-enquiry-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.form-field {
+  min-width: 0;
+}
+
+.form-field--full {
+  grid-column: 1 / -1;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-weight: 700;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+  width: 100%;
+}
+
+.form-field__hint {
+  margin: 0.45rem 0 0;
+  font-size: 0.9rem;
+  opacity: 0.78;
+}
+
+.form-checkbox {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(17, 34, 51, 0.18);
+}
+
+.form-checkbox input {
+  margin-top: 0.25rem;
+}
+
+.form-checkbox__copy {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.form-checkbox__copy small {
+  line-height: 1.45;
+  opacity: 0.78;
+}
+
+.form-privacy-note {
+  margin: 0;
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(17, 34, 51, 0.16);
+  font-size: 0.93rem;
+  line-height: 1.55;
+}
+
+.email-enquiry-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.email-enquiry-form__status {
+  min-height: 1.5em;
+  margin: 0;
+  font-weight: 700;
+}
+
+.contact-next-step {
+  margin-top: 0.5rem;
+  padding: 1.25rem 1.4rem;
+  color: var(--ivory-light, #fbf8f1);
+  background: var(--royal-navy-deep, #071a35);
+}
+
+.contact-next-step h3 {
+  margin: 0 0 0.45rem;
+  color: inherit;
+}
+
+.contact-next-step p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.contact-enquiry__aside {
+  position: sticky;
+  top: 7rem;
+}
+
+.contact-note {
+  padding: clamp(1.5rem, 3vw, 2rem);
+  border: 1px solid rgba(17, 34, 51, 0.2);
+}
+
+.contact-note h2 {
+  margin-top: 0;
+  font-size: clamp(1.65rem, 3vw, 2.35rem);
+}
+
+.contact-note ul {
+  margin: 1.25rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.contact-note li + li {
+  margin-top: 0.65rem;
+}
+
+.contact-email-panel {
+  margin-top: 1.25rem;
+  padding: 1.4rem;
+  background: rgba(226, 202, 139, 0.22);
+}
+
+.contact-email-panel h3 {
+  margin-top: 0;
+}
+
+.contact-email-panel p:last-child {
+  margin-bottom: 0;
+}
+
+#englishire-contact-questions .frequently-asked__list {
+  max-width: 54rem;
+}
+
+.site-footer__masthead img {
+  width: 250px;
+  height: auto;
+  margin-bottom: 0.75rem;
+}
+
+@media (max-width: 62rem) {
+  .contact-enquiry__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-enquiry__aside {
+    position: static;
+  }
+}
+
+@media (max-width: 42.5rem) {
+  #englishire-contact-hero {
+    padding-block: 2.75rem 3.5rem;
+  }
+
+  #englishire-contact-hero h1 {
+    max-width: none;
+    font-size: clamp(2.65rem, 14vw, 4.4rem);
+  }
+
+  #englishire-contact-hero .service-hero__actions {
+    align-items: stretch;
+  }
+
+  #englishire-contact-hero .service-hero__actions .button,
+  .email-enquiry-form__actions .button {
+    width: 100%;
+  }
+
+  .email-enquiry-form__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-field--full {
+    grid-column: auto;
+  }
+}
