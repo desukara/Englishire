@@ -1,353 +1,356 @@
-/* LIVE-RENDERED FINAL CORRECTIONS */
+/* ENGLISHIRE — FINAL TYPOGRAPHY AND LAYOUT NORMALIZATION
+   One restrained presentation layer for every service, editorial and legal page. */
 
-/* Homepage desktop CTA: force a readable default state. */
+:root {
+  --page-max: 1180px;
+  --reading-max: 66ch;
+  --space-1: .35rem;
+  --space-2: .65rem;
+  --space-3: .9rem;
+  --space-4: 1.25rem;
+  --space-5: 1.7rem;
+  --space-6: 2.4rem;
+  --space-7: 3.25rem;
+  --space-8: 4.25rem;
+  --space-9: 5.5rem;
+}
+
+html { font-size: 16px; }
+body { line-height: 1.56; }
+.site-shell { width: min(calc(100% - 2.5rem), var(--page-max)); }
+
+/* Small labels and controls */
+.eyebrow,
+.section-label,
+.story-category,
+.site-footer__navigation-title {
+  margin-bottom: .65rem;
+  font-size: .68rem;
+  letter-spacing: .12em;
+  line-height: 1.35;
+}
+.section-label { gap: .55rem; }
+.section-label::before { width: 1.8rem; }
+.story-link {
+  gap: .45rem;
+  font-size: .7rem;
+  letter-spacing: .075em;
+}
+.button {
+  min-height: 2.8rem;
+  gap: .5rem;
+  padding: .7rem 1rem;
+  font-size: .7rem;
+  letter-spacing: .085em;
+}
+
+/* Shared heading hierarchy */
+.section-heading { margin-bottom: clamp(1.35rem, 2.5vw, 2rem); }
+.section-heading h2,
+.about-englishire h2,
+.service-situations h2,
+.process-section h2,
+.coverage-section h2,
+.editorial-section h2,
+.contact-section h2,
+.legal-content h2 {
+  font-size: clamp(1.85rem, 3.25vw, 3.15rem) !important;
+  font-weight: 650;
+  letter-spacing: -.028em;
+  line-height: 1.04;
+}
+.section-heading__summary {
+  max-width: 38rem;
+  margin-top: .75rem;
+  font-size: clamp(.98rem, 1.25vw, 1.1rem);
+  line-height: 1.55;
+}
+h3,
+.service-situation h3,
+.process-step h3,
+.homepage-publication h3,
+.journal-card h3,
+.question-card h3 {
+  font-size: clamp(1.25rem, 2vw, 1.8rem) !important;
+  letter-spacing: -.018em;
+  line-height: 1.12;
+}
+h4 { font-size: clamp(1.05rem, 1.4vw, 1.3rem); line-height: 1.2; }
+
+/* Header and navigation */
+.site-header__inner {
+  min-height: 5.6rem !important;
+  padding-block: .8rem !important;
+  gap: clamp(1rem, 2.5vw, 2.5rem) !important;
+}
+.masthead__logo { max-width: 13rem !important; }
+.primary-nav { gap: clamp(.65rem, 1.2vw, 1.15rem) !important; }
+.primary-nav a {
+  font-size: .68rem !important;
+  letter-spacing: .07em !important;
+}
+.primary-nav__enquiry { padding: .65rem .85rem !important; }
+.announcement-bar__inner { padding-block: .45rem; }
+.announcement-bar p { font-size: .74rem; }
+.announcement-bar a { font-size: .67rem; }
+
+/* Hero systems */
+.service-hero,
+.page-hero,
+.journal-hero,
+.contact-hero,
+.legal-hero {
+  padding-block: clamp(2.6rem, 5vw, 4.5rem) !important;
+}
+.service-hero__layout,
+.page-hero__layout,
+.contact-hero__layout {
+  gap: clamp(1.75rem, 4vw, 4rem) !important;
+}
+.service-hero h1,
+.page-hero h1,
+.journal-hero h1,
+.contact-hero h1,
+.legal-hero h1 {
+  max-width: 14ch;
+  margin-bottom: .85rem !important;
+  font-size: clamp(2.25rem, 5vw, 4.5rem) !important;
+  letter-spacing: -.038em !important;
+  line-height: .98 !important;
+}
+.service-hero__lead,
+.page-hero__lead,
+.journal-hero__lead,
+.contact-hero__lead,
+.legal-hero__lead {
+  max-width: 38rem;
+  margin-bottom: .8rem !important;
+  font-size: clamp(1.05rem, 1.65vw, 1.35rem) !important;
+  line-height: 1.48 !important;
+}
+.service-hero__summary,
+.page-hero__summary,
+.contact-hero__summary {
+  max-width: 42rem;
+  font-size: clamp(.96rem, 1.1vw, 1.05rem) !important;
+  line-height: 1.62 !important;
+}
+.service-hero__actions { gap: .65rem !important; margin-top: 1.25rem !important; }
+.service-facts { margin-top: 1.6rem !important; }
+.service-facts li { padding-block: .85rem !important; }
+.service-facts strong { font-size: .9rem !important; }
+.service-facts span { font-size: .82rem !important; line-height: 1.45 !important; }
+
+/* Global section rhythm */
+.service-situations,
+.process-section,
+.coverage-section,
+.about-englishire,
+.homepage-publications,
+.editorial-section,
+.contact-section,
+.questions-directory,
+.legal-content,
+.enquiry-strip {
+  padding-block: clamp(2.5rem, 4.5vw, 4rem) !important;
+}
+.service-situations__grid,
+.process-grid,
+.coverage-grid,
+.homepage-publications__grid,
+.editorial-grid,
+.questions-directory__links {
+  gap: clamp(.9rem, 2vw, 1.5rem) !important;
+}
+.service-situation,
+.process-step,
+.coverage-card,
+.homepage-publication,
+.journal-card,
+.question-card {
+  padding: clamp(1.15rem, 2vw, 1.65rem) !important;
+}
+.service-situation p,
+.process-step p,
+.coverage-card p,
+.homepage-publication p,
+.journal-card p,
+.question-card p {
+  font-size: .95rem !important;
+  line-height: 1.55 !important;
+}
+.section-footer-action { margin-top: clamp(1.4rem, 2.5vw, 2rem) !important; }
+
+/* Editorial and publication blocks */
+.homepage-publication__content { padding: clamp(1.15rem, 2vw, 1.6rem) !important; }
+.homepage-publication__content .story-link { padding-top: 1rem !important; }
+.about-englishire__layout { gap: clamp(1.75rem, 4vw, 4rem) !important; }
+.about-englishire__wordmark {
+  font-size: clamp(1.7rem, 2.8vw, 2.7rem) !important;
+  line-height: 1.04 !important;
+}
+.about-englishire__descriptor { font-size: .92rem !important; line-height: 1.5 !important; }
+
+/* Forms */
+.enquiry-form,
+.email-enquiry-form,
+.contact-form { padding: clamp(1.25rem, 2.5vw, 2rem) !important; }
+.form-grid { gap: 1rem !important; }
+label { font-size: .76rem; letter-spacing: .035em; }
+input,
+textarea,
+select {
+  min-height: 2.85rem;
+  padding: .72rem .8rem !important;
+  font-size: .95rem;
+}
+textarea { min-height: 8rem; }
+.form-help,
+.field-help { font-size: .78rem !important; line-height: 1.45 !important; }
+
+/* Legal and long-form reading */
+.legal-content__layout { gap: clamp(1.5rem, 3vw, 3rem) !important; }
+.legal-content__body { max-width: 68ch; }
+.legal-content__body p,
+.legal-content__body li,
+.journal-article__body p,
+.journal-article__body li {
+  font-size: clamp(1rem, 1.2vw, 1.08rem) !important;
+  line-height: 1.7 !important;
+}
+.legal-content__body section,
+.journal-article__body section { margin-top: clamp(2rem, 3.5vw, 3rem) !important; }
+.legal-content__body h2,
+.journal-article__body h2 {
+  margin-bottom: .8rem !important;
+  font-size: clamp(1.55rem, 2.5vw, 2.3rem) !important;
+}
+
+/* Footer: quieter hierarchy and a sensible wordmark */
+.site-footer { padding-block: clamp(2.3rem, 4vw, 3.5rem) !important; }
+.site-footer__grid {
+  gap: clamp(1.5rem, 3vw, 3rem) !important;
+  padding-bottom: 1.6rem !important;
+}
+.site-footer__brand img,
+.site-footer__logo { max-width: 10.5rem !important; }
+.site-footer__brand-name,
+.site-footer__wordmark,
+.site-footer h2 {
+  font-size: clamp(1.35rem, 2vw, 1.9rem) !important;
+  line-height: 1.05 !important;
+}
+.site-footer p { font-size: .86rem !important; line-height: 1.5 !important; }
+.site-footer nav { gap: .55rem !important; }
+.site-footer nav a {
+  font-size: .67rem !important;
+  letter-spacing: .085em !important;
+}
+.site-footer__legal {
+  padding-top: 1rem !important;
+  gap: .55rem 1rem !important;
+  font-size: .72rem !important;
+}
+
+/* Preserve essential contrast corrections */
+a.button[href="englishire-standard.html"],
 #englishire-service-situations .section-footer-action > a.button.button--text {
   color: #071a35 !important;
   background: #e2ca8b !important;
   border-color: #c7a052 !important;
 }
-
+a.button[href="englishire-standard.html"]:hover,
+a.button[href="englishire-standard.html"]:focus-visible,
 #englishire-service-situations .section-footer-action > a.button.button--text:hover,
 #englishire-service-situations .section-footer-action > a.button.button--text:focus-visible {
-  color: #ffffff !important;
+  color: #fff !important;
   background: #9f1528 !important;
   border-color: #9f1528 !important;
 }
+#englishire-standard .about-standard-card,
+#englishire-standard .about-standard-card * { color: #071a35 !important; opacity: 1 !important; }
+.legal-content__body a { color: #6f0d1b !important; text-decoration: underline; text-underline-offset: .18em; }
+.site-footer__legal a[aria-current="page"] { color: #e2ca8b !important; }
+.journal-article-hero img { height: auto !important; max-height: none !important; object-fit: contain !important; }
 
-/* Journal desktop: keep the editorial-desk identity inside its own column. */
-@media (min-width: 64rem) {
-  #englishire-editorial-desk .about-englishire__layout {
-    grid-template-columns: minmax(12rem, 0.62fr) minmax(0, 1.38fr) !important;
-    gap: clamp(2rem, 5vw, 5rem) !important;
-    align-items: start !important;
+@media (max-width: 64rem) {
+  .site-header__inner { min-height: 4.9rem !important; }
+  .primary-nav { gap: .5rem !important; }
+  .service-hero__layout,
+  .page-hero__layout,
+  .contact-hero__layout { grid-template-columns: 1fr !important; }
+  .service-hero__media,
+  .page-hero__media,
+  .contact-hero__media { max-width: 44rem; }
+}
+
+@media (max-width: 48rem) {
+  .site-shell { width: min(calc(100% - 2rem), var(--page-max)); }
+  .site-header__inner { min-height: 4.35rem !important; padding-block: .65rem !important; }
+  .masthead__logo { max-width: 10.5rem !important; }
+  .mobile-nav-toggle { min-height: 2.65rem !important; padding: .55rem .7rem !important; font-size: .68rem !important; }
+  .primary-nav { padding: .75rem 0 1rem !important; }
+  .primary-nav a { padding: .62rem .7rem !important; }
+  .service-hero,
+  .page-hero,
+  .journal-hero,
+  .contact-hero,
+  .legal-hero { padding-block: 2.25rem !important; }
+  .service-hero h1,
+  .page-hero h1,
+  .journal-hero h1,
+  .contact-hero h1,
+  .legal-hero h1 {
+    max-width: 100%;
+    font-size: clamp(2rem, 10vw, 3rem) !important;
+    line-height: 1.02 !important;
   }
-
-  #englishire-editorial-desk .about-englishire__identity {
-    min-width: 0 !important;
-    max-width: 18rem !important;
+  .section-heading h2,
+  .about-englishire h2,
+  .service-situations h2,
+  .process-section h2,
+  .coverage-section h2,
+  .editorial-section h2,
+  .contact-section h2,
+  .legal-content h2 {
+    font-size: clamp(1.65rem, 7.5vw, 2.3rem) !important;
+    line-height: 1.08 !important;
   }
-
-  #englishire-editorial-desk .about-englishire__wordmark {
-    max-width: 100% !important;
-    font-size: clamp(1.8rem, 2.5vw, 2.8rem) !important;
-    line-height: 1.05 !important;
-    overflow-wrap: normal !important;
-    word-break: normal !important;
-  }
-
-  #englishire-editorial-desk .about-englishire__descriptor {
-    max-width: 22ch !important;
-    line-height: 1.5 !important;
-  }
+  .service-situations,
+  .process-section,
+  .coverage-section,
+  .about-englishire,
+  .homepage-publications,
+  .editorial-section,
+  .contact-section,
+  .questions-directory,
+  .legal-content,
+  .enquiry-strip { padding-block: 2.25rem !important; }
+  .service-situations__grid,
+  .process-grid,
+  .coverage-grid,
+  .homepage-publications__grid,
+  .editorial-grid,
+  .questions-directory__links { grid-template-columns: 1fr !important; }
+  .service-situation,
+  .process-step,
+  .coverage-card,
+  .homepage-publication,
+  .journal-card,
+  .question-card { padding: 1.1rem !important; }
+  .button { width: 100%; }
+  .site-footer { padding-block: 2rem 2.6rem !important; }
+  .site-footer__grid { gap: 1.25rem !important; }
+  .site-footer__brand-name,
+  .site-footer__wordmark,
+  .site-footer h2 { font-size: 1.4rem !important; }
 }
 
-/* About page: replace low-contrast gold text on the pale-blue Standard card. */
-#englishire-standard .about-standard-card {
-  color: #071a35 !important;
-}
-
-#englishire-standard .about-standard-card .section-label,
-#englishire-standard .about-standard-card h2,
-#englishire-standard .about-standard-card p,
-#englishire-standard .about-standard-card strong,
-#englishire-standard .about-standard-card span,
-#englishire-standard .about-standard-card li::before {
-  color: #071a35 !important;
-  opacity: 1 !important;
-}
-
-/* Site-wide Englishire Standard CTA: readable before hover on every page. */
-a.button[href="englishire-standard.html"] {
-  color: #071a35 !important;
-  background: #e2ca8b !important;
-  border-color: #c7a052 !important;
-}
-
-a.button[href="englishire-standard.html"]:hover,
-a.button[href="englishire-standard.html"]:focus-visible {
-  color: #ffffff !important;
-  background: #9f1528 !important;
-  border-color: #9f1528 !important;
-}
-
-/* Questions page: restore a clear, balanced reference directory. */
-#englishire-question-sections {
-  padding-block: clamp(3.5rem, 8vw, 6.5rem);
-  background: #fbf8f1;
-  border-bottom: 1px solid rgba(7, 26, 53, 0.18);
-}
-
-#englishire-question-sections .section-heading {
-  margin-bottom: clamp(2rem, 5vw, 3.5rem);
-}
-
-#englishire-question-sections .section-heading__summary {
-  max-width: 34rem;
-  line-height: 1.65;
-}
-
-#englishire-question-sections .questions-directory__links {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: 1rem !important;
-  background: transparent !important;
-  border: 0 !important;
-}
-
-#englishire-question-sections .questions-directory__links a {
-  display: grid !important;
-  align-content: start !important;
-  gap: 0.65rem !important;
-  min-width: 0 !important;
-  min-height: 7.5rem !important;
-  padding: 1.35rem 1.4rem !important;
-  color: #071a35 !important;
-  background: #ffffff !important;
-  border: 1px solid rgba(7, 26, 53, 0.18) !important;
-  border-top: 3px solid #c7a052 !important;
-  box-shadow: 0 0.55rem 1.4rem rgba(7, 26, 53, 0.06) !important;
-  text-decoration: none !important;
-}
-
-#englishire-question-sections .questions-directory__links a span {
-  display: block !important;
-  max-width: none !important;
-  color: #071a35 !important;
-  font-family: Georgia, "Times New Roman", serif !important;
-  font-size: clamp(1.05rem, 1.5vw, 1.28rem) !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.015em !important;
-  line-height: 1.18 !important;
-}
-
-#englishire-question-sections .questions-directory__links a small {
-  display: block !important;
-  max-width: 30ch !important;
-  color: #596473 !important;
-  font-family: inherit !important;
-  font-size: 0.82rem !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.01em !important;
-  line-height: 1.45 !important;
-  text-transform: none !important;
-}
-
-#englishire-question-sections .questions-directory__links a:hover,
-#englishire-question-sections .questions-directory__links a:focus-visible {
-  color: #071a35 !important;
-  background: #f6f2e8 !important;
-  border-color: #c7a052 !important;
-  transform: translateY(-2px);
-}
-
-@media (max-width: 68.75rem) {
-  #englishire-question-sections .questions-directory__links {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  }
-}
-
-@media (max-width: 42.5rem) {
-  #englishire-question-sections .questions-directory__links {
-    grid-template-columns: minmax(0, 1fr) !important;
-  }
-
-  #englishire-question-sections .questions-directory__links a {
-    min-height: 0 !important;
-    padding: 1.2rem !important;
-  }
-}
-
-/* Homepage Journal cards: strong royal frame for closely related thumbnails. */
-#englishire-school-media .homepage-publication__media {
-  position: relative;
-  border-bottom: 1px solid rgba(17, 34, 51, 0.22);
-}
-
-#englishire-school-media .homepage-publication__media img {
-  display: block;
-}
-
-#englishire-school-media .homepage-publication__media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  border: 4px solid #071a35;
-  box-shadow:
-    inset 0 0 0 2px #e2ca8b,
-    inset 0 0 0 5px #071a35,
-    inset 0 0 0 7px #9f1528;
-}
-
-/* Legal pages: correct low-contrast labels, links and contact actions only. */
-#englishire-privacy-policy .legal-content__navigation .section-label,
-#englishire-cookie-policy .legal-content__navigation .section-label {
-  color: #e2ca8b !important;
-}
-
-#englishire-privacy-policy .legal-content__body a,
-#englishire-cookie-policy .legal-content__body a,
-.legal-content > .site-shell:not(.legal-content__layout) > a,
-.legal-content > .site-shell:not(.legal-content__layout) p > a {
-  color: #6f0d1b !important;
-  text-decoration: underline;
-  text-decoration-color: rgba(111, 13, 27, 0.45);
-  text-underline-offset: 0.18em;
-}
-
-#englishire-privacy-policy .legal-content__body a:hover,
-#englishire-privacy-policy .legal-content__body a:focus-visible,
-#englishire-cookie-policy .legal-content__body a:hover,
-#englishire-cookie-policy .legal-content__body a:focus-visible,
-.legal-content > .site-shell:not(.legal-content__layout) p > a:hover,
-.legal-content > .site-shell:not(.legal-content__layout) p > a:focus-visible {
-  color: #071a35 !important;
-  text-decoration-color: #c7a052;
-}
-
-#englishire-privacy-reassurance .button.button--text,
-#englishire-cookies-reassurance .button.button--text,
-.legal-content > .site-shell:not(.legal-content__layout) > .about-englishire .button.button--text {
-  color: #071a35 !important;
-  background: #e2ca8b !important;
-  border-color: #c7a052 !important;
-}
-
-#englishire-privacy-reassurance .button.button--text:hover,
-#englishire-privacy-reassurance .button.button--text:focus-visible,
-#englishire-cookies-reassurance .button.button--text:hover,
-#englishire-cookies-reassurance .button.button--text:focus-visible,
-.legal-content > .site-shell:not(.legal-content__layout) > .about-englishire .button.button--text:hover,
-.legal-content > .site-shell:not(.legal-content__layout) > .about-englishire .button.button--text:focus-visible {
-  color: #ffffff !important;
-  background: #9f1528 !important;
-  border-color: #9f1528 !important;
-}
-
-.site-footer__legal a[aria-current="page"] {
-  color: #e2ca8b !important;
-  border-bottom: 1px solid #c7a052;
-}
-
-/* Legal pages: force a fully legible default state for the final contact action. */
-#englishire-privacy-reassurance a.button[href="contact.html"],
-#englishire-cookies-reassurance a.button[href="contact.html"],
-.legal-content > .site-shell:not(.legal-content__layout) .about-englishire a.button[href="contact.html"] {
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-  background-color: #9f1528 !important;
-  border-color: #c7a052 !important;
-  opacity: 1 !important;
-  text-decoration: none !important;
-  box-shadow: 0 0.55rem 1.3rem rgba(159, 21, 40, 0.28) !important;
-}
-
-#englishire-privacy-reassurance a.button[href="contact.html"]::after,
-#englishire-cookies-reassurance a.button[href="contact.html"]::after,
-.legal-content > .site-shell:not(.legal-content__layout) .about-englishire a.button[href="contact.html"]::after {
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-}
-
-#englishire-privacy-reassurance a.button[href="contact.html"]:hover,
-#englishire-privacy-reassurance a.button[href="contact.html"]:focus-visible,
-#englishire-cookies-reassurance a.button[href="contact.html"]:hover,
-#englishire-cookies-reassurance a.button[href="contact.html"]:focus-visible,
-.legal-content > .site-shell:not(.legal-content__layout) .about-englishire a.button[href="contact.html"]:hover,
-.legal-content > .site-shell:not(.legal-content__layout) .about-englishire a.button[href="contact.html"]:focus-visible {
-  color: #071a35 !important;
-  -webkit-text-fill-color: #071a35 !important;
-  background-color: #e2ca8b !important;
-  border-color: #e2ca8b !important;
-}
-
-#englishire-privacy-reassurance a.button[href="contact.html"]:hover::after,
-#englishire-privacy-reassurance a.button[href="contact.html"]:focus-visible::after,
-#englishire-cookies-reassurance a.button[href="contact.html"]:hover::after,
-#englishire-cookies-reassurance a.button[href="contact.html"]:focus-visible::after,
-.legal-content > .site-shell:not(.legal-content__layout) .about-englishire a.button[href="contact.html"]:hover::after,
-.legal-content > .site-shell:not(.legal-content__layout) .about-englishire a.button[href="contact.html"]:focus-visible::after {
-  color: #071a35 !important;
-  -webkit-text-fill-color: #071a35 !important;
-}
-
-/* Terms page: restore the missing inner spacing in the final principle panel. */
-.legal-content > .site-shell:not(.legal-content__layout) > .about-englishire {
-  margin-top: clamp(2.5rem, 6vw, 4rem);
-  padding: clamp(2rem, 5vw, 3.5rem);
-}
-
-.legal-content > .site-shell:not(.legal-content__layout) > .about-englishire > h2,
-.legal-content > .site-shell:not(.legal-content__layout) > .about-englishire > p {
-  position: relative;
-  z-index: 1;
-  max-width: 42rem;
-}
-
-.legal-content > .site-shell:not(.legal-content__layout) > .about-englishire > h2 {
-  margin-bottom: 1.25rem;
-  color: #ffffff;
-  font-family: Georgia, "Times New Roman", serif;
-}
-
-.legal-content > .site-shell:not(.legal-content__layout) > .about-englishire > p {
-  margin-bottom: 1rem;
-  color: rgba(255, 255, 255, 0.82);
-}
-
-.legal-content > .site-shell:not(.legal-content__layout) > .about-englishire > p:last-child {
-  margin-top: 1.75rem;
-  margin-bottom: 0;
-}
-
-/* Journal articles: preserve each hero image's complete composition. */
-.journal-article-hero img {
-  height: auto !important;
-  max-height: none !important;
-  object-fit: contain !important;
-}
-
-
-/* Enquiry flow and confirmation page */
-.email-enquiry-form__email-fallback {
-  margin-top: 0.8rem;
-  color: var(--muted);
-}
-
-.email-enquiry-form__email-fallback a,
-.thank-you-page .enquiry-strip a {
-  color: inherit;
-  border-bottom: 1px solid currentColor;
-}
-
-.thank-you-page .service-hero__summary {
-  max-width: 58rem;
-}
-
-.thank-you-page .about-englishire .service-hero__actions {
-  position: relative;
-  z-index: 1;
-  flex-wrap: wrap;
-}
-
-.thank-you-page .about-englishire .button--light {
-  color: var(--royal-navy-deep);
-  background: var(--ivory-light);
-  border-color: var(--crown-gold-light);
-}
-
-.thank-you-page .about-englishire .button--light:hover,
-.thank-you-page .about-englishire .button--light:focus-visible {
-  color: var(--white);
-  background: var(--crimson);
-  border-color: var(--crimson);
-}
-
-.thank-you-page .about-englishire .button--primary {
-  border-color: var(--crown-gold-light);
-}
-
-.thank-you-page .enquiry-strip__content p {
-  color: rgba(255, 255, 255, 0.84);
+@media (max-width: 24rem) {
+  .site-shell { width: min(calc(100% - 1.5rem), var(--page-max)); }
+  .service-hero h1,
+  .page-hero h1,
+  .journal-hero h1,
+  .contact-hero h1,
+  .legal-hero h1 { font-size: clamp(1.85rem, 9.5vw, 2.5rem) !important; }
 }
