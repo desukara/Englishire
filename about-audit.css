@@ -1,0 +1,228 @@
+/* Englishire About — focused company story and conversion pass */
+
+#englishire-about-hero {
+  padding-block: clamp(3.5rem, 7vw, 6.5rem);
+}
+
+#englishire-about-hero .service-hero__layout {
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+#englishire-about-hero .service-hero__content {
+  max-width: 44rem;
+}
+
+#englishire-about-hero h1 {
+  max-width: 13ch;
+  font-size: clamp(3rem, 7vw, 6.2rem);
+  line-height: 0.96;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+#englishire-about-hero .service-hero__summary {
+  max-width: 39rem;
+}
+
+#englishire-about-hero .service-hero__actions {
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.about-definition {
+  margin-top: 1.4rem;
+  padding: 1.1rem 1.2rem;
+  color: var(--royal-navy);
+  background: rgba(226, 202, 139, 0.28);
+  border-left: 4px solid var(--crown-gold);
+}
+
+.about-definition strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+}
+
+.about-definition p {
+  margin: 0;
+}
+
+#englishire-origin,
+#englishire-experience,
+#englishire-standard,
+#englishire-responsibility,
+#englishire-publication,
+#englishire-about-enquiry {
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+#englishire-origin h2,
+#englishire-experience h2,
+#englishire-standard h2,
+#englishire-responsibility h2,
+#englishire-publication h2,
+#englishire-about-enquiry h2 {
+  font-size: clamp(2.15rem, 5.2vw, 4.35rem);
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.about-origin-statement {
+  margin: 0 0 1.5rem;
+  max-width: 28ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 3vw, 2.35rem);
+  line-height: 1.3;
+}
+
+.about-origin-statement::before {
+  content: "“";
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--crown-gold-dark, #9a772f);
+  font-size: 2.6rem;
+  line-height: 0.7;
+}
+
+.about-experience-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(2rem, 5vw, 3rem);
+  background: rgba(17, 34, 51, 0.15);
+  border: 1px solid rgba(17, 34, 51, 0.15);
+}
+
+.about-experience-grid article {
+  padding: clamp(1.5rem, 3vw, 2.4rem);
+  background: var(--ivory, #f6f2e8);
+}
+
+.about-experience-grid h3 {
+  margin-top: 0;
+}
+
+.about-standard-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.95fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  padding: clamp(2rem, 5vw, 4rem);
+  color: var(--ivory-light, #fbf8f1);
+  background: var(--royal-navy-deep, #071a35);
+}
+
+.about-standard-card h2 {
+  color: inherit;
+}
+
+.about-standard-card p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.about-standard-principles {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.about-standard-principles li {
+  padding: 1.2rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.about-standard-principles strong {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+}
+
+.about-standard-principles span {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.about-responsibility-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(2rem, 5vw, 3rem);
+  background: rgba(17, 34, 51, 0.15);
+  border: 1px solid rgba(17, 34, 51, 0.15);
+}
+
+.about-responsibility-grid article {
+  padding: clamp(1.5rem, 3vw, 2.4rem);
+  background: var(--ivory, #f6f2e8);
+}
+
+.about-responsibility-grid h3 {
+  margin-top: 0;
+}
+
+.about-publication-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(16rem, 0.75fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+  padding: clamp(2rem, 5vw, 4rem);
+  border: 1px solid rgba(17, 34, 51, 0.2);
+}
+
+.about-publication-card__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.about-publication-card__descriptor {
+  margin: 0;
+  max-width: 34rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  line-height: 1.4;
+}
+
+#englishire-about-enquiry .enquiry-strip__content p:last-child {
+  max-width: 47rem;
+}
+
+.site-footer__masthead img {
+  width: 250px;
+  height: auto;
+  margin-bottom: 0.75rem;
+}
+
+@media (max-width: 56.25rem) {
+  .about-standard-card,
+  .about-publication-card,
+  .about-experience-grid,
+  .about-responsibility-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 42.5rem) {
+  #englishire-about-hero {
+    padding-block: 2.75rem 3.5rem;
+  }
+
+  #englishire-about-hero h1 {
+    max-width: none;
+    font-size: clamp(2.65rem, 14vw, 4.4rem);
+  }
+
+  #englishire-about-hero .service-hero__actions {
+    align-items: stretch;
+  }
+
+  #englishire-about-hero .service-hero__actions .button {
+    width: 100%;
+  }
+}
