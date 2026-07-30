@@ -62,17 +62,17 @@
   // navigation references should lead directly to the publication itself.
   document.querySelectorAll('a[href="journal.html"], a[href$="/journal.html"]').forEach((link) => {
     link.href = "https://eastokyo.com/";
-    link.textContent = "Eastokyo Magazine ↗";
+    link.textContent = "Eastokyo Education Review ↗";
     link.setAttribute("aria-label", japanese
-      ? "Eastokyo Magazine、Englishireのデジタル出版物"
-      : "Eastokyo Magazine, Englishire's digital publication");
+      ? "Eastokyo Education Review、Englishireのデジタル出版物"
+      : "Eastokyo Education Review, Englishire's digital publication");
   });
 
   if (japanese) {
     const nav = document.querySelector("#englishire-primary-navigation");
     if (nav instanceof HTMLElement) {
       nav.setAttribute("aria-label", "メインナビゲーション");
-      nav.innerHTML = '<a href="teacher-cover.html">講師手配</a><a href="how-it-works.html">ご利用の流れ</a><a href="englishire-standard.html">Englishireの基準</a><a href="about.html">Englishireについて</a><a href="https://eastokyo.com/">Eastokyo Magazine ↗</a><a class="primary-nav__enquiry" href="contact.html">お問い合わせ</a>';
+      nav.innerHTML = '<a href="teacher-cover.html">講師手配</a><a href="how-it-works.html">ご利用の流れ</a><a href="englishire-standard.html">Englishireの基準</a><a href="about.html">Englishireについて</a><a href="https://eastokyo.com/">Eastokyo Education Review ↗</a><a class="primary-nav__enquiry" href="contact.html">お問い合わせ</a>';
       nav.querySelectorAll("a").forEach((link) => {
         if (link.getAttribute("href") === file) link.setAttribute("aria-current", "page");
       });
@@ -80,7 +80,7 @@
 
     const footerTop = document.querySelector(".site-footer__top");
     if (footerTop instanceof HTMLElement) {
-      footerTop.innerHTML = '<div class="site-footer__brand"><a class="site-footer__masthead" href="index.html"><img src="../englishire-logo.png" width="1327" height="380" alt="Englishire" style="width:250px;height:auto;display:block;margin-bottom:.75rem"></a><p class="site-footer__statement">東京都内の学校向け英語講師の代講・短期手配。</p></div><nav class="site-footer__navigation" aria-label="サービス"><p class="site-footer__navigation-title">サービス</p><a href="teacher-cover.html">講師手配</a><a href="how-it-works.html">ご利用の流れ</a><a href="englishire-standard.html">Englishireの基準</a><a href="about.html">Englishireについて</a><a href="questions.html">よくあるご質問</a><a href="contact.html">お問い合わせ</a></nav><nav class="site-footer__navigation" aria-label="出版物と方針"><p class="site-footer__navigation-title">出版物と方針</p><a href="https://eastokyo.com/">Eastokyo Magazine ↗</a><a href="service-standards.html">サービス方針</a><a href="accessibility.html">アクセシビリティ</a><a href="editorial-policy.html">編集方針</a><a href="permissions.html">転載・利用許可</a></nav>';
+      footerTop.innerHTML = '<div class="site-footer__brand"><a class="site-footer__masthead" href="index.html"><img src="../englishire-logo.png" width="1327" height="380" alt="Englishire" style="width:250px;height:auto;display:block;margin-bottom:.75rem"></a><p class="site-footer__statement">東京都内の学校向け英語講師の代講・短期手配。</p></div><nav class="site-footer__navigation" aria-label="サービス"><p class="site-footer__navigation-title">サービス</p><a href="teacher-cover.html">講師手配</a><a href="how-it-works.html">ご利用の流れ</a><a href="englishire-standard.html">Englishireの基準</a><a href="about.html">Englishireについて</a><a href="questions.html">よくあるご質問</a><a href="contact.html">お問い合わせ</a></nav><nav class="site-footer__navigation" aria-label="出版物と方針"><p class="site-footer__navigation-title">出版物と方針</p><a href="https://eastokyo.com/">Eastokyo Education Review ↗</a><a href="service-standards.html">サービス方針</a><a href="accessibility.html">アクセシビリティ</a><a href="editorial-policy.html">編集方針</a><a href="permissions.html">転載・利用許可</a></nav>';
     }
 
     const legal = document.querySelector(".site-footer__legal");
